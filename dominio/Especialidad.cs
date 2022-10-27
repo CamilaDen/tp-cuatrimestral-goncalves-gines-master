@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace dominio
 {
-    internal class Especialidad
+    public class Especialidad
     {
-        public String Codigo { get; set; }
-        public String Nombre { get; set; }
-        public int MyProperty { get; set; }
+        public int Id { get; set; }
+        public Medico Medico { get; set; }
+        public string Nombre { get; set; }
+        public bool Activo { get; set; }
     }
 }

@@ -6,7 +6,14 @@ using System.Threading.Tasks;
 
 namespace dominio
 {
-    internal class Paciente
+    public class Paciente : Persona
     {
+        public ObraSocial ObraSocial { get; set; }
+        public Turno Turno { get; set; }
+        public float Peso{ get; set; }
+        public float Altura { get; set; }
+        public string Credencial { get; set; }
+        public string GrupoSanguineo { get; set; }
+        public bool Activo { get; set; }
     }
 }

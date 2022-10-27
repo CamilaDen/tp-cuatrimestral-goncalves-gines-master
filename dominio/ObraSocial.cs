@@ -6,12 +6,10 @@ using System.Threading.Tasks;
 
 namespace dominio
 {
-    public class Perfil
+    public class ObraSocial
     {
         public int Id { get; set; }
-        public Usuario Usuario { get; set; }
         public string Nombre { get; set; }
-      
         public bool Activo { get; set; }
     }
 }
