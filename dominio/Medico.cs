@@ -11,6 +11,7 @@ namespace dominio
     {
         public string Matricula { get; set; }
         public List<int> DiasLaborables { get; set; }
+        public Especialidad Especialidad { get; set; }
         public int HoraDesde { get; set; }
         public int HoraHasta { get; set; }
         public bool Activo { get; set; }
