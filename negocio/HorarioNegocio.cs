@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace negocio
 {
-    public class PerfilNegocio
+    public class HorarioNegocio
     {
     }
 }

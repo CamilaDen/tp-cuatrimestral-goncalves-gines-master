@@ -11,6 +11,7 @@ namespace dominio
         public int Id { get; set; }
         public Especialidad Especialidad { get; set; }
         public DateTime Fecha { get; set; }
+        public int Hora { get; set; }
         public DateTime FechaSolicitado { get; set; }
         public string Observaciones { get; set; }
         public string Nombre { get; set; }
