@@ -21,7 +21,7 @@ namespace tp_cuatrimestral_goncalves_gines
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnaPersonalClinica;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor btnaPersonalClinica;
 
         /// <summary>
         /// Control btnaTurnos.
@@ -30,7 +30,7 @@ namespace tp_cuatrimestral_goncalves_gines
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnaTurnos;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor btnaTurnos;
 
         /// <summary>
         /// Control btnaPacientes.
@@ -39,7 +39,7 @@ namespace tp_cuatrimestral_goncalves_gines
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnaPacientes;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor btnaPacientes;
 
         /// <summary>
         /// Control btnaEspecialidades.
@@ -48,7 +48,7 @@ namespace tp_cuatrimestral_goncalves_gines
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnaEspecialidades;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor btnaEspecialidades;
 
         /// <summary>
         /// Control btnaCoberturas.
@@ -57,6 +57,6 @@ namespace tp_cuatrimestral_goncalves_gines
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnaCoberturas;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor btnaCoberturas;
     }
 }

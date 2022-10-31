@@ -1,4 +1,58 @@
-﻿body {
+﻿* {
 
-    background-color:black;
+    
 }
+body {
+    /* ↓ Para que quede el footer abajo mantener esta configuracion ↓ */
+    position: relative;
+    padding-top: 0.01em;
+    padding-bottom: 7em;
+    min-height: 100vh;
+    font-family: 'Roboto',sans-serif;
+}
+
+#Hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+    height: 90vh;
+    color: white;
+    background-image: linear-gradient(
+        0deg,
+    rgba(0,0,0,0.5),
+    rgba(0,0,0,0.5) 
+    ),url("img/doc.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+.container {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.TituloABM {
+    font-size: 2.0em;
+    font-weight: bold;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.FooterClinica {
+    position:absolute;
+    bottom:0;
+    width:100%;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding-top: 10px;
+    background-color: #63bbdc;
+}
+
+    .FooterClinica p {
+        text-align: center;
+        color: rgb(0, 0, 0, 0,65);
+        font-size: 0.80em;
+    }

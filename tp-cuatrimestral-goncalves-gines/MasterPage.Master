@@ -10,7 +10,7 @@
     </asp:ContentPlaceHolder>
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <link rel="stylesheet" href="" />
+    <link rel="stylesheet" href="Styles.css" />
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 
@@ -19,7 +19,7 @@
     <form id="form1" runat="server" >
         <div class="container-fluid" style="padding:0"  >
             <nav class="navbar bg-light" style="padding:0">
-                <div class="container-fluid" style="background-color: #45c1ae; height:70px " >
+                <div class="container-fluid" style="background-color:#63bbdc; height:70px " >
                     <a class="navbar-brand" style="font-family:Verdana, Geneva, Tahoma, sans-serif; font-weight:bold" href="#">
                         <img src="img/salud.png" alt="Logo" width="45" height="40" class="d-inline-block align-text-top" >
                         Clinica Siempre Enfermo
@@ -35,3 +35,10 @@
     </form>
 </body>
 </html>
+<footer>
+    <div class="FooterClinica">      
+        <hr />
+        <p>Copyright © 1999-2022 Clinica Siempre Enfermo S.R.L.</p>
+        <p>Calle Falsa 123, Piso 1, CP 1650, San Martin, Buenos Aires</p>        
+    </div>
+</footer>
