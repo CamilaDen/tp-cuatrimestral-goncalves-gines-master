@@ -69,7 +69,9 @@
     <Content Include="Especialidades.aspx" />
     <Content Include="Global.asax" />
     <Content Include="LogIn.aspx" />
+    <Content Include="Medicos.aspx" />
     <Content Include="Pacientes.aspx" />
+    <Content Include="Perfiles.aspx" />
     <Content Include="Personal.aspx" />
     <Content Include="Styles.css" />
     <Content Include="Turnos.aspx" />
@@ -114,12 +116,26 @@
     <Compile Include="MasterPage.Master.designer.cs">
       <DependentUpon>MasterPage.Master</DependentUpon>
     </Compile>
+    <Compile Include="Medicos.aspx.cs">
+      <DependentUpon>Medicos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Medicos.aspx.designer.cs">
+      <DependentUpon>Medicos.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pacientes.aspx.cs">
       <DependentUpon>Pacientes.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pacientes.aspx.designer.cs">
       <DependentUpon>Pacientes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Perfiles.aspx.cs">
+      <DependentUpon>Perfiles.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Perfiles.aspx.designer.cs">
+      <DependentUpon>Perfiles.aspx</DependentUpon>
     </Compile>
     <Compile Include="Personal.aspx.cs">
       <DependentUpon>Personal.aspx</DependentUpon>

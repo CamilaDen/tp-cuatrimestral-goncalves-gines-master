@@ -15,15 +15,6 @@ namespace tp_cuatrimestral_goncalves_gines
     {
 
         /// <summary>
-        /// Control btnaPersonalClinica.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor btnaPersonalClinica;
-
-        /// <summary>
         /// Control btnaTurnos.
         /// </summary>
         /// <remarks>
@@ -58,5 +49,32 @@ namespace tp_cuatrimestral_goncalves_gines
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlAnchor btnaCoberturas;
+
+        /// <summary>
+        /// Control btnaMedicos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor btnaMedicos;
+
+        /// <summary>
+        /// Control btnaPersonal.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor btnaPersonal;
+
+        /// <summary>
+        /// Control btnaPerfiles.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor btnaPerfiles;
     }
 }

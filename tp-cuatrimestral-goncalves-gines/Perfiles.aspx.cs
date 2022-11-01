@@ -9,19 +9,20 @@ using System.Web.UI.WebControls;
 
 namespace tp_cuatrimestral_goncalves_gines
 {
-    public partial class Personal : System.Web.UI.Page
+    public partial class Perfiles : System.Web.UI.Page
     {
-        public List<Persona> ListaPersonal { get; set; }
+
+        public List<Perfil> ListaPerfil { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
-            PersonaNegocio negocio = new PersonaNegocio();
-            ListaPersonal = negocio.listarConSP();
+            PerfilNegocio negocio = new PerfilNegocio();
+            ListaPerfil = negocio.listarConSP();
             try
             {
                 if (!IsPostBack)
                 {
-                    dgvPersonal.DataSource = ListaPersonal;
-                    dgvPersonal.DataBind();
+                    dgvPerfiles.DataSource = ListaPerfil;
+                    dgvPerfiles.DataBind();
                 }
             }
             catch (Exception ex)

@@ -28,6 +28,7 @@ body {
     background-size: cover;
     background-position: center center;
 }
+
 .container {
     padding-top: 20px;
     padding-bottom: 20px;
@@ -51,8 +52,20 @@ body {
     background-color: #63bbdc;
 }
 
-    .FooterClinica p {
-        text-align: center;
-        color: rgb(0, 0, 0, 0,65);
-        font-size: 0.80em;
-    }
+.FooterClinica p {
+    text-align: center;
+    color: rgb(0, 0, 0, 0,65);
+    font-size: 0.80em;
+}
+
+.btn-menu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    background-color: #20abddb8;
+    color: black;
+    border-radius: 20px;
+    font-weight: bold;
+    border-style: hidden
+}

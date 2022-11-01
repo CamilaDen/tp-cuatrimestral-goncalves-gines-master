@@ -11,7 +11,7 @@ namespace tp_cuatrimestral_goncalves_gines
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         protected void btnaPersonalClinica_Click(object sender, EventArgs e)
