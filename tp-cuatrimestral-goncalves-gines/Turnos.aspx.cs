@@ -11,7 +11,7 @@ namespace tp_cuatrimestral_goncalves_gines
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            Response.Redirect("Default.aspx");
         }
     }
 }
