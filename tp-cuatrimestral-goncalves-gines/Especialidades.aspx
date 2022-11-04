@@ -14,9 +14,9 @@
                 </asp:TemplateField>
             </Columns>
         </asp:GridView>
-    </div>
-    <div id="botoncitos">
+        <div id="botoncitos">
              <asp:Button ID="btnVolver" href="Default.aspx" runat="server" Text="← Volver" class="btn btn-primary btn-lg" Style="background-color: #63bbdc; color:black; border-style:none" OnClick="btnVolver_Click"/>
              <asp:Button ID="btnCrear" runat="server" Text="Crear" class="btn btn-primary btn-lg" Style="background-color: #5dbf4a; color:black; border-style:none"/>
          </div>
+    </div>
 </asp:Content>
