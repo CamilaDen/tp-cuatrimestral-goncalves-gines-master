@@ -64,6 +64,11 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ABMCoberturas.aspx" />
+    <Content Include="ABMEspecialidades.aspx" />
+    <Content Include="ABMMedicos.aspx" />
+    <Content Include="ABMPacientes.aspx" />
+    <Content Include="ABMPersonal.aspx" />
     <Content Include="Coberturas.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="Especialidades.aspx" />
@@ -78,6 +83,41 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ABMCoberturas.aspx.cs">
+      <DependentUpon>ABMCoberturas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ABMCoberturas.aspx.designer.cs">
+      <DependentUpon>ABMCoberturas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ABMEspecialidades.aspx.cs">
+      <DependentUpon>ABMEspecialidades.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ABMEspecialidades.aspx.designer.cs">
+      <DependentUpon>ABMEspecialidades.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ABMMedicos.aspx.cs">
+      <DependentUpon>ABMMedicos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ABMMedicos.aspx.designer.cs">
+      <DependentUpon>ABMMedicos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ABMPacientes.aspx.cs">
+      <DependentUpon>ABMPacientes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ABMPacientes.aspx.designer.cs">
+      <DependentUpon>ABMPacientes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ABMPersonal.aspx.cs">
+      <DependentUpon>ABMPersonal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ABMPersonal.aspx.designer.cs">
+      <DependentUpon>ABMPersonal.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Coberturas.aspx.cs">
       <DependentUpon>Coberturas.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

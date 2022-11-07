@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace tp_cuatrimestral_goncalves_gines
 {
-    public partial class Pacientes : System.Web.UI.Page
+    public partial class ABMEspecialidades : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -16,17 +16,7 @@ namespace tp_cuatrimestral_goncalves_gines
 
         protected void btnVolver_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Default.aspx");
-        }
-
-        protected void btnEliminar_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void btnCrear_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("ABMPacientes.aspx");
+            Response.Redirect("Especialidades.aspx");
         }
     }
 }
