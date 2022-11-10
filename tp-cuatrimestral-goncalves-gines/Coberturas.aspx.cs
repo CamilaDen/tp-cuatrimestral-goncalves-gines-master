@@ -45,5 +45,11 @@ namespace tp_cuatrimestral_goncalves_gines
         {
             Response.Redirect("ABMCoberturas.aspx");
         }
+
+        protected void dgvCoberturas_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string id = dgvCoberturas.SelectedDataKey.Value.ToString();
+            Response.Redirect("ABMCoberturas.aspx?id=" + id);
+        }
     }
 }

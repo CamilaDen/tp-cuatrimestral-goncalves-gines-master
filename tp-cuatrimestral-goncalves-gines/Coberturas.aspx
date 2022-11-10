@@ -3,20 +3,24 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
      <div class="container">
-        <asp:GridView ID="dgvCoberturas" runat="server" CssClass="table" AutoGenerateColumns="false">
+        <h1>Coberturas</h1>
+        <asp:GridView ID="dgvCoberturas" runat="server" CssClass="table" AutoGenerateColumns="false" DataKeyNames="Id" OnSelectedIndexChanged="dgvCoberturas_SelectedIndexChanged">
             <Columns>
-                <asp:BoundField HeaderText="Id" DataField="Id"/>
                 <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
                 <asp:BoundField HeaderText="Sigla" DataField="Sigla" />
                 <asp:BoundField HeaderText="CUIT" DataField="Cuit" />
                 <asp:BoundField HeaderText="Telefono" DataField="Telefono" />
                 <asp:BoundField HeaderText="Direccion" DataField="Direccion" />
                 <asp:BoundField HeaderText="Mail" DataField="Mail" />
-                <asp:TemplateField HeaderText="Acciones">
+                <asp:CheckBoxField HeaderText="Activo" DataField="Activo" />
+                <asp:CommandField HeaderText="Editar" ShowSelectButton="true" SelectText="✏️​" />
+                <%--<asp:CommandField HeaderText="Eliminar" ShowSelectButton="true" SelectText="❌" />--%>
+                <%--<asp:TemplateField HeaderText="Acciones" >
                     <ItemTemplate>
+                        <asp:Button Text="Editar" ShowEditButton="true" CssClass="btn btn-primary" runat="server" ID="btnEditar"/>
                         <asp:Button Text="Eliminar" CssClass="btn btn-danger" runat="server" ID="btnEliminar" CommandArgument='<%#Eval("Id") %>' CommandName="EspecialidadId" OnClick="btnEliminar_Click" />
                     </ItemTemplate>
-                </asp:TemplateField>
+                </asp:TemplateField>--%>
             </Columns>
         </asp:GridView>
          <div id="botoncitos">
