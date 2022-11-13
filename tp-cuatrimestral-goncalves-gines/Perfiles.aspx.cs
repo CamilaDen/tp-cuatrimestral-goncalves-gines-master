@@ -31,11 +31,6 @@ namespace tp_cuatrimestral_goncalves_gines
             }
         }
 
-        protected void btnEliminar_Click(object sender, EventArgs e)
-        {
-
-        }
-
         protected void btnVolver_Click(object sender, EventArgs e)
         {
             Response.Redirect("Default.aspx");
@@ -45,5 +40,12 @@ namespace tp_cuatrimestral_goncalves_gines
         {
             Response.Redirect("ABMPerfiles.aspx");
         }
+
+        protected void dgvPerfiles_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string id = dgvPerfiles.SelectedDataKey.Value.ToString();
+            Response.Redirect("ABMPerfiles.aspx?id=" + id);
+        }
+
     }
 }

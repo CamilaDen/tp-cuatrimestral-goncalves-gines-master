@@ -30,10 +30,6 @@ namespace tp_cuatrimestral_goncalves_gines
             }
         }
 
-        protected void btnEliminar_Click(object sender, EventArgs e)
-        {
-            
-        }
 
         protected void btnVolver_Click(object sender, EventArgs e)
         {
@@ -43,6 +39,12 @@ namespace tp_cuatrimestral_goncalves_gines
         protected void btnCrear_Click(object sender, EventArgs e)
         {
             Response.Redirect("ABMEspecialidades.aspx");
+        }
+
+        protected void dgvEspecialidades_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string id = dgvEspecialidades.SelectedDataKey.Value.ToString();
+            Response.Redirect("ABMEspecialidades.aspx?id=" + id);
         }
     }
 }

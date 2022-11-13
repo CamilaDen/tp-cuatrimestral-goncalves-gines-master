@@ -68,6 +68,7 @@
     <Content Include="ABMEspecialidades.aspx" />
     <Content Include="ABMMedicos.aspx" />
     <Content Include="ABMPacientes.aspx" />
+    <Content Include="ABMPerfiles.aspx" />
     <Content Include="ABMPersonal.aspx" />
     <Content Include="Coberturas.aspx" />
     <Content Include="Default.aspx" />
@@ -110,6 +111,13 @@
     </Compile>
     <Compile Include="ABMPacientes.aspx.designer.cs">
       <DependentUpon>ABMPacientes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ABMPerfiles.aspx.cs">
+      <DependentUpon>ABMPerfiles.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ABMPerfiles.aspx.designer.cs">
+      <DependentUpon>ABMPerfiles.aspx</DependentUpon>
     </Compile>
     <Compile Include="ABMPersonal.aspx.cs">
       <DependentUpon>ABMPersonal.aspx</DependentUpon>

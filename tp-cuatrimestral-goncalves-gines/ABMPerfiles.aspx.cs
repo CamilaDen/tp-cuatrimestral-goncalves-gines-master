@@ -9,7 +9,7 @@ using System.Web.UI.WebControls;
 
 namespace tp_cuatrimestral_goncalves_gines
 {
-    public partial class ABMEspecialidades : System.Web.UI.Page
+    public partial class ABMPerfil : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -20,16 +20,16 @@ namespace tp_cuatrimestral_goncalves_gines
                 string id = Request.QueryString["id"] != null ? Request.QueryString["id"].ToString() : "";
                 if (id != "" && !IsPostBack)
                 {
-                    EspecialidadNegocio negocio = new EspecialidadNegocio();
-                    Especialidad especialidadSeleccionada = (negocio.listarConSP(id))[0];
+                    PerfilNegocio negocio = new PerfilNegocio();
+                    Perfil perfilSeleccionado = (negocio.listarConSP(id))[0];
 
                     txtId.Text = id;
-                    txtNombre.Text = especialidadSeleccionada.Nombre;
+                    txtNombre.Text = perfilSeleccionado.Nombre;
 
                     //Guardo en session para conocer luego el estado de activación o inactivación
-                    Session.Add("EspecialidadSeleccionada", especialidadSeleccionada);
+                    Session.Add("PerfilSeleccionado", perfilSeleccionado);
 
-                    if (!especialidadSeleccionada.Activo)
+                    if (!perfilSeleccionado.Activo)
                     {
                         btnActivacion.Text = "Reactivar";
                         btnActivacion.CssClass = "btn btn-warning";
@@ -47,18 +47,18 @@ namespace tp_cuatrimestral_goncalves_gines
 
         protected void btnVolver_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Especialidades.aspx");
+            Response.Redirect("Perfiles.aspx");
         }
 
         protected void btnActivacion_Click(object sender, EventArgs e)
         {
             try
             {
-                EspecialidadNegocio negocio = new EspecialidadNegocio();
-                Especialidad seleccionada = (Especialidad)Session["EspecialidadSeleccionada"];
+                PerfilNegocio negocio = new PerfilNegocio();
+                Perfil seleccionada = (Perfil)Session["PerfilSeleccionado"];
 
                 negocio.eliminarLogico(seleccionada.Id, !seleccionada.Activo);
-                Response.Redirect("Especialidades.aspx");
+                Response.Redirect("Perfiles.aspx");
 
             }
             catch (Exception ex)
@@ -71,18 +71,18 @@ namespace tp_cuatrimestral_goncalves_gines
         {
             try
             {
-                Especialidad especialidad = new Especialidad();
-                EspecialidadNegocio negocio = new EspecialidadNegocio();
+                Perfil perfil = new Perfil();
+                PerfilNegocio negocio = new PerfilNegocio();
 
-                especialidad.Nombre = txtNombre.Text;
+                perfil.Nombre = txtNombre.Text;
 
                 if (Request.QueryString["id"] != null)
                 {
-                    especialidad.Id = int.Parse(txtId.Text);
-                    negocio.modificar(especialidad);
+                    perfil.Id = int.Parse(txtId.Text);
+                    negocio.modificar(perfil);
                 }
-                else negocio.agregar(especialidad);
-                Response.Redirect("Especialidades.aspx");
+                else negocio.agregar(perfil);
+                Response.Redirect("Perfiles.aspx");
             }
             catch (Exception ex)
             {

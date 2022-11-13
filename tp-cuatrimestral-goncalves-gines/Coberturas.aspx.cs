@@ -31,10 +31,6 @@ namespace tp_cuatrimestral_goncalves_gines
             }
 
         }
-        protected void btnEliminar_Click(object sender, EventArgs e)
-        {
-
-        }
 
         protected void btnVolver_Click(object sender, EventArgs e)
         {

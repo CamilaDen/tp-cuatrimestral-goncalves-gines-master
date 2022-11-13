@@ -13,7 +13,7 @@
                 <asp:BoundField HeaderText="Direccion" DataField="Direccion" />
                 <asp:BoundField HeaderText="Mail" DataField="Mail" />
                 <asp:CheckBoxField HeaderText="Activo" DataField="Activo" />
-                <asp:CommandField HeaderText="Editar" ShowSelectButton="true" SelectText="✏️​" />
+                <asp:CommandField HeaderText="Editar" ShowSelectButton="true" SelectText="✏️​" ControlStyle-CssClass="btn btn-primary" />
                 <%--<asp:CommandField HeaderText="Eliminar" ShowSelectButton="true" SelectText="❌" />--%>
                 <%--<asp:TemplateField HeaderText="Acciones" >
                     <ItemTemplate>

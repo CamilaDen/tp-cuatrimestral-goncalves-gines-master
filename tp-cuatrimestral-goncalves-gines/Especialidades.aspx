@@ -3,15 +3,12 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container">
-        <asp:GridView ID="dgvEspecialidades" runat="server" CssClass="table" AutoGenerateColumns="false">
+        <asp:GridView ID="dgvEspecialidades" runat="server" CssClass="table" AutoGenerateColumns="false" DataKeyNames="Id" OnSelectedIndexChanged="dgvEspecialidades_SelectedIndexChanged">
             <Columns>
                 <asp:BoundField HeaderText="Id" DataField="Id" />
                 <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
-                <asp:TemplateField HeaderText="Acciones">
-                    <ItemTemplate>
-                        <asp:Button Text="Eliminar" CssClass="btn btn-danger" runat="server" ID="btnEliminar" CommandArgument='<%#Eval("Id") %>' CommandName="EspecialidadId" OnClick="btnEliminar_Click" />
-                    </ItemTemplate>
-                </asp:TemplateField>
+                <asp:CheckBoxField HeaderText="Activo" DataField="Activo" />
+                <asp:CommandField HeaderText="Editar" ShowSelectButton="true" SelectText="✏️​" ControlStyle-CssClass="btn btn-primary"/>
             </Columns>
         </asp:GridView>
         <div id="botoncitos">
