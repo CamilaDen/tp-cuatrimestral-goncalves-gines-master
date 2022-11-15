@@ -11,79 +11,70 @@ namespace tp_cuatrimestral_goncalves_gines
 {
 
 
-    public partial class Default
+    public partial class ABMHorarios
     {
 
         /// <summary>
-        /// Control btnaTurnos.
+        /// Control txtId.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor btnaTurnos;
+        protected global::System.Web.UI.WebControls.TextBox txtId;
 
         /// <summary>
-        /// Control btnaPacientes.
+        /// Control txtHorarioDesde.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor btnaPacientes;
+        protected global::System.Web.UI.WebControls.TextBox txtHorarioDesde;
 
         /// <summary>
-        /// Control btnaMedicos.
+        /// Control txtHorarioHasta.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor btnaMedicos;
+        protected global::System.Web.UI.WebControls.TextBox txtHorarioHasta;
 
         /// <summary>
-        /// Control btnaPersonal.
+        /// Control txtDia.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor btnaPersonal;
+        protected global::System.Web.UI.WebControls.TextBox txtDia;
 
         /// <summary>
-        /// Control btnaPerfiles.
+        /// Control btnAceptar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor btnaPerfiles;
+        protected global::System.Web.UI.WebControls.Button btnAceptar;
 
         /// <summary>
-        /// Control btnaEspecialidades.
+        /// Control btnActivacion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor btnaEspecialidades;
+        protected global::System.Web.UI.WebControls.Button btnActivacion;
 
         /// <summary>
-        /// Control btnaCoberturas.
+        /// Control btnVolver.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor btnaCoberturas;
-
-        /// <summary>
-        /// Control btnaHorarios.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor btnaHorarios;
+        protected global::System.Web.UI.WebControls.Button btnVolver;
     }
 }

@@ -66,6 +66,7 @@
   <ItemGroup>
     <Content Include="ABMCoberturas.aspx" />
     <Content Include="ABMEspecialidades.aspx" />
+    <Content Include="ABMHorarios.aspx" />
     <Content Include="ABMMedicos.aspx" />
     <Content Include="ABMPacientes.aspx" />
     <Content Include="ABMPerfiles.aspx" />
@@ -74,6 +75,7 @@
     <Content Include="Default.aspx" />
     <Content Include="Especialidades.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="Horarios.aspx" />
     <Content Include="LogIn.aspx" />
     <Content Include="Medicos.aspx" />
     <Content Include="Pacientes.aspx" />
@@ -97,6 +99,13 @@
     </Compile>
     <Compile Include="ABMEspecialidades.aspx.designer.cs">
       <DependentUpon>ABMEspecialidades.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ABMHorarios.aspx.cs">
+      <DependentUpon>ABMHorarios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ABMHorarios.aspx.designer.cs">
+      <DependentUpon>ABMHorarios.aspx</DependentUpon>
     </Compile>
     <Compile Include="ABMMedicos.aspx.cs">
       <DependentUpon>ABMMedicos.aspx</DependentUpon>
@@ -149,6 +158,13 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Horarios.aspx.cs">
+      <DependentUpon>Horarios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Horarios.aspx.designer.cs">
+      <DependentUpon>Horarios.aspx</DependentUpon>
     </Compile>
     <Compile Include="LogIn.aspx.cs">
       <DependentUpon>LogIn.aspx</DependentUpon>
