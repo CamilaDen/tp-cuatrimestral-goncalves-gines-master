@@ -12,11 +12,8 @@
                 <asp:BoundField HeaderText="Mail" DataField="Mail" />
                 <asp:BoundField HeaderText="Fec. Nac." DataFormatString="{0:d}" DataField="FechaDeNacimiento" />
                 <asp:BoundField HeaderText="Pass" DataField="Usuario.Password" />
-                <asp:TemplateField HeaderText="Acciones">
-                    <ItemTemplate>
-                        <asp:Button Text="Eliminar" CssClass="btn btn-danger" runat="server" ID="btnEliminar" CommandArgument='<%#Eval("Id") %>' CommandName="PersonalId" OnClick="btnEliminar_Click" />
-                    </ItemTemplate>
-                </asp:TemplateField>
+                <asp:CommandField HeaderText="Editar" ShowSelectButton="true" SelectText="✏️​" ControlStyle-CssClass="btn btn-primary" />
+  
             </Columns>
         </asp:GridView>
           <div id="botoncitos">

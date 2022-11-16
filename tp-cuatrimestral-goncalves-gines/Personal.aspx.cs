@@ -30,9 +30,10 @@ namespace tp_cuatrimestral_goncalves_gines
             }
         }
 
-        protected void btnEliminar_Click(object sender, EventArgs e)
+        protected void dgvPersonal_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            string id = dgvPersonal.SelectedDataKey.Value.ToString();
+            Response.Redirect("ABMPersonal.aspx?id=" + id);
         }
 
         protected void btnVolver_Click(object sender, EventArgs e)

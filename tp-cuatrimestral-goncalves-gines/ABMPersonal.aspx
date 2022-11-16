@@ -5,6 +5,10 @@
         <div class="container">
         <label class="TituloABM">ABM PERSONAL</label>
         <form class="row g-3">
+        <div class="col-md-6">
+            <label class="form-label">Id</label>
+            <asp:TextBox ID="txtId" class="form-control" runat="server" placeholder=""></asp:TextBox>
+        </div>
       <div class="col-md-6">
             <label class="form-label">Apellido</label>
             <asp:TextBox ID="txtApellidoPersonal" class="form-control" runat="server" placeholder=""></asp:TextBox>
@@ -27,10 +31,11 @@
       </div>
         <div class="col-md-6">
              <label class="form-label">Contraseña</label>
-             <asp:TextBox ID="txtContraseña" class="form-control" runat="server"></asp:TextBox>
+             <asp:TextBox ID="txtIDUsuario" class="form-control" runat="server"></asp:TextBox>
       </div>
       <div class="col-12">
-        <button type="submit" class="btn btn-primary">Aceptar</button>
+        <asp:Button ID="btnAceptar" runat="server" Text="Aceptar" class="btn btn-primary" Style="background-color: #63bbdc; color: black; border-style: none" OnClick="btnAceptar_Click" />
+        <asp:Button ID="btnActivacion" runat="server" Text="Eliminar" Cssclass="btn btn-danger" OnClick="btnActivacion_Click" />
       </div>
     </form>
         <hr/>
