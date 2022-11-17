@@ -28,7 +28,7 @@ namespace negocio
                     aux.Persona.Id = (int)datos.Lector["IdPersona"];
                     aux.Persona.Nombre = (string)datos.Lector["Nombre"];
                     aux.Persona.Apellido = (string)datos.Lector["Apellido"];
-                    aux.Persona.FechaDeNacimiento = (string)datos.Lector["Fecha_Nacimiento"];
+                    aux.Persona.FechaDeNacimiento = Convert.ToDateTime(datos.Lector["Fecha_Nacimiento"]);
                     aux.Persona.Dni = (string)datos.Lector["Dni"];
                     aux.Persona.Mail = (string)datos.Lector["Mail"];
                     lista.Add(aux);

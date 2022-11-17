@@ -3,7 +3,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
      <div class="container">
-        <asp:GridView ID="dgvPersonal" runat="server" CssClass="table" AutoGenerateColumns="false">
+        <asp:GridView ID="dgvPersonal" runat="server" CssClass="table" AutoGenerateColumns="false" DataKeyNames="Id" OnSelectedIndexChanged="dgvPersonal_SelectedIndexChanged">
             <Columns>
                 <asp:BoundField HeaderText="Id" DataField="Id" />
                 <asp:BoundField HeaderText="Apellido" DataField="Apellido" />
@@ -11,9 +11,10 @@
                 <asp:BoundField HeaderText="DNI" DataField="Dni" />
                 <asp:BoundField HeaderText="Mail" DataField="Mail" />
                 <asp:BoundField HeaderText="Fec. Nac." DataFormatString="{0:d}" DataField="FechaDeNacimiento" />
+                <asp:BoundField HeaderText="Perfil" DataField="Usuario.Perfil.Nombre" />
                 <asp:BoundField HeaderText="Pass" DataField="Usuario.Password" />
+                <asp:CheckBoxField HeaderText="Activo" DataField="Activo" />
                 <asp:CommandField HeaderText="Editar" ShowSelectButton="true" SelectText="✏️​" ControlStyle-CssClass="btn btn-primary" />
-  
             </Columns>
         </asp:GridView>
           <div id="botoncitos">

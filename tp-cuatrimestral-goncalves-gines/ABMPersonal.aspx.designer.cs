@@ -69,13 +69,22 @@ namespace tp_cuatrimestral_goncalves_gines
         protected global::System.Web.UI.WebControls.TextBox txtFNacimiento;
 
         /// <summary>
-        /// Control txtIDUsuario.
+        /// Control txtPass.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtIDUsuario;
+        protected global::System.Web.UI.WebControls.TextBox txtPass;
+
+        /// <summary>
+        /// Control txtIdPerfil.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtIdPerfil;
 
         /// <summary>
         /// Control btnAceptar.

@@ -27,9 +27,10 @@ namespace tp_cuatrimestral_goncalves_gines
                     txtApellidoPersonal.Text = personaSeleccionada.Apellido;
                     txtNombrePersonal.Text = personaSeleccionada.Nombre;
                     txtDNI.Text = personaSeleccionada.Dni;
-                    txtFNacimiento = personaSeleccionada.FechaDeNacimiento;
-                    txtMail = personaSeleccionada.Mail;
-                    txtIDUsuario = personaSeleccionada.IDUsuario;
+                    txtFNacimiento.Text = personaSeleccionada.FechaDeNacimiento.ToString();
+                    txtMail.Text = personaSeleccionada.Mail;
+                    txtPass.Text = personaSeleccionada.Usuario.Password;
+                    txtIdPerfil.Text = personaSeleccionada.Usuario.Perfil.Id.ToString();
 
                     //Guardo en session para conocer luego el estado de activación o inactivación
                     Session.Add("PersonalSeleccionado", personaSeleccionada);
@@ -60,12 +61,16 @@ namespace tp_cuatrimestral_goncalves_gines
             {
                 Persona personal = new Persona();
                 PersonaNegocio negocio = new PersonaNegocio();
-                personal.Id = int.Parse(txtId.Text);
+
                 personal.Apellido = txtApellidoPersonal.Text;
                 personal.Nombre = txtNombrePersonal.Text;
                 personal.Dni = txtDNI.Text;
                 personal.Mail = txtMail.Text;
-                personal.FechaDeNacimiento = txtFNacimiento.Text;
+                personal.FechaDeNacimiento = DateTime.Parse(txtFNacimiento.Text);
+                personal.Usuario = new Usuario();
+                personal.Usuario.Password = txtPass.Text;
+                personal.Usuario.Perfil = new Perfil();
+                personal.Usuario.Perfil.Id = int.Parse(txtIdPerfil.Text);
 
                 if (Request.QueryString["id"] != null)
                 {
@@ -88,7 +93,6 @@ namespace tp_cuatrimestral_goncalves_gines
             {
                 PersonaNegocio negocio = new PersonaNegocio();
                 Persona PersonalSeleccionado = (Persona)Session["PersonalSeleccionado"];
-
                 negocio.eliminarLogico(PersonalSeleccionado.Id, !PersonalSeleccionado.Activo);
                 Response.Redirect("Personal.aspx");
 
