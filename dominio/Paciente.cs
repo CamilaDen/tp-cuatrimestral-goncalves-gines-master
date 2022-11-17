@@ -9,10 +9,8 @@ namespace dominio
     public class Paciente : Persona
     {
         public ObraSocial ObraSocial { get; set; }
-        public float Peso{ get; set; }
-        public float Altura { get; set; }
+        public decimal Peso{ get; set; }
+        public decimal Altura { get; set; }
         public string Credencial { get; set; }
-        public string GrupoSanguineo { get; set; }
-        public bool Activo { get; set; }
     }
 }
