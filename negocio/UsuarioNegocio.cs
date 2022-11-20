@@ -9,20 +9,24 @@ namespace negocio
 {
     public class UsuarioNegocio
     {
-       /*public bool Loguear(Usuario usuario)
+        public bool Loguear(Usuario usuario)
         {
             AccesoDatos datos = new AccesoDatos();
             try
-            {
-                datos.setearConsulta("select U.ID, U.PASS,P.id from PERFIL P inner join USUARIO U On P.ID = U.id where U.id=@usuario AND U.pass=@pass");
+            {   /*hacer sp*/
+                datos.setearConsulta("select U.id, U.PASS,P.id from PERFIL P inner join USUARIO U On P.ID = U.id where U.NOMBREUSUARIO=@usuario AND U.pass=@pass");
                 datos.setearParametro("@usuario", usuario.Id);
                 datos.setearParametro("pass", usuario.Password);
                 datos.ejecutarLectura();
-                while (datos.Lector.Read()) {
-                    usuario.Id = (int)datos.Lector["U.ID"];
-                    usuario.Perfil.Id = (int)datos.Lector["P.id"];
 
+                while (datos.Lector.Read())
+                {
+                    usuario.Id = (int)datos.Lector["U.ID"];
+                    //usuario.Perfil.Id = (int)datos.Lector["P.id"] == TipoPerfil.ADMINISTRADOR ? 2 : 3;
+                    /*1 es admin, 2 medico,4 recepcionista*/
+                    return true;
                 }
+                return false;
             }
             catch (Exception ex)
             {
@@ -30,6 +34,6 @@ namespace negocio
                 throw ex;
             }
             finally { datos.cerrarConexion(); }
-        }*/
+        }
     }
 }

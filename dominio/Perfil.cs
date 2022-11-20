@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace dominio
 {
+    //enum TipoPerfil{ ADMINISTRADOR = 1, MEDICO = 2, RECEPCIONISTA = 3 }
     public class Perfil
     {
         public int Id { get; set; }
