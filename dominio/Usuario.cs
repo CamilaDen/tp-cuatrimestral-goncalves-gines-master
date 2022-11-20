@@ -22,6 +22,11 @@ namespace dominio
 
         }
 
+        public Usuario()
+        {
+
+        }
+
     }
 
 

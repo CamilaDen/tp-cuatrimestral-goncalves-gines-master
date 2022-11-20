@@ -18,5 +18,15 @@ namespace tp_cuatrimestral_goncalves_gines
         {
             Response.Redirect("Medicos.aspx");
         }
+
+        protected void btnAceptar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnActivacion_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

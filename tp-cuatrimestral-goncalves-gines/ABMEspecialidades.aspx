@@ -3,6 +3,24 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <script>
+        function validar() {
+            // acá estamos usando JS puro, pero concatenando con una sentencia de C# embebido para obtener el Id del control, al que no le agregamos la propiedad ClientIDMode antes mencionada.
+            var nombre = document.getElementById("txtNombre").value;
+            var valido = true;
+            // luego evalulamos
+            console.log("el nombre es: " + nombre);
+            if (nombre === "") {
+                $("#txtNombre").removeClass("is-valid").addClass("is-invalid");
+                $("#validation-message").removeClass("d-none").addClass("d-block");
+                valido = false;
+            } else {
+                $("#txtNombre").removeClass("is-valid").addClass("is-valid");
+                $("#validation-message").addClass("d-none").removeClass("d-block");
+            }
+            return valido;
+        }
+    </script>
     <div class="container">
         <label class="TituloABM">Especialidades</label>
         <div class="row g-3">
@@ -12,10 +30,13 @@
             </div>
             <div class="col-md-10">
                 <label class="form-label">Nombre</label>
-                <asp:TextBox ID="txtNombre" class="form-control" runat="server" placeholder=""></asp:TextBox>
+                <asp:TextBox ID="txtNombre" class="form-control" runat="server" ClientIDMode="Static" placeholder=""></asp:TextBox>
+                <div class="invalid-feedback d-none" id="validation-message">
+                    Campo requerido.
+                </div>
             </div>
             <div class="col-12">
-                <asp:Button ID="btnAceptar" runat="server" Text="Aceptar" class="btn btn-primary" Style="background-color: #63bbdc; color: black; border-style: none" OnClick="btnAceptar_Click" />
+                <asp:Button ID="btnAceptar" runat="server" Text="Aceptar" CssClass="btn btn-primary" OnClientClick="return validar()" OnClick="btnAceptar_Click" />
                 <asp:Button ID="btnActivacion" runat="server" Text="Eliminar" CssClass="btn btn-danger" OnClick="btnActivacion_Click" />
             </div>
         </div>

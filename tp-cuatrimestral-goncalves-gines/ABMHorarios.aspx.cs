@@ -72,6 +72,9 @@ namespace tp_cuatrimestral_goncalves_gines
         {
             try
             {
+                //Page.Validate();
+                //if (!Page.IsValid)
+                //    return;
                 Horario horario = new Horario();
                 HorarioNegocio negocio = new HorarioNegocio();
 

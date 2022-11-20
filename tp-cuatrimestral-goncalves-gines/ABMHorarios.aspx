@@ -5,14 +5,28 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <script>
         function validar() {
-            // acá estamos usando JS puro, pero concatenando con una sentencia de C# embebido para obtener el Id del control, al que no le agregamos la propiedad ClientIDMode antes mencionada.
-            var nombre = document.getElementById("<% = txtNombre.ClientID %>").value;
+            // acá estamos usando JS puro, pero concatenando con una sentencia de C# embebido para obtener el Id del control, al que le agregamos la propiedad ClientIDMode.
+            var horarioDesde = document.getElementById("txtHorarioDesde").value;
+            var horarioHasta = document.getElementById("txtHorarioHasta").value;
+            var valido = true;
             // luego evalulamos
-            if (descripcion === "" || nombre === "") {
-                alert("Debes completar los campos");
-                return false;
+            if ( horarioDesde === "") {
+                $("#txtHorarioDesde").removeClass("is-valid").addClass("is-invalid");
+                $("#validation-message").removeClass("d-none").addClass("d-block");
+                valido = false;
+            } else {
+                $("#txtHorarioDesde").removeClass("is-invalid").addClass("is-valid");
+                $("#validation-message").addClass("d-none").removeClass("d-block");
             }
-            return true;
+            if ( horarioHasta === "") {
+                $("#txtHorarioHasta").removeClass("is-valid").addClass("is-invalid");
+                $("#validation-message2").removeClass("d-none").addClass("d-block");
+                valido = false;
+            } else {
+                $("#txtHorarioHasta").removeClass("is-invalid").addClass("is-valid");
+                $("#validation-message2").addClass("d-none").removeClass("d-block");
+            }
+            return valido;
         }
     </script>
     <div class="container">
@@ -24,25 +38,31 @@
             </div>
             <div class="col-md-2">
                 <label class="form-label">Horario Desde</label>
-                <asp:TextBox ID="txtHorarioDesde" class="form-control" runat="server" placeholder="" TextMode="Number"></asp:TextBox>
+                <asp:TextBox ID="txtHorarioDesde" CssClass="form-control" ClientIDMode="Static" runat="server" placeholder="" TextMode="Number"></asp:TextBox>
+                <div class="invalid-feedback d-none" id="validation-message">
+                    Campo requerido.
+                </div>
             </div>
             <div class="col-md-2">
                 <label class="form-label" aria-required="true">Horario Hasta</label>
-                <asp:TextBox ID="txtHorarioHasta" class="form-control" runat="server" placeholder="" TextMode="Number"></asp:TextBox>
+                <asp:TextBox ID="txtHorarioHasta" CssClass="form-control" ClientIDMode="Static" runat="server" placeholder="" TextMode="Number"></asp:TextBox>
+                <div class="invalid-feedback d-none" id="validation-message2">
+                    Campo requerido.
+                </div>
             </div>
-             <div class="col-md-6">
+            <div class="col-md-6">
                 <label class="form-label">Dia</label>
                 <asp:DropDownList CssClass="form-select" ID="ddlDia" runat="server">
                 </asp:DropDownList>
             </div>
             <div class="col-12">
-                <asp:Button ID="btnAceptar" runat="server" Text="Aceptar" class="btn btn-primary" Style="background-color: #63bbdc; color: black; border-style: none" OnClick="btnAceptar_Click" />
+                <asp:Button Text="Aceptar" ID="btnAceptar" autopostback="false" OnClientClick="return validar()" OnClick="btnAceptar_Click" CssClass="btn btn-primary" runat="server" />
                 <asp:Button ID="btnActivacion" runat="server" Text="Eliminar" CssClass="btn btn-danger" OnClick="btnActivacion_Click" />
             </div>
         </div>
         <hr />
         <div id="botoncitos">
-            <asp:Button ID="btnVolver" runat="server" Text="← Volver" class="btn btn-primary btn-lg" Style="background-color: #63bbdc; color: black; border-style: none" OnClick="btnVolver_Click" />
+            <asp:Button ID="btnVolver" runat="server" Text="← Volver" CssClass="btn btn-primary btn-lg" OnClick="btnVolver_Click" />
         </div>
     </div>
 </asp:Content>
