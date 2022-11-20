@@ -87,13 +87,13 @@ namespace tp_cuatrimestral_goncalves_gines
         protected global::System.Web.UI.WebControls.TextBox txtAltura;
 
         /// <summary>
-        /// Control txtIdObraSocial.
+        /// Control ddlObraSocialCoberturas.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtIdObraSocial;
+        protected global::System.Web.UI.WebControls.DropDownList ddlObraSocialCoberturas;
 
         /// <summary>
         /// Control txtCredencialPaciente.

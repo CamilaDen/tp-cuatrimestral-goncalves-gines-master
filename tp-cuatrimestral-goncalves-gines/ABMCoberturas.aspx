@@ -24,7 +24,7 @@
             </div>
             <div class="col-md-4">
                 <label class="form-label">Telefono</label>
-                <asp:TextBox ID="txtTelefono" class="form-control" runat="server" placeholder=""></asp:TextBox>
+                <asp:TextBox ID="txtTelefono" class="form-control" runat="server" placeholder="" TextMode="Phone"></asp:TextBox>
             </div>
             <div class="col-md-6">
                 <label class="form-label">Direccion</label>
@@ -32,7 +32,7 @@
             </div>
             <div class="col-md-4">
                 <label class="form-label">Mail</label>
-                <asp:TextBox ID="txtMail" class="form-control" runat="server" placeholder=""></asp:TextBox>
+                <asp:TextBox ID="txtMail" class="form-control" runat="server" placeholder="" TextMode="Email"></asp:TextBox>
             </div>
             <div class="col-12">
                 <asp:Button ID="btnAceptar" runat="server" Text="Aceptar" class="btn btn-primary" Style="background-color: #63bbdc; color: black; border-style: none" OnClick="btnAceptar_Click" />

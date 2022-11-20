@@ -13,7 +13,6 @@ namespace dominio
         public Horario Horario { get; set; }
         public Especialidad Especialidad { get; set; }
         public Persona Persona { get; set; }
-        public bool Activo { get; set; }
 
     }
 }

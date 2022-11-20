@@ -31,8 +31,35 @@ namespace negocio
                     aux.Id = (int)datos.Lector["Id"];
                     aux.Hora_Desde = (int)datos.Lector["Hora_Desde"];
                     aux.Hora_Hasta = (int)datos.Lector["Hora_Hasta"];
-                    aux.Dia = (int)datos.Lector["Dia"];
+                    aux.Dia = new Dia();
                     aux.Activo = bool.Parse(datos.Lector["Activo"].ToString());
+                    aux.Dia.Id = (int)datos.Lector["Dia"];
+                    string nombreDia;
+                    switch (aux.Dia.Id)
+                    {
+                        case 1:
+                            nombreDia = "Lunes";
+                            break;
+                        case 2:
+                            nombreDia = "Martes";
+                            break;
+                        case 3:
+                            nombreDia = "Miércoles";
+                            break;
+                        case 4:
+                            nombreDia = "Jueves";
+                            break;
+                        case 5:
+                            nombreDia = "Viernes";
+                            break;
+                        case 6:
+                            nombreDia = "Sábado";
+                            break;
+                        default:
+                            nombreDia = "Domingo";
+                            break;
+                    }
+                    aux.Dia.Nombre = nombreDia;
                     lista.Add(aux);
                 }
                 return lista;
@@ -52,7 +79,7 @@ namespace negocio
                 datos.setearProcedimiento("SP_AltaHorario");
                 datos.setearParametro("@HORA_DESDE", nuevo.Hora_Desde);
                 datos.setearParametro("@HORA_HASTA", nuevo.Hora_Hasta);
-                datos.setearParametro("@DIA", nuevo.Dia);
+                datos.setearParametro("@DIA", nuevo.Dia.Id);
                 datos.ejecutarAccion();
             }
             catch (Exception ex)
@@ -75,7 +102,7 @@ namespace negocio
                 datos.setearParametro("@ID", modificacion.Id);
                 datos.setearParametro("@HORA_DESDE", modificacion.Hora_Desde);
                 datos.setearParametro("@HORA_HASTA", modificacion.Hora_Hasta);
-                datos.setearParametro("@DIA", modificacion.Dia);
+                datos.setearParametro("@DIA", modificacion.Dia.Id);
                 datos.ejecutarAccion();
             }
             catch (Exception ex)

@@ -15,29 +15,45 @@ namespace tp_cuatrimestral_goncalves_gines
         {
             txtId.Enabled = false;
             btnActivacion.Visible = false;
+
             try
             {
                 string id = Request.QueryString["id"] != null ? Request.QueryString["id"].ToString() : "";
-                if (id != "" && !IsPostBack)
+                if (!IsPostBack)
                 {
-                    HorarioNegocio negocio = new HorarioNegocio();
-                    Horario horarioSeleccionado = (negocio.listarConSP(id))[0];
-
-                    txtId.Text = id;
-                    txtHorarioDesde.Text = horarioSeleccionado.Hora_Desde.ToString();
-                    txtHorarioHasta.Text = horarioSeleccionado.Hora_Hasta.ToString();
-                    txtDia.Text = horarioSeleccionado.Dia.ToString();
-
-                    //Guardo en session para conocer luego el estado de activación o inactivación
-                    Session.Add("HorarioSeleccionado", horarioSeleccionado);
-
-                    if (!horarioSeleccionado.Activo)
+                    List<Dia> listaDias = new List<Dia>();
+                    listaDias.Add(new Dia(1, "Lunes"));
+                    listaDias.Add(new Dia(2, "Martes"));
+                    listaDias.Add(new Dia(3, "Miércoles"));
+                    listaDias.Add(new Dia(4, "Jueves"));
+                    listaDias.Add(new Dia(5, "Viernes"));
+                    listaDias.Add(new Dia(6, "Sábado"));
+                    listaDias.Add(new Dia(7, "Domingo"));
+                    ddlDia.DataSource = listaDias;
+                    ddlDia.DataTextField = "Nombre";
+                    ddlDia.DataValueField = "Id";
+                    ddlDia.DataBind();
+                    if (id != "")
                     {
-                        btnActivacion.Text = "Reactivar";
-                        btnActivacion.CssClass = "btn btn-warning";
-                    }
-                    btnActivacion.Visible = true;
+                        HorarioNegocio negocio = new HorarioNegocio();
+                        Horario horarioSeleccionado = (negocio.listarConSP(id))[0];
 
+                        txtId.Text = id;
+                        txtHorarioDesde.Text = horarioSeleccionado.Hora_Desde.ToString();
+                        txtHorarioHasta.Text = horarioSeleccionado.Hora_Hasta.ToString();
+                        ddlDia.SelectedValue = horarioSeleccionado.Dia.ToString();
+
+                        //Guardo en session para conocer luego el estado de activación o inactivación
+                        Session.Add("HorarioSeleccionado", horarioSeleccionado);
+
+                        if (!horarioSeleccionado.Activo)
+                        {
+                            btnActivacion.Text = "Reactivar";
+                            btnActivacion.CssClass = "btn btn-warning";
+                        }
+                        btnActivacion.Visible = true;
+
+                    }
                 }
             }
             catch (Exception ex)
@@ -61,7 +77,8 @@ namespace tp_cuatrimestral_goncalves_gines
 
                 horario.Hora_Desde = int.Parse(txtHorarioDesde.Text);
                 horario.Hora_Hasta = int.Parse(txtHorarioHasta.Text);
-                horario.Dia = int.Parse(txtDia.Text);
+                horario.Dia = new Dia();
+                horario.Dia.Id = int.Parse(ddlDia.SelectedValue);
 
                 if (Request.QueryString["id"] != null)
                 {

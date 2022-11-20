@@ -17,33 +17,43 @@ namespace tp_cuatrimestral_goncalves_gines
             btnActivacion.Visible = false;
             try
             {
-                string id = Request.QueryString["id"] != null ? Request.QueryString["id"].ToString() : "";
-                if (id != "" && !IsPostBack)
+                if (!IsPostBack)
                 {
-                    PacienteNegocio negocio = new PacienteNegocio();
-                    Paciente pacienteSeleccionado = (negocio.listarConSP(id))[0];
 
-                    txtId.Text = id;
-                    txtApellido.Text = pacienteSeleccionado.Apellido;
-                    txtNombre.Text = pacienteSeleccionado.Nombre;
-                    txtDNI.Text = pacienteSeleccionado.Dni;
-                    txtFNacimiento.Text = pacienteSeleccionado.FechaDeNacimiento.ToString();
-                    txtMail.Text = pacienteSeleccionado.Mail;
-                    txtPeso.Text = pacienteSeleccionado.Peso.ToString();
-                    txtAltura.Text = pacienteSeleccionado.Altura.ToString();
-                    txtCredencialPaciente.Text = pacienteSeleccionado.Credencial;
-                    txtIdObraSocial.Text = pacienteSeleccionado.ObraSocial.Id.ToString();
+                    ObraSocialNegocio obraSocialNegocio = new ObraSocialNegocio();
+                    ddlObraSocialCoberturas.DataSource = obraSocialNegocio.listarConSP();
+                    ddlObraSocialCoberturas.DataTextField = "Nombre";
+                    ddlObraSocialCoberturas.DataValueField = "Id";
+                    ddlObraSocialCoberturas.DataBind();
 
-                    //Guardo en session para conocer luego el estado de activación o inactivación
-                    Session.Add("PacienteSeleccionado", pacienteSeleccionado);
-
-                    if (!pacienteSeleccionado.Activo)
+                    string id = Request.QueryString["id"] != null ? Request.QueryString["id"].ToString() : "";
+                    if (id != "")
                     {
-                        btnActivacion.Text = "Reactivar";
-                        btnActivacion.CssClass = "btn btn-warning";
-                    }
-                    btnActivacion.Visible = true;
+                        PacienteNegocio negocio = new PacienteNegocio();
+                        Paciente pacienteSeleccionado = (negocio.listarConSP(id))[0];
 
+                        txtId.Text = id;
+                        txtApellido.Text = pacienteSeleccionado.Apellido;
+                        txtNombre.Text = pacienteSeleccionado.Nombre;
+                        txtDNI.Text = pacienteSeleccionado.Dni;
+                        txtFNacimiento.Text = pacienteSeleccionado.FechaDeNacimiento.ToString("yyyy-MM-dd");
+                        txtMail.Text = pacienteSeleccionado.Mail;
+                        txtPeso.Text = pacienteSeleccionado.Peso.ToString();
+                        txtAltura.Text = pacienteSeleccionado.Altura.ToString();
+                        txtCredencialPaciente.Text = pacienteSeleccionado.Credencial;
+                        ddlObraSocialCoberturas.SelectedValue = pacienteSeleccionado.ObraSocial.Id.ToString();
+
+                        //Guardo en session para conocer luego el estado de activación o inactivación
+                        Session.Add("PacienteSeleccionado", pacienteSeleccionado);
+
+                        if (!pacienteSeleccionado.Activo)
+                        {
+                            btnActivacion.Text = "Reactivar";
+                            btnActivacion.CssClass = "btn btn-warning";
+                        }
+                        btnActivacion.Visible = true;
+
+                    }
                 }
             }
             catch (Exception ex)
@@ -75,7 +85,8 @@ namespace tp_cuatrimestral_goncalves_gines
                 paciente.Altura = decimal.Parse(txtAltura.Text);
                 paciente.Credencial = txtCredencialPaciente.Text;
                 paciente.ObraSocial = new ObraSocial();
-                paciente.ObraSocial.Id = int.Parse(txtIdObraSocial.Text);
+                paciente.ObraSocial.Id = int.Parse(ddlObraSocialCoberturas.SelectedValue);
+
 
                 if (Request.QueryString["id"] != null)
                 {

@@ -4,7 +4,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container">
-        <label class="TituloABM">ABM PACIENTES</label>
+        <label class="TituloABM">Pacientes</label>
         <div class="row g-3">
              <div class="col-2">
                 <label class="form-label">Id</label>
@@ -19,28 +19,29 @@
                 <asp:TextBox ID="txtNombre" class="form-control" runat="server" placeholder=""></asp:TextBox>
             </div>
             <div class="col-4">
-                <label class="form-label">DNI</label>
-                <asp:TextBox ID="txtDNI" class="form-control" runat="server" placeholder="123456789"></asp:TextBox>
+                <label class="form-label">DNI</label> 
+                <asp:TextBox ID="txtDNI" class="form-control" runat="server" placeholder="123456789" TextMode="Number"></asp:TextBox>
             </div>
             <div class="col-4">
                 <label class="form-label">E-Mail</label>
-                <asp:TextBox ID="txtMail" class="form-control" runat="server" placeholder="example@algo.com"></asp:TextBox>
+                <asp:TextBox ID="txtMail" class="form-control" runat="server" placeholder="example@algo.com" TextMode="Email"></asp:TextBox>
             </div>
             <div class="col-4">
                 <label class="form-label">Fecha Nacimiento</label>
-                <asp:TextBox ID="txtFNacimiento" class="form-control" runat="server" placeholder="01/01/1999"></asp:TextBox>
+                <asp:TextBox ID="txtFNacimiento" class="form-control" runat="server" placeholder="01/01/1999" TextMode="Date"></asp:TextBox>
             </div>
             <div class="col-md-6">
                 <label class="form-label">Peso</label>
-                <asp:TextBox ID="txtPeso" class="form-control" runat="server" placeholder="Ejemplo: 65kg"></asp:TextBox>
+                <asp:TextBox ID="txtPeso" class="form-control" runat="server" placeholder="Ejemplo: 65kg" TextMode="Number"></asp:TextBox>
             </div>
             <div class="col-md-6">
                 <label class="form-label">Altura</label>
-                <asp:TextBox ID="txtAltura" class="form-control" runat="server" placeholder="1.59"></asp:TextBox>
+                <asp:TextBox ID="txtAltura" class="form-control" runat="server" placeholder="1.59" TextMode="Number" step="0.01" Width="140px" min="0"></asp:TextBox>
             </div>
             <div class="col-md-6">
                 <label class="form-label">Obra Social</label>
-                <asp:TextBox ID="txtIdObraSocial" class="form-control" runat="server" placeholder=""></asp:TextBox>
+                <asp:DropDownList ID="ddlObraSocialCoberturas" CssClass="form-select" runat="server">
+                </asp:DropDownList>
             </div>
             <div class="col-md-4">
                 <label class="form-label">Credencial</label>

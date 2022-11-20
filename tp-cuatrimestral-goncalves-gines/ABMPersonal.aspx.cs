@@ -17,32 +17,46 @@ namespace tp_cuatrimestral_goncalves_gines
             btnActivacion.Visible = false;
             try
             {
-                string id = Request.QueryString["id"] != null ? Request.QueryString["id"].ToString() : "";
-                if (id != "" && !IsPostBack)
+                if (!IsPostBack)
                 {
-                    PersonaNegocio negocio = new PersonaNegocio();
-                    Persona personaSeleccionada = (negocio.listarConSP(id))[0];
+                    PerfilNegocio perfilNegocio = new PerfilNegocio();
+                    ddlPerfiles.DataSource = perfilNegocio.listarConSP();
+                    ddlPerfiles.DataTextField = "Nombre";
+                    ddlPerfiles.DataValueField = "Id";
+                    ddlPerfiles.DataBind();
 
-                    txtId.Text = id;
-                    txtApellidoPersonal.Text = personaSeleccionada.Apellido;
-                    txtNombrePersonal.Text = personaSeleccionada.Nombre;
-                    txtDNI.Text = personaSeleccionada.Dni;
-                    txtFNacimiento.Text = personaSeleccionada.FechaDeNacimiento.ToString();
-                    txtMail.Text = personaSeleccionada.Mail;
-                    txtPass.Text = personaSeleccionada.Usuario.Password;
-                    txtIdPerfil.Text = personaSeleccionada.Usuario.Perfil.Id.ToString();
-
-                    //Guardo en session para conocer luego el estado de activación o inactivación
-                    Session.Add("PersonalSeleccionado", personaSeleccionada);
-
-                    if (!personaSeleccionada.Activo)
+                    string id = Request.QueryString["id"] != null ? Request.QueryString["id"].ToString() : "";
+                    if (id != "")
                     {
-                        btnActivacion.Text = "Reactivar";
-                        btnActivacion.CssClass = "btn btn-warning";
-                    }
-                    btnActivacion.Visible = true;
+                        PersonaNegocio negocio = new PersonaNegocio();
+                        Persona personaSeleccionada = (negocio.listarConSP(id))[0];
 
+
+                        txtId.Text = id;
+                        txtApellidoPersonal.Text = personaSeleccionada.Apellido;
+                        txtNombrePersonal.Text = personaSeleccionada.Nombre;
+                        txtDNI.Text = personaSeleccionada.Dni;
+                        txtFNacimiento.Text = personaSeleccionada.FechaDeNacimiento.ToString("yyyy-MM-dd");
+                        txtMail.Text = personaSeleccionada.Mail;
+                        txtPass.Text = personaSeleccionada.Usuario.Password;
+                        txtPass.Attributes["type"] = "password";
+                        ddlPerfiles.SelectedValue = personaSeleccionada.Usuario.Perfil.Id.ToString();
+
+                        //Guardo en session para conocer luego el estado de activación o inactivación
+                        Session.Add("PersonalSeleccionado", personaSeleccionada);
+
+                        if (!personaSeleccionada.Activo)
+                        {
+                            btnActivacion.Text = "Reactivar";
+                            btnActivacion.CssClass = "btn btn-warning";
+                        }
+                        btnActivacion.Visible = true;
+
+                    }
                 }
+                
+
+               
             }
             catch (Exception ex)
             {
@@ -70,7 +84,7 @@ namespace tp_cuatrimestral_goncalves_gines
                 personal.Usuario = new Usuario();
                 personal.Usuario.Password = txtPass.Text;
                 personal.Usuario.Perfil = new Perfil();
-                personal.Usuario.Perfil.Id = int.Parse(txtIdPerfil.Text);
+                personal.Usuario.Perfil.Id = int.Parse(ddlPerfiles.SelectedValue);
 
                 if (Request.QueryString["id"] != null)
                 {
@@ -102,6 +116,7 @@ namespace tp_cuatrimestral_goncalves_gines
                 Session.Add("error", ex);
             }
         }
+
     }
 
 }

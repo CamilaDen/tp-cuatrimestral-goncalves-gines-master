@@ -20,15 +20,15 @@
             </div>
             <div class="col-4">
                 <label class="form-label">DNI</label>
-                <asp:TextBox ID="txtDNI" class="form-control" runat="server" placeholder="123456789"></asp:TextBox>
+                <asp:TextBox ID="txtDNI" class="form-control" runat="server" placeholder="123456789" TextMode="Number"></asp:TextBox>
             </div>
             <div class="col-4">
                 <label class="form-label">E-Mail</label>
-                <asp:TextBox ID="txtMail" class="form-control" runat="server" placeholder="example@algo.com"></asp:TextBox>
+                <asp:TextBox ID="txtMail" class="form-control" runat="server" placeholder="example@algo.com" TextMode="Email"></asp:TextBox>
             </div>
             <div class="col-4">
                 <label class="form-label">Fecha Nacimiento</label>
-                <asp:TextBox ID="txtFNacimiento" class="form-control" runat="server" placeholder="01/01/1999"></asp:TextBox>
+                <asp:TextBox ID="txtFNacimiento" class="form-control" runat="server" placeholder="01/01/1999" TextMode="Date"></asp:TextBox>
             </div>
             <div class="col-6">
                 <label class="form-label">Contraseña</label>
@@ -36,7 +36,8 @@
             </div>
             <div class="col-6">
                 <label class="form-label">Perfil</label>
-                <asp:TextBox ID="txtIdPerfil" class="form-control" runat="server"></asp:TextBox>
+                <asp:DropDownList ID="ddlPerfiles" CssClass="form-select" runat="server">
+                </asp:DropDownList>
             </div>
             <div class="col-12">
                 <asp:Button ID="btnAceptar" runat="server" Text="Aceptar" class="btn btn-primary" Style="background-color: #63bbdc; color: black; border-style: none" OnClick="btnAceptar_Click" />

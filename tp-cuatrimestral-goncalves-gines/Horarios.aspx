@@ -8,7 +8,7 @@
                 <asp:BoundField HeaderText="Id" DataField="Id" />
                 <asp:BoundField HeaderText="Hora Desde" DataField="Hora_Desde" />
                 <asp:BoundField HeaderText="Hora Hasta" DataField="Hora_Hasta" />
-                <asp:BoundField HeaderText="Día" DataField="Dia" />
+                <asp:BoundField HeaderText="Día" DataField="Dia.Nombre" />
                 <asp:CheckBoxField HeaderText="Activo" DataField="Activo" />
                 <asp:CommandField HeaderText="Editar" ShowSelectButton="true" SelectText="✏️​" ControlStyle-CssClass="btn btn-primary" />
             </Columns>

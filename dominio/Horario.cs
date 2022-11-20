@@ -11,7 +11,7 @@ namespace dominio
         public int Id{ get; set; }
         public int Hora_Desde { get; set; }
         public int Hora_Hasta { get; set; }
-        public int Dia { get; set; }
+        public Dia Dia { get; set; }
         public bool Activo { get; set; }
     }
 }
