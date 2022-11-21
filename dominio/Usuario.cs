@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace dominio
-{   
+{   public enum TipoPerfil{ ADMINISTRADOR = 1, MEDICO = 2, RECEPCIONISTA = 3 }
     public class Usuario
     {
         public int Id { get; set; }
@@ -14,12 +14,22 @@ namespace dominio
         public Perfil Perfil { get; set; }
         public bool Activo { get; set; }
 
-        public Usuario(string user, string pass, object tipoAcceso)
+        public Usuario(string user, string pass/*, int tipoAcceso*/)
         {
             Nombre = user;
             Password = pass;
-            Perfil = (Perfil)tipoAcceso;
-
+            //switch ((int)tipoAcceso) {
+            //    case (int)TipoPerfil.ADMINISTRADOR:
+            //        Perfil.Id = (int)TipoPerfil.ADMINISTRADOR;
+            //        break;
+            //    case (int)TipoPerfil.MEDICO:
+            //        Perfil.Id = (int)TipoPerfil.MEDICO;
+            //        break;
+            //    case (int)TipoPerfil.RECEPCIONISTA:
+            //        Perfil.Id = (int)TipoPerfil.RECEPCIONISTA;
+            //        break;
+            //}
+            
         }
 
         public Usuario()
