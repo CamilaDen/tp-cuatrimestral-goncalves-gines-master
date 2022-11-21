@@ -15,7 +15,7 @@ namespace tp_cuatrimestral_goncalves_gines
         {
             if (!IsPostBack)
             {
-                //dgvPacientes.DataSource = ListaPaciente;
+                
                 DataBind();
             }
         }
@@ -27,13 +27,13 @@ namespace tp_cuatrimestral_goncalves_gines
 
             try
             {
-                usuario = new Usuario(txtLogin.Text, txtPassword.Text, false);
+                usuario = new Usuario(txtLogin.Text, txtPassword.Text);
                 if(negocio.Loguear(usuario)) {
                     Session.Add("usuario", usuario);
-                    Response.Redirect("Login.aspx");
+                    Response.Redirect("Default.aspx");
                 }
                 else {
-                    Session.Add("error", "user o pass incorrectos");
+                    Session.Add("error", "Usuario o contraseña incorrecto.");
                     Response.Redirect("Error.aspx");
                 }
             }

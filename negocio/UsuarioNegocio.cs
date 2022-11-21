@@ -14,16 +14,19 @@ namespace negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {   /*hacer sp*/
-                datos.setearConsulta("select U.id, U.PASS,P.id from PERFIL P inner join USUARIO U On P.ID = U.id where U.NOMBREUSUARIO=@usuario AND U.pass=@pass");
-                datos.setearParametro("@usuario", usuario.Id);
+                datos.setearConsulta("select ID, IDPERFIL from USUARIO WHERE NOMBREUSUARIO=@usuario AND PASS=@pass");
+                datos.setearParametro("@usuario", usuario.Nombre);
                 datos.setearParametro("pass", usuario.Password);
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
                 {
-                    usuario.Id = (int)datos.Lector["U.ID"];
-                    //usuario.Perfil.Id = (int)datos.Lector["P.id"] == TipoPerfil.ADMINISTRADOR ? 2 : 3;
-                    /*1 es admin, 2 medico,4 recepcionista*/
+                    usuario.Id = (int)datos.Lector["ID"];
+                    usuario.Perfil = new Perfil();
+                    usuario.Perfil.Id = (int)datos.Lector["IDPERFIL"];
+                    
+                    
+                    /*1 es admin, 2 medico,3 recepcionista*/
                     return true;
                 }
                 return false;

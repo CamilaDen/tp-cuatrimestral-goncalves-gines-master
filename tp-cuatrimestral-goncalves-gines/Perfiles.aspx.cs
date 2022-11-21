@@ -27,7 +27,7 @@ namespace tp_cuatrimestral_goncalves_gines
             }
             catch (Exception ex)
             {
-                
+                throw ex;
             }
         }
 
