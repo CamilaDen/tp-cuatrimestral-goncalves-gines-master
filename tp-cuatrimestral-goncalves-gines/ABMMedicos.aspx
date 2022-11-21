@@ -113,8 +113,8 @@
                 <div class="invalid-feedback d-none" id="validation-message6">
                     Campo requerido.
                 </div>
-         <%--   </div>
-            <div class="col-md-4">
+            </div>
+            <%--   <div class="col-md-4">
                 <label class="form-label">Especialidad</label>
                 <asp:TextBox ID="txtEspecialidad" class="form-control" ClientIDMode="Static" runat="server" placeholder=""></asp:TextBox>
                 <div class="invalid-feedback d-none" id="validation-message7">
@@ -128,6 +128,12 @@
                     Campo requerido.
                 </div>
             </div>--%>
+            <asp:GridView ID="dgvEspecialidad" runat="server" CssClass="table" AutoGenerateColumns="false">
+                <Columns>
+                    <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
+                    <asp:CheckBoxField HeaderText="Activo" DataField="Activo" />
+                </Columns>
+            </asp:GridView>
             <div class="col-12">
                 <asp:Button ID="btnAceptar" runat="server" Text="Aceptar" CssClass="btn btn-primary" OnClientClick="return validar()" OnClick="btnAceptar_Click" />
                 <asp:Button ID="btnActivacion" runat="server" Text="Eliminar" CssClass="btn btn-danger" OnClick="btnActivacion_Click" />

@@ -30,11 +30,6 @@ namespace tp_cuatrimestral_goncalves_gines
             }
         }
 
-        protected void btnEliminar_Click(object sender, EventArgs e)
-        {
-
-        }
-
         protected void btnVolver_Click(object sender, EventArgs e)
         {
             Response.Redirect("Default.aspx");
@@ -43,6 +38,12 @@ namespace tp_cuatrimestral_goncalves_gines
         protected void btnCrear_Click(object sender, EventArgs e)
         {
             Response.Redirect("ABMMedicos.aspx");
+        }
+
+        protected void dgvMedicos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string id = dgvMedicos.SelectedDataKey.Value.ToString();
+            Response.Redirect("ABMMedicos.aspx?id=" + id);
         }
     }
 }
