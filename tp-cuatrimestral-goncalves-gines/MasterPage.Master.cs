@@ -13,5 +13,11 @@ namespace tp_cuatrimestral_goncalves_gines
         {
 
         }
+
+        protected void btnDeslogear_Click(object sender, EventArgs e)
+        {
+            Session.Remove("usuario");
+            Response.Redirect("Login.aspx");
+        }
     }
 }

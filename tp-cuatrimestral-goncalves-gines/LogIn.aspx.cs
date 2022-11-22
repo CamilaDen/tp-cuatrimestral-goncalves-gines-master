@@ -27,6 +27,7 @@ namespace tp_cuatrimestral_goncalves_gines
 
             try
             {
+               
                 usuario = new Usuario(txtLogin.Text, txtPassword.Text);
                 if(negocio.Loguear(usuario)) {
                     Session.Add("usuario", usuario);

@@ -12,7 +12,7 @@
                 <div class="d-grid gap-2 col-6 mx-auto" style="padding: 10px; align-items: center">
                     <a id="btnaMedicos" href="Medicos.aspx" runat="server" class="btn btn-primary" type="button" style="display: flex; align-items: center; justify-content: center; height: 50px; background-color: #20abddb8; color: black; border-radius: 20px; font-weight: bold; border-style: hidden">Médicos </a>
                     <%--Es una prueba--%>
-                    <% if ( Session["usuario"] != null && ((dominio.Usuario)Session["usuario"]).Perfil.Id == (int)dominio.TipoPerfil.ADMINISTRADOR){ %>
+                    <% if ( validarPerfil()){ %>
                     <a id="btnaPersonal" href="Personal.aspx" runat="server" class="btn btn-primary" type="button" style="display: flex; align-items: center; justify-content: center; height: 50px; background-color: #20abddb8; color: black; border-radius: 20px; font-weight: bold; border-style: hidden">Personal </a>
                     <% } %>
                     </div>

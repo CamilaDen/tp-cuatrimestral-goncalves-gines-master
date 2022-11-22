@@ -17,9 +17,13 @@ namespace tp_cuatrimestral_goncalves_gines
             }   
         }
 
-        protected void btnaPersonalClinica_Click(object sender, EventArgs e)
-        {
+        public bool validarPerfil() { 
+            if ( Session["usuario"] != null && ((dominio.Usuario)Session["usuario"]).Perfil.Id == (int)dominio.TipoPerfil.ADMINISTRADOR)
+            {
 
+                return true;
+            }
+            return false;
         }
 
 

@@ -22,6 +22,9 @@
                         <img src="img/salud.png" alt="Logo" width="45" height="40" class="d-inline-block align-text-top">
                         Clinica Siempre Enfermo
                     </a>
+                    <%if (Session["usuario"] != null) { %>
+                        <asp:Button ID="btnDeslogear" Text="Cerrar Sesion" runat="server" class="btn btn-primary" OnClick="btnDeslogear_Click" style="display: flex; align-items: center; justify-content: center; height: 50px; background-color: #20abddb8; color: black; border-radius: 20px; font-weight: bold; border-style: hidden"/>
+                    <%} %>
                 </div>
             </nav>
         </div>
