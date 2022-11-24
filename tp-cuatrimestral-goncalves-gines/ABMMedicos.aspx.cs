@@ -15,6 +15,7 @@ namespace tp_cuatrimestral_goncalves_gines
         {
             txtId.Enabled = false;
             btnActivacion.Visible = false;
+
             try
             {
                 if (!IsPostBack)
@@ -23,6 +24,11 @@ namespace tp_cuatrimestral_goncalves_gines
                     EspecialidadNegocio especialidadNegocio = new EspecialidadNegocio();
                     dgvEspecialidad.DataSource = especialidadNegocio.listarConSP();
                     dgvEspecialidad.DataBind();
+
+                    HorarioNegocio horarioNegocio = new HorarioNegocio();
+                    dgvHorario.DataSource = horarioNegocio.listarConSP();
+                    dgvHorario.DataBind();
+
 
                     string id = Request.QueryString["id"] != null ? Request.QueryString["id"].ToString() : "";
                     if (id != "")
@@ -37,7 +43,35 @@ namespace tp_cuatrimestral_goncalves_gines
                         txtFNacimiento.Text = medicoSeleccionado.FechaDeNacimiento.ToString("yyyy-MM-dd");
                         txtMail.Text = medicoSeleccionado.Mail;
                         txtMatricula.Text = medicoSeleccionado.Matricula;
+                        txtPass.Text = medicoSeleccionado.Usuario.Password;
+                        txtPass.Attributes["type"] = "password";
 
+                        string[] IdHorarios = medicoSeleccionado.Horarios.Split(',');
+                        string[] IdEspecialidades = medicoSeleccionado.Especialidades.Split(',');
+
+                        foreach (GridViewRow row in dgvHorario.Rows)
+                        {
+                            foreach (var IdHorario in IdHorarios)
+                            {
+                                var check = row.FindControl("cbSelect") as CheckBox;
+                                if (row.Cells[1].Text.ToString() == IdHorario)
+                                {
+                                    check.Checked = true;
+                                }
+                            }
+                        }
+
+                        foreach (GridViewRow row in dgvEspecialidad.Rows)
+                        {
+                            foreach (var IdEspecialidad in IdEspecialidades)
+                            {
+                                var check = row.FindControl("cbSelect") as CheckBox;
+                                if (row.Cells[1].Text.ToString() == IdEspecialidad)
+                                {
+                                    check.Checked = true;
+                                }
+                            }
+                        }
 
                         //Guardo en session para conocer luego el estado de activación o inactivación
                         Session.Add("MedicoSeleccionado", medicoSeleccionado);
@@ -77,6 +111,28 @@ namespace tp_cuatrimestral_goncalves_gines
                 medico.Mail = txtMail.Text;
                 medico.FechaDeNacimiento = DateTime.Parse(txtFNacimiento.Text);
                 medico.Matricula = txtMatricula.Text;
+                medico.Usuario = new Usuario();
+                medico.Usuario.Password = txtPass.Text;
+
+
+                foreach (GridViewRow row in dgvHorario.Rows)
+                {
+                    var check = row.FindControl("cbSelect") as CheckBox;
+                    if (check != null && check.Checked)
+                    {
+                        medico.Horarios += row.Cells[1].Text + ",";
+                    }
+                }
+
+
+                foreach (GridViewRow row in dgvEspecialidad.Rows)
+                {
+                    var check = row.FindControl("cbSelect") as CheckBox;
+                    if (check != null && check.Checked)
+                    {
+                        medico.Especialidades += row.Cells[1].Text + ",";
+                    }
+                }
 
 
                 if (Request.QueryString["id"] != null)
@@ -85,7 +141,7 @@ namespace tp_cuatrimestral_goncalves_gines
                     negocio.modificar(medico);
                 }
                 else negocio.agregar(medico);
-                Response.Redirect("Pacientes.aspx");
+                Response.Redirect("Medicos.aspx");
             }
             catch (Exception ex)
             {
@@ -101,7 +157,7 @@ namespace tp_cuatrimestral_goncalves_gines
                 MedicoNegocio negocio = new MedicoNegocio();
                 Medico MedicoSeleccionado = (Medico)Session["MedicoSeleccionado"];
                 negocio.eliminarLogico(MedicoSeleccionado.Id, !MedicoSeleccionado.Activo);
-                Response.Redirect("Pacientes.aspx");
+                Response.Redirect("Medicos.aspx");
 
             }
             catch (Exception ex)

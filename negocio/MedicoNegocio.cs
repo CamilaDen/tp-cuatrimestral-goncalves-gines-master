@@ -32,13 +32,15 @@ namespace negocio
                     aux.Id = (int)datos.Lector["Id"];
                     aux.Matricula = (string)datos.Lector["Matricula"];
                     aux.Activo = (bool)datos.Lector["Activo"];
-                    aux.Persona = new Persona();
-                    aux.Persona.Id = (int)datos.Lector["IdPersona"];
-                    aux.Persona.Nombre = (string)datos.Lector["Nombre"];
-                    aux.Persona.Apellido = (string)datos.Lector["Apellido"];
-                    aux.Persona.FechaDeNacimiento = Convert.ToDateTime(datos.Lector["Fecha_Nacimiento"]);
-                    aux.Persona.Dni = (string)datos.Lector["Dni"];
-                    aux.Persona.Mail = (string)datos.Lector["Mail"];
+                    aux.Nombre = (string)datos.Lector["Nombre"];
+                    aux.Apellido = (string)datos.Lector["Apellido"];
+                    aux.FechaDeNacimiento = Convert.ToDateTime(datos.Lector["Fecha_Nacimiento"]);
+                    aux.Dni = (string)datos.Lector["Dni"];
+                    aux.Mail = (string)datos.Lector["Mail"];
+                    aux.Horarios = (string)datos.Lector["Horarios"];
+                    aux.Especialidades = (string)datos.Lector["Especialidades"];
+                    aux.Usuario = new Usuario();
+                    aux.Usuario.Password = (string)datos.Lector["Pass"];
                     lista.Add(aux);
                 }
                 return lista;
@@ -60,6 +62,10 @@ namespace negocio
                 datos.setearParametro("@FECHA_NACIMIENTO", nuevo.FechaDeNacimiento);
                 datos.setearParametro("@DNI", nuevo.Dni);
                 datos.setearParametro("@MAIL", nuevo.Mail);
+                datos.setearParametro("@MATRICULA", nuevo.Matricula);
+                datos.setearParametro("@HORARIOS", nuevo.Horarios);
+                datos.setearParametro("@ESPECIALIDADES", nuevo.Especialidades);
+                datos.setearParametro("@PASS", nuevo.Usuario.Password);
                 datos.ejecutarAccion();
             }
             catch (Exception ex)
@@ -85,6 +91,10 @@ namespace negocio
                 datos.setearParametro("@FECHA_NACIMIENTO", modificacion.FechaDeNacimiento);
                 datos.setearParametro("@DNI", modificacion.Dni);
                 datos.setearParametro("@MAIL", modificacion.Mail);
+                datos.setearParametro("@MATRICULA", modificacion.Matricula);
+                datos.setearParametro("@HORARIOS", modificacion.Horarios);
+                datos.setearParametro("@ESPECIALIDADES", modificacion.Especialidades);
+                datos.setearParametro("@PASS", modificacion.Usuario.Password);
                 datos.ejecutarAccion();
             }
             catch (Exception ex)

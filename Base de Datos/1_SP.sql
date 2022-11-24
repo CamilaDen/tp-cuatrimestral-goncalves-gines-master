@@ -43,13 +43,22 @@ SELECT H.ID, H.HORA_DESDE, H.HORA_HASTA, H.DIA, H.ACTIVO FROM HORARIO H WHERE H.
 GO
 
 CREATE PROCEDURE SP_ListarMedicos AS
-SELECT M.ID, M.MATRICULA, M.IDPERSONA, M.ACTIVO, P.APELLIDO, P.NOMBRE, P.FECHA_NACIMIENTO, P.DNI, P.MAIL, P.IDUSUARIO FROM MEDICO M INNER JOIN PERSONA P ON P.ID = M.IDPERSONA
+SELECT M.ID, M.MATRICULA, M.IDPERSONA, P.ACTIVO, P.APELLIDO, P.NOMBRE, P.FECHA_NACIMIENTO, P.DNI, P.MAIL, P.IDUSUARIO, '' PASS, '' HORARIOS, '' ESPECIALIDADES 
+FROM MEDICO M 
+INNER JOIN PERSONA P ON P.ID = M.IDPERSONA
 GO
 
 CREATE PROCEDURE SP_ListarMedicosxId 
     @ID INT
 AS
-SELECT M.ID, M.MATRICULA, M.IDPERSONA, P.ACTIVO, P.APELLIDO, P.NOMBRE, P.FECHA_NACIMIENTO, P.DNI, P.MAIL, P.IDUSUARIO FROM MEDICO M INNER JOIN PERSONA P ON P.ID = M.IDPERSONA WHERE M.ID = @ID 
+SELECT M.ID, M.MATRICULA, M.IDPERSONA, P.ACTIVO, P.APELLIDO, P.NOMBRE, P.FECHA_NACIMIENTO, P.DNI, P.MAIL, P.IDUSUARIO, ISNULL(U.PASS,'') PASS, 
+(SELECT ISNULL(STRING_AGG(MXH.IDHORARIO, ','),'') FROM MEDICO_X_HORARIO MXH WHERE MXH.IDMEDICO = M.ID ) HORARIOS, 
+(SELECT ISNULL(STRING_AGG(MXE.IDESPECIALIDAD, ','),'') FROM MEDICO_X_ESPECIALIDAD MXE WHERE MXE.IDMEDICO = M.ID) ESPECIALIDADES
+FROM MEDICO M 
+INNER JOIN PERSONA P ON P.ID = M.IDPERSONA
+INNER JOIN USUARIO U ON U.ID = P.IDUSUARIO
+WHERE M.ID = @ID
+GROUP BY M.ID, M.MATRICULA, M.IDPERSONA, P.ACTIVO, P.APELLIDO, P.NOMBRE, P.FECHA_NACIMIENTO, P.DNI, P.MAIL, P.IDUSUARIO, U.PASS
 GO
 
 CREATE PROCEDURE SP_ListarPersonal AS
@@ -348,3 +357,157 @@ CREATE PROCEDURE SP_EliminarLogicoMedico
     @ID INT
 AS UPDATE PERSONA SET ACTIVO = 0 WHERE ID = (SELECT IDPERSONA FROM MEDICO WHERE ID = @ID)
 GO
+
+
+CREATE PROCEDURE AgregarHorariosMedicos
+    @ID INT,
+    @HORARIOS VARCHAR(1000)
+AS
+    BEGIN
+    BEGIN TRY
+        BEGIN TRANSACTION
+            SET NOCOUNT ON
+            --El separador de nuestros parametros sera una ,
+            DECLARE @Posicion int
+            --@Posicion es la posicion de cada uno de nuestros separadores
+            DECLARE @Parametro varchar(1000)
+            --Borro los horarios de ese médico
+            DELETE MEDICO_X_HORARIO WHERE IDMEDICO = @ID
+            WHILE patindex('%,%' , @HORARIOS) <> 0
+            --patindex busca un patron en una cadena y nos devuelve su posicion
+            BEGIN
+            SELECT @Posicion =  patindex('%,%' , @HORARIOS)
+            --Buscamos la posicion de la primera ,
+            SELECT @Parametro = left(@HORARIOS, @Posicion - 1)
+            --Y guardamos los caracteres hasta esa posicion
+            INSERT INTO MEDICO_X_HORARIO (IDMEDICO, IDHORARIO) VALUES (@ID, @Parametro)
+            --Reemplazamos lo procesado con nada con la funcion stuff
+            SELECT @HORARIOS = stuff(@HORARIOS, 1, @Posicion, '')
+            END
+            SET NOCOUNT OFF
+        COMMIT TRANSACTION
+    END TRY
+    BEGIN CATCH
+        ROLLBACK TRANSACTION
+        RAISERROR('No se pudo agregar los horarios al médico', 16, 1)
+    END CATCH
+END
+GO
+
+CREATE PROCEDURE AgregarEspecialidadesMedicos
+    @ID INT,
+    @ESPECIALIDADES VARCHAR(1000)
+AS
+    BEGIN
+    BEGIN TRY
+        BEGIN TRANSACTION
+            SET NOCOUNT ON
+            --El separador de nuestros parametros sera una ,
+            DECLARE @Posicion int
+            --@Posicion es la posicion de cada uno de nuestros separadores
+            DECLARE @Parametro varchar(1000)
+            --Borro las especialidades de ese médico
+            DELETE MEDICO_X_ESPECIALIDAD WHERE IDMEDICO = @ID
+            WHILE patindex('%,%' , @ESPECIALIDADES) <> 0
+            --patindex busca un patron en una cadena y nos devuelve su posicion
+            BEGIN
+            SELECT @Posicion =  patindex('%,%' , @ESPECIALIDADES)
+            --Buscamos la posicion de la primera ,
+            SELECT @Parametro = left(@ESPECIALIDADES, @Posicion - 1)
+            --Y guardamos los caracteres hasta esa posicion
+            INSERT INTO MEDICO_X_ESPECIALIDAD (IDMEDICO, IDESPECIALIDAD) VALUES (@ID, @Parametro)
+            --Reemplazamos lo procesado con nada con la funcion stuff
+            SELECT @ESPECIALIDADES = stuff(@ESPECIALIDADES, 1, @Posicion, '')
+            END
+            SET NOCOUNT OFF
+        COMMIT TRANSACTION
+    END TRY
+    BEGIN CATCH
+        ROLLBACK TRANSACTION
+        RAISERROR('No se pudo agregar la especialidad al médico', 16, 1)
+    END CATCH
+END
+GO
+
+
+CREATE PROCEDURE SP_AltaMedico
+    @APELLIDO VARCHAR(50),
+    @NOMBRE VARCHAR(50),
+	@FECHA_NACIMIENTO SMALLDATETIME,
+    @DNI VARCHAR(10),	
+    @MAIL VARCHAR(50),
+    @MATRICULA VARCHAR(50),
+    @HORARIOS VARCHAR(1000),
+    @ESPECIALIDADES VARCHAR(1000),
+    @PASS VARCHAR(50)
+AS
+BEGIN
+    BEGIN TRY
+        BEGIN TRANSACTION
+            DECLARE @LastIdentity int;
+            DECLARE @IdPerfil int;
+            SELECT TOP 1 @IdPerfil = ID FROM PERFIL WHERE NOMBRE IN ('Médico', 'Medico')            
+            INSERT INTO USUARIO (PASS, IDPERFIL, NOMBREUSUARIO) VALUES (@PASS, ISNULL(@IDPERFIL,2), @APELLIDO)
+            SET @LastIdentity = scope_identity()
+            INSERT INTO PERSONA (APELLIDO, NOMBRE, FECHA_NACIMIENTO, DNI, MAIL, IDUSUARIO) VALUES (@APELLIDO, @NOMBRE, @FECHA_NACIMIENTO, @DNI, @MAIL, @LastIdentity)
+            SET @LastIdentity = scope_identity()
+            INSERT INTO MEDICO (IDPERSONA, MATRICULA) VALUES (@LastIdentity, @MATRICULA)
+            SET @LastIdentity = scope_identity()
+            IF (@HORARIOS IS NOT NULL) BEGIN
+                    EXEC AgregarHorariosMedicos @LastIdentity, @HORARIOS
+            END    
+            IF (@ESPECIALIDADES IS NOT NULL) BEGIN
+                EXEC AgregarEspecialidadesMedicos @LastIdentity, @ESPECIALIDADES
+            END        
+        COMMIT TRANSACTION
+
+        
+    END TRY
+    BEGIN CATCH
+        ROLLBACK TRANSACTION
+        RAISERROR('NO SE PUDO DAR DE ALTA EL MEDICO', 16, 1)
+    END CATCH
+END
+GO
+
+CREATE PROCEDURE SP_ModificarMedico
+    @ID INT, 
+    @APELLIDO VARCHAR(50),
+    @NOMBRE VARCHAR(50),
+	@FECHA_NACIMIENTO SMALLDATETIME,
+    @DNI VARCHAR(10),	
+    @MAIL VARCHAR(50),
+    @MATRICULA VARCHAR(50),
+    @HORARIOS VARCHAR(1000),
+    @ESPECIALIDADES VARCHAR(1000),
+    @PASS VARCHAR(50)
+AS
+BEGIN
+    BEGIN TRY
+        BEGIN TRANSACTION
+            DECLARE @IDPERSONA INT
+            DECLARE @IDUSUARIO INT
+            SELECT @IDPERSONA = ISNULL(IDPERSONA,-1) FROM MEDICO WHERE ID = @ID
+            IF(@IDPERSONA>-1) BEGIN
+                UPDATE MEDICO SET MATRICULA = @MATRICULA WHERE ID = @ID
+                UPDATE PERSONA SET APELLIDO =  @APELLIDO, NOMBRE = @NOMBRE, DNI = @DNI, FECHA_NACIMIENTO = @FECHA_NACIMIENTO, MAIL = @MAIL WHERE ID = @IDPERSONA
+                SELECT @IDUSUARIO = IDUSUARIO FROM PERSONA WHERE ID = @IDPERSONA
+                UPDATE USUARIO SET PASS = @PASS WHERE ID = @IDUSUARIO
+                IF (@HORARIOS IS NOT NULL) BEGIN
+                    EXEC AgregarHorariosMedicos @ID, @HORARIOS
+                END    
+                IF (@ESPECIALIDADES IS NOT NULL) BEGIN
+                    EXEC AgregarEspecialidadesMedicos @ID, @ESPECIALIDADES
+                END                
+            END
+            ELSE BEGIN
+                ROLLBACK TRANSACTION
+            END
+        COMMIT TRANSACTION
+    END TRY
+    BEGIN CATCH
+        RAISERROR('No se pudo modificar el médico', 16, 1)
+    END CATCH
+END
+GO
+

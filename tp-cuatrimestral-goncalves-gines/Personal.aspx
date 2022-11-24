@@ -12,7 +12,6 @@
                 <asp:BoundField HeaderText="Mail" DataField="Mail" />
                 <asp:BoundField HeaderText="Fec. Nac." DataFormatString="{0:d}" DataField="FechaDeNacimiento" />
                 <asp:BoundField HeaderText="Perfil" DataField="Usuario.Perfil.Nombre" />
-                <%--<asp:BoundField HeaderText="Pass" DataField="Usuario.Password" />--%>
                 <asp:CheckBoxField HeaderText="Activo" DataField="Activo" />
                 <asp:CommandField HeaderText="Editar" ShowSelectButton="true" SelectText="✏️​" ControlStyle-CssClass="btn btn-primary" />
             </Columns>
