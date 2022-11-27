@@ -2,6 +2,9 @@
 
     
 }
+#btnDeslogear:hover {
+    background-color: #20abddb8;
+}
 body {
     /* ↓ Para que quede el footer abajo mantener esta configuracion ↓ */
     position: relative;
@@ -13,7 +16,7 @@ body {
 #botoncitos{
     display:flex;
     justify-content:space-between;
-    
+   
 }
     #botoncitos btnCrear {
         padding-block-end: auto;

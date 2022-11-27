@@ -72,6 +72,7 @@
     <Content Include="ABMPerfiles.aspx" />
     <Content Include="ABMPersonal.aspx" />
     <Content Include="Coberturas.aspx" />
+    <Content Include="CrearTurno.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="Error.aspx" />
     <Content Include="Especialidades.aspx" />
@@ -143,6 +144,13 @@
     </Compile>
     <Compile Include="Coberturas.aspx.designer.cs">
       <DependentUpon>Coberturas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CrearTurno.aspx.cs">
+      <DependentUpon>CrearTurno.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CrearTurno.aspx.designer.cs">
+      <DependentUpon>CrearTurno.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
