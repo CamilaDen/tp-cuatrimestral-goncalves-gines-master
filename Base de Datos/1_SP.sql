@@ -510,4 +510,9 @@ BEGIN
     END CATCH
 END
 GO
+CREATE PROCEDURE SP_BuscarTurno as
+	select P.id from TURNO T 
+inner join PACIENTE P ON P.ID=T.IDPACIENTE 
+inner join PERSONA Per ON Per.ID= P.IDPERSONA
+Where '%%' = Per.NOMBRE OR '%%' = Per.APELLIDO
 

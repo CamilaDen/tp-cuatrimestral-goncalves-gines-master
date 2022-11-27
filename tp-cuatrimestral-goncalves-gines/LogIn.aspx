@@ -11,41 +11,11 @@
     <link rel="stylesheet" href="Login.css" />
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
-   <%-- <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.6.2.js"></script>
-    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.8.1/jquery.validate.js"></script>
-    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>--%>
-   
- <%--   <script> validar() {
-                // acá estamos usando JS puro, pero concatenando con una sentencia de C# embebido para obtener el Id del control, al que no le agregamos la propiedad ClientIDMode antes mencionada.
-                var user = document.getElementById("txtLogin").value;
-                var pass = document.getElementById("txtPassword").value;
-                var valido = true;
-                // luego evalulamos
-                if (user === "") {
-                    $("#txtLogin").removeClass("is-valid").addClass("is-invalid");
-                    $("#validation-message").removeClass("d-none").addClass("d-block");
-                    valido = false;
-                }else {
-                    $("#txtLogin").removeClass("is-valid").addClass("is-valid");
-                    $("#validation-message").addClass("d-none").removeClass("d-block");
-                }
-                if (pass === "") {
-                    $("#txtPassword").removeClass("is-valid").addClass("is-invalid");
-                    $("#validation-message1").removeClass("d-none").addClass("d-block");
-                    valido = false;
-                }
-                else {
-                    $("#txtLogin").removeClass("is-valid").addClass("is-valid");
-                    $("#validation-message1").addClass("d-none").removeClass("d-block");
-                }
-                return valido;
-             }
-    </script>--%>
+
 </head>
 <body >
     <div class="container">
         <div id="formContent">
-  
         <div class="fadeIn first">
           <h3>Log In</h3>
           <img src="img/user.png" id="icon" alt="User Icon" />

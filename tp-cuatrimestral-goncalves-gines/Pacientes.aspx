@@ -14,9 +14,9 @@
                 <asp:BoundField HeaderText="Fec. Nac." DataFormatString="{0:d}" DataField="FechaDeNacimiento" />
                 <asp:BoundField HeaderText="Cobertura" DataField="ObraSocial.Nombre" />
                 <asp:BoundField HeaderText="Credencial" DataField="Credencial" />
-                <asp:BoundField HeaderText="Peso" DataField="Peso" />
-                <asp:BoundField HeaderText="Altura" DataField="Altura" />
-                <asp:CheckBoxField HeaderText="Activo" DataField="Activo" />
+                <asp:BoundField HeaderText="Peso" DataField="Peso"/>
+                <asp:BoundField HeaderText="Altura" DataField="Altura"/>
+                <asp:CheckBoxField HeaderText="Activo" DataField="Activo"/>
                 <asp:CommandField HeaderText="Editar" ShowSelectButton="true" SelectText="✏️​" ControlStyle-CssClass="btn btn-primary" />
             </Columns>
         </asp:GridView>
