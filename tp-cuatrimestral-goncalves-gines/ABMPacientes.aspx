@@ -84,7 +84,7 @@
         }
     </script>
     <div class="container">
-        <label class="TituloABM">Pacientes</label>
+        <label class="TituloABM">ABM Paciente</label>
         <div class="row g-3">
             <div class="col-2">
                 <label class="form-label">Id</label>

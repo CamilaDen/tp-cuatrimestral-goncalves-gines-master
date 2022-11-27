@@ -3,6 +3,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container">
+        <h1>Pacientes</h1>
         <asp:GridView ID="dgvPacientes" runat="server" CssClass="table" AutoGenerateColumns="false" DataKeyNames="Id" OnSelectedIndexChanged="dgvPacientes_SelectedIndexChanged">
             <Columns>
                 <asp:BoundField HeaderText="Id" DataField="Id" />

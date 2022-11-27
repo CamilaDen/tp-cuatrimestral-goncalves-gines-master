@@ -12,16 +12,15 @@ namespace tp_cuatrimestral_goncalves_gines
     public partial class Perfiles : System.Web.UI.Page
     {
 
-        public List<Perfil> ListaPerfil { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
-            PerfilNegocio negocio = new PerfilNegocio();
-            ListaPerfil = negocio.listarConSP();
             try
             {
                 if (!IsPostBack)
                 {
-                    dgvPerfiles.DataSource = ListaPerfil;
+                    PerfilNegocio negocio = new PerfilNegocio();
+                    Session.Add("listaPerfiles", negocio.listarConSP());
+                    dgvPerfiles.DataSource = Session["listaPerfiles"];
                     dgvPerfiles.DataBind();
                 }
             }
@@ -45,6 +44,21 @@ namespace tp_cuatrimestral_goncalves_gines
         {
             string id = dgvPerfiles.SelectedDataKey.Value.ToString();
             Response.Redirect("ABMPerfiles.aspx?id=" + id);
+        }
+        protected void btnBuscarRapido_Click(object sender, EventArgs e)
+        {
+            List<Perfil> listaFiltrada = ((List<Perfil>)Session["listaPerfiles"]);
+            listaFiltrada = listaFiltrada.FindAll(x => x.Nombre.ToUpper().Contains(txtFiltro.Text.ToUpper()));
+            if (ddlEstado.SelectedItem.ToString() == "Activo")
+            {
+                listaFiltrada = listaFiltrada.FindAll(x => x.Activo);
+            }
+            else if (ddlEstado.SelectedItem.ToString() == "Inactivo")
+            {
+                listaFiltrada = listaFiltrada.FindAll(x => !x.Activo);
+            }
+            dgvPerfiles.DataSource = listaFiltrada;
+            dgvPerfiles.DataBind();
         }
 
     }

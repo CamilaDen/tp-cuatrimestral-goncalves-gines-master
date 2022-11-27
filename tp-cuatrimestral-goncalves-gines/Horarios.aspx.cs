@@ -11,16 +11,15 @@ namespace tp_cuatrimestral_goncalves_gines
 {
     public partial class Horarios : System.Web.UI.Page
     {
-        public List<Horario> ListaHorario { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
-            HorarioNegocio negocio = new HorarioNegocio();
-            ListaHorario = negocio.listarConSP();
             try
             {
                 if (!IsPostBack)
                 {
-                    dgvHorarios.DataSource = ListaHorario;
+                    HorarioNegocio negocio = new HorarioNegocio();
+                    Session.Add("listaHorarios", negocio.listarConSP());
+                    dgvHorarios.DataSource = Session["listaHorarios"];
                     dgvHorarios.DataBind();
                 }
             }
@@ -44,6 +43,22 @@ namespace tp_cuatrimestral_goncalves_gines
         protected void btnCrear_Click(object sender, EventArgs e)
         {
             Response.Redirect("ABMHorarios.aspx");
+        }
+
+        protected void btnBuscarRapido_Click(object sender, EventArgs e)
+        {
+            List<Horario> listaFiltrada = ((List<Horario>)Session["listaHorarios"]);
+            listaFiltrada = listaFiltrada.FindAll(x => x.Dia.Nombre.ToUpper().Contains(txtFiltro.Text.ToUpper()));
+            if (ddlEstado.SelectedItem.ToString() == "Activo")
+            {
+                listaFiltrada = listaFiltrada.FindAll(x => x.Activo);
+            }
+            else if (ddlEstado.SelectedItem.ToString() == "Inactivo")
+            {
+                listaFiltrada = listaFiltrada.FindAll(x => !x.Activo);
+            }
+            dgvHorarios.DataSource = listaFiltrada;
+            dgvHorarios.DataBind();
         }
     }
 }

@@ -36,6 +36,10 @@ INSERT INTO USUARIO (NOMBREUSUARIO, PASS, IDPERFIL ) VALUES ('Cami','1234',2)
 INSERT INTO USUARIO (NOMBREUSUARIO, PASS, IDPERFIL ) VALUES ('Maxi','1234',2)
 INSERT INTO USUARIO (NOMBREUSUARIO, PASS, IDPERFIL ) VALUES ('Pepe','1234',3)
 
+/* USUARIOS  ---- SELECT * FROM PERSONAL */
+INSERT INTO PERSONA(APELLIDO, NOMBRE, FECHA_NACIMIENTO, DNI, MAIL, IDUSUARIO ) VALUES ('Goncalves', 'Camila ', '23/10/1996','43431806','cami.goncalves@clinic.com',2)
+INSERT INTO PERSONA(APELLIDO, NOMBRE, FECHA_NACIMIENTO, DNI, MAIL, IDUSUARIO ) VALUES ('Gines', 'Sebastian ', '13/01/1987','33876312','sebastian.gines@clinic.com',1)
+
 
 /* HORARIO MEDICOS ---- SELECT * FROM HORARIO */
 INSERT INTO HORARIO (HORA_DESDE, HORA_HASTA, DIA) VALUES (8, 16, 1)
@@ -46,10 +50,10 @@ INSERT INTO HORARIO (HORA_DESDE, HORA_HASTA, DIA) VALUES (8, 16, 5)
 INSERT INTO HORARIO (HORA_DESDE, HORA_HASTA, DIA) VALUES (8, 16, 6)
 
 /* PERSONA ---- SELECT * FROM MEDICO */ 
-EXEC SP_AltaMedico  'Goncalves', 'Camila ', '23/10/1996','43431806','cami.goncalves@clinic.com', '231441','1,2,','1,2,3,4,5,','1234'
 EXEC SP_AltaMedico  'Socolinsky', 'Mario', '12/07/1942','10231567','mario.soco.doc@clinic.com', '231441','1,2,','1,2,3,4,5,','1234'
 EXEC SP_AltaMedico  'Cormillot', 'Alberto ', '31/08/1938','10198762','alberto.cormi.doc@clinic.com', '231441','1,2,','1,2,3,4,5,','1234'
-EXEC SP_AltaMedico  'Gines', 'Sebastian ', '13/01/1987','33876312','sebastian.gines@clinic.com', '231441','1,2,','1,2,3,4,5,','1234'
+
+
 
 
 

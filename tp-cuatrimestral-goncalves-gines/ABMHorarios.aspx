@@ -30,11 +30,16 @@
         }
     </script>
     <div class="container">
-        <label class="TituloABM">Horarios</label>
+        <label class="TituloABM">ABM Horario</label>
         <div class="row g-3">
             <div class="col-md-2">
                 <label class="form-label">Id</label>
                 <asp:TextBox ID="txtId" class="form-control" runat="server" placeholder=""></asp:TextBox>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Dia</label>
+                <asp:DropDownList CssClass="form-select" ID="ddlDia" runat="server">
+                </asp:DropDownList>
             </div>
             <div class="col-md-2">
                 <label class="form-label">Horario Desde</label>
@@ -49,11 +54,6 @@
                 <div class="invalid-feedback d-none" id="validation-message2">
                     Campo requerido.
                 </div>
-            </div>
-            <div class="col-md-6">
-                <label class="form-label">Dia</label>
-                <asp:DropDownList CssClass="form-select" ID="ddlDia" runat="server">
-                </asp:DropDownList>
             </div>
             <div class="col-12">
                 <asp:Button Text="Aceptar" ID="btnAceptar" autopostback="false" OnClientClick="return validar()" OnClick="btnAceptar_Click" CssClass="btn btn-primary" runat="server" />

@@ -66,7 +66,7 @@
         }
     </script>
     <div class="container">
-        <label class="TituloABM">ABM PERSONAL</label>
+        <label class="TituloABM">ABM Personal</label>
         <div class="row g-3">
             <div class="col-2">
                 <label class="form-label">Id</label>

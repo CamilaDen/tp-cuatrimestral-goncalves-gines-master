@@ -11,16 +11,15 @@ namespace tp_cuatrimestral_goncalves_gines
 {
     public partial class Personal : System.Web.UI.Page
     {
-        public List<Persona> ListaPersonal { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
-            PersonaNegocio negocio = new PersonaNegocio();
-            ListaPersonal = negocio.listarConSP();
             try
             {
                 if (!IsPostBack)
                 {
-                    dgvPersonal.DataSource = ListaPersonal;
+                    PersonaNegocio negocio = new PersonaNegocio();
+                    Session.Add("listaPersonal", negocio.listarConSP());
+                    dgvPersonal.DataSource = Session["listaPersonal"];
                     dgvPersonal.DataBind();
                 }
             }
@@ -44,6 +43,21 @@ namespace tp_cuatrimestral_goncalves_gines
         protected void btnCrear_Click(object sender, EventArgs e)
         {
             Response.Redirect("ABMPersonal.aspx");
+        }
+        protected void btnBuscarRapido_Click(object sender, EventArgs e)
+        {
+            List<Persona> listaFiltrada = ((List<Persona>)Session["listaPersonal"]);
+            listaFiltrada = listaFiltrada.FindAll(x => x.Nombre.ToUpper().Contains(txtFiltro.Text.ToUpper()));
+            if (ddlEstado.SelectedItem.ToString() == "Activo")
+            {
+                listaFiltrada = listaFiltrada.FindAll(x => x.Activo);
+            }
+            else if (ddlEstado.SelectedItem.ToString() == "Inactivo")
+            {
+                listaFiltrada = listaFiltrada.FindAll(x => !x.Activo);
+            }
+            dgvPersonal.DataSource = listaFiltrada;
+            dgvPersonal.DataBind();
         }
     }
 }

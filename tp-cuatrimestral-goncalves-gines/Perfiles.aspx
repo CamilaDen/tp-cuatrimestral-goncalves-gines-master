@@ -3,18 +3,47 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
     <div class="container">
-        <asp:GridView ID="dgvPerfiles" runat="server" CssClass="table" AutoGenerateColumns="false" DataKeyNames="Id" OnSelectedIndexChanged="dgvPerfiles_SelectedIndexChanged">
-            <Columns>
-                <asp:BoundField HeaderText="Id" DataField="Id" />
-                <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
-                <asp:CheckBoxField HeaderText="Activo" DataField="Activo" />
-                <asp:CommandField HeaderText="Editar" ShowSelectButton="true" SelectText="✏️​" ControlStyle-CssClass="btn btn-primary" />
-            </Columns>
-        </asp:GridView>
-        <div id="botoncitos">
-            <asp:Button ID="btnVolver" href="Default.aspx" runat="server" Text="← Volver" class="btn btn-primary btn-lg" Style="background-color: #63bbdc; color: black; border-style: none" OnClick="btnVolver_Click" />
-            <asp:Button ID="btnCrear" runat="server" Text="Crear" class="btn btn-primary btn-lg" Style="background-color: #5dbf4a; color: black; border-style: none" OnClick="btnCrear_Click" />
+        <h1>Perfiles</h1>
+        <asp:UpdatePanel runat="server">
+            <ContentTemplate>
+                <div class="row">
+                    <div class="col-4">
+                        <div class="mb-3">
+                            <asp:Label Text="Filtrar" runat="server" />
+                            <asp:TextBox runat="server" ID="txtFiltro" CssClass="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <div class="mb-3">
+                            <asp:Label Text="Estado" runat="server" />
+                            <asp:DropDownList runat="server" ID="ddlEstado" CssClass="form-control">
+                                <asp:ListItem Text="Todos" />
+                                <asp:ListItem Text="Activo" />
+                                <asp:ListItem Text="Inactivo" />
+                            </asp:DropDownList>
+                        </div>
+                    </div>
+                    <div class="col-4 mt-4">
+                        <asp:Button ID="btnBuscarRapido" runat="server" Text="Buscar" CssClass="btn btn-primary " OnClick="btnBuscarRapido_Click" />
+                    </div>
+                    <div class="col-2 mt-4">
+                        <asp:Button ID="Button1" runat="server" Text="+ Nuevo" CssClass="btn btn-success btn-block" OnClick="btnCrear_Click" />
+                    </div>
+                </div>
+                <asp:GridView ID="dgvPerfiles" runat="server" CssClass="table align-middle table-hover table-sm" AutoGenerateColumns="false" DataKeyNames="Id" OnSelectedIndexChanged="dgvPerfiles_SelectedIndexChanged">
+                    <Columns>
+                        <asp:BoundField HeaderText="Id" DataField="Id" />
+                        <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
+                        <asp:CheckBoxField HeaderText="Activo" DataField="Activo" />
+                        <asp:CommandField HeaderText="Editar" ShowSelectButton="true" SelectText="✏️​" ControlStyle-CssClass="btn btn-light" />
+                    </Columns>
+                </asp:GridView>
+            </ContentTemplate>
+        </asp:UpdatePanel>
+        <div class="container">
+            <asp:Button ID="btnVolver" href="Default.aspx" runat="server" Text="← Volver" CssClass="btn btn-secondary btn-lg" OnClick="btnVolver_Click" />
         </div>
     </div>
 </asp:Content>

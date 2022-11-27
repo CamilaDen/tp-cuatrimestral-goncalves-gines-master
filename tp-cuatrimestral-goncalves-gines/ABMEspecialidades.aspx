@@ -22,26 +22,26 @@
         }
     </script>
     <div class="container">
-        <label class="TituloABM">Especialidades</label>
-        <div class="row g-3">
-            <div class="col-md-2">
+        <label class="TituloABM">ABM Especialidad</label>
+        <div class="row">
+            <div class="col-2">
                 <label class="form-label">Id</label>
-                <asp:TextBox ID="txtId" class="form-control" runat="server" placeholder=""></asp:TextBox>
+                <asp:TextBox ID="txtId" class="form-control" ClientIDMode="Static" runat="server" placeholder=""></asp:TextBox>
             </div>
-            <div class="col-md-10">
+            <div class="col-10">
                 <label class="form-label">Nombre</label>
                 <asp:TextBox ID="txtNombre" class="form-control" runat="server" ClientIDMode="Static" placeholder=""></asp:TextBox>
                 <div class="invalid-feedback d-none" id="validation-message">
                     Campo requerido.
                 </div>
             </div>
-            <div class="col-12">
-                <asp:Button ID="btnAceptar" runat="server" Text="Aceptar" CssClass="btn btn-primary" OnClientClick="return validar()" OnClick="btnAceptar_Click" />
-                <asp:Button ID="btnActivacion" runat="server" Text="Eliminar" CssClass="btn btn-danger" OnClick="btnActivacion_Click" />
-            </div>
         </div>
-        <div id="botoncitos">
-            <asp:Button ID="btnVolver" runat="server" Text="← Volver" class="btn btn-primary btn-lg" Style="background-color: #63bbdc; color: black; border-style: none" OnClick="btnVolver_Click" />
+        <div class="container">
+            <asp:Button ID="btnAceptar" runat="server" Text="Aceptar" CssClass="btn btn-primary" OnClientClick="return validar()" OnClick="btnAceptar_Click" />
+            <asp:Button ID="btnActivacion" runat="server" Text="Eliminar" CssClass="btn btn-danger" OnClick="btnActivacion_Click" />
         </div>
+    </div>
+    <div class="container" id="botoncitos">
+        <asp:Button ID="btnVolver" href="Default.aspx" runat="server" Text="← Volver" CssClass="btn btn-secondary btn-lg" OnClick="btnVolver_Click" />
     </div>
 </asp:Content>

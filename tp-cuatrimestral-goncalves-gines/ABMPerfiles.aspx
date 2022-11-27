@@ -21,7 +21,7 @@
         }
     </script>
     <div class="container">
-        <label class="TituloABM">Especialidades</label>
+        <label class="TituloABM">ABM Especialidad</label>
         <div class="row g-3">
             <div class="col-md-2">
                 <label class="form-label">Id</label>
