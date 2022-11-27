@@ -39,7 +39,7 @@ namespace tp_cuatrimestral_goncalves_gines
                         txtId.Text = id;
                         txtApellido.Text = medicoSeleccionado.Apellido;
                         txtNombre.Text = medicoSeleccionado.Nombre;
-                        txtDNI.Text = medicoSeleccionado.Dni;
+                        txtDNI.Text = medicoSeleccionado.Dni.ToString();
                         txtFNacimiento.Text = medicoSeleccionado.FechaDeNacimiento.ToString("yyyy-MM-dd");
                         txtMail.Text = medicoSeleccionado.Mail;
                         txtMatricula.Text = medicoSeleccionado.Matricula;
@@ -107,7 +107,7 @@ namespace tp_cuatrimestral_goncalves_gines
 
                 medico.Apellido = txtApellido.Text;
                 medico.Nombre = txtNombre.Text;
-                medico.Dni = txtDNI.Text;
+                medico.Dni = int.Parse(txtDNI.Text);
                 medico.Mail = txtMail.Text;
                 medico.FechaDeNacimiento = DateTime.Parse(txtFNacimiento.Text);
                 medico.Matricula = txtMatricula.Text;

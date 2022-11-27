@@ -13,7 +13,7 @@ namespace dominio
         public string Apellido { get; set; }
         public string Nombre { get; set; }
         public DateTime FechaDeNacimiento { get; set; }
-        public string Dni { get; set; }
+        public int Dni { get; set; }
         public string Mail { get; set; }
         public Usuario Usuario { get; set; }
         public bool Activo { get; set; }

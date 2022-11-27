@@ -35,7 +35,7 @@ namespace tp_cuatrimestral_goncalves_gines
                         txtId.Text = id;
                         txtApellidoPersonal.Text = personaSeleccionada.Apellido;
                         txtNombrePersonal.Text = personaSeleccionada.Nombre;
-                        txtDNI.Text = personaSeleccionada.Dni;
+                        txtDNI.Text = personaSeleccionada.Dni.ToString();
                         txtFNacimiento.Text = personaSeleccionada.FechaDeNacimiento.ToString("yyyy-MM-dd");
                         txtMail.Text = personaSeleccionada.Mail;
                         txtPass.Text = personaSeleccionada.Usuario.Password;
@@ -78,7 +78,7 @@ namespace tp_cuatrimestral_goncalves_gines
 
                 personal.Apellido = txtApellidoPersonal.Text;
                 personal.Nombre = txtNombrePersonal.Text;
-                personal.Dni = txtDNI.Text;
+                personal.Dni = int.Parse(txtDNI.Text);
                 personal.Mail = txtMail.Text;
                 personal.FechaDeNacimiento = DateTime.Parse(txtFNacimiento.Text);
                 personal.Usuario = new Usuario();

@@ -66,43 +66,43 @@
         }
     </script>
     <div class="container">
-        <label class="TituloABM"> ABM Cobertura</label>
+        <label class="TituloABM">ABM Cobertura</label>
         <div class="row g-3">
             <div class="col-md-2">
                 <label class="form-label">Id</label>
-                <asp:TextBox ID="txtId" class="form-control"  runat="server" placeholder=""></asp:TextBox>
+                <asp:TextBox ID="txtId" class="form-control" runat="server" placeholder=""></asp:TextBox>
             </div>
             <div class="col-md-8">
                 <label class="form-label">Nombre</label>
-                <asp:TextBox ID="txtNombre" class="form-control" ClientIDMode="Static"  runat="server" placeholder=""></asp:TextBox>
+                <asp:TextBox ID="txtNombre" class="form-control" ClientIDMode="Static" runat="server" placeholder=""></asp:TextBox>
                 <div class="invalid-feedback d-none" id="validation-message1">
                     Campo requerido.
                 </div>
             </div>
             <div class="col-md-2">
                 <label class="form-label">Sigla</label>
-                <asp:TextBox ID="txtSigla" class="form-control" ClientIDMode="Static"  runat="server" placeholder=""></asp:TextBox>
+                <asp:TextBox ID="txtSigla" class="form-control" ClientIDMode="Static" runat="server" placeholder=""></asp:TextBox>
                 <div class="invalid-feedback d-none" id="validation-message2">
                     Campo requerido.
                 </div>
             </div>
             <div class="col-md-2">
                 <label class="form-label">CUIT</label>
-                <asp:TextBox ID="txtCUIT" class="form-control" ClientIDMode="Static"  runat="server" placeholder=""></asp:TextBox>
+                <asp:TextBox ID="txtCUIT" class="form-control" ClientIDMode="Static" runat="server" placeholder=""></asp:TextBox>
                 <div class="invalid-feedback d-none" id="validation-message3">
                     Campo requerido.
                 </div>
             </div>
             <div class="col-md-4">
                 <label class="form-label">Telefono</label>
-                <asp:TextBox ID="txtTelefono" class="form-control" ClientIDMode="Static"  runat="server" placeholder="" TextMode="Phone"></asp:TextBox>
+                <asp:TextBox ID="txtTelefono" class="form-control" ClientIDMode="Static" runat="server" placeholder="" TextMode="Phone"></asp:TextBox>
                 <div class="invalid-feedback d-none" id="validation-message4">
                     Campo requerido.
                 </div>
             </div>
             <div class="col-md-6">
                 <label class="form-label">Direccion</label>
-                <asp:TextBox ID="txtDireccion" class="form-control" ClientIDMode="Static"  runat="server" placeholder=""></asp:TextBox>
+                <asp:TextBox ID="txtDireccion" class="form-control" ClientIDMode="Static" runat="server" placeholder=""></asp:TextBox>
                 <div class="invalid-feedback d-none" id="validation-message5">
                     Campo requerido.
                 </div>
@@ -120,8 +120,8 @@
             </div>
         </div>
         <hr />
-        <div id="botoncitos">
-            <asp:Button ID="btnVolver" runat="server" Text="← Volver" class="btn btn-primary btn-lg" Style="background-color: #63bbdc; color: black; border-style: none" OnClick="btnVolver_Click" />
+        <div class="container" id="botoncitos">
+            <asp:Button ID="btnVolver" href="Default.aspx" runat="server" Text="← Volver" CssClass="btn btn-secondary btn-lg" OnClick="btnVolver_Click" />
         </div>
     </div>
 </asp:Content>

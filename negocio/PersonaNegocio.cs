@@ -32,7 +32,7 @@ namespace negocio
                     aux.Apellido = (string)datos.Lector["Apellido"];
                     aux.Nombre = (string)datos.Lector["Nombre"];
                     aux.FechaDeNacimiento = Convert.ToDateTime(datos.Lector["Fecha_Nacimiento"]);
-                    aux.Dni = (string)datos.Lector["Dni"];
+                    aux.Dni = (int)datos.Lector["Dni"];
                     aux.Mail = (string)datos.Lector["Mail"];
                     aux.Activo = (bool)datos.Lector["Activo"];
                     aux.Usuario = new Usuario();

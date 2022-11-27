@@ -10,7 +10,7 @@
             var horarioHasta = document.getElementById("txtHorarioHasta").value;
             var valido = true;
             // luego evalulamos
-            if ( horarioDesde === "") {
+            if (horarioDesde === "") {
                 $("#txtHorarioDesde").removeClass("is-valid").addClass("is-invalid");
                 $("#validation-message").removeClass("d-none").addClass("d-block");
                 valido = false;
@@ -18,7 +18,7 @@
                 $("#txtHorarioDesde").removeClass("is-invalid").addClass("is-valid");
                 $("#validation-message").addClass("d-none").removeClass("d-block");
             }
-            if ( horarioHasta === "") {
+            if (horarioHasta === "") {
                 $("#txtHorarioHasta").removeClass("is-valid").addClass("is-invalid");
                 $("#validation-message2").removeClass("d-none").addClass("d-block");
                 valido = false;
@@ -56,13 +56,13 @@
                 </div>
             </div>
             <div class="col-12">
-                <asp:Button Text="Aceptar" ID="btnAceptar" autopostback="false" OnClientClick="return validar()" OnClick="btnAceptar_Click" CssClass="btn btn-primary" runat="server" />
+                <asp:Button Text="Aceptar" ID="btnAceptar" OnClientClick="return validar()" OnClick="btnAceptar_Click" CssClass="btn btn-primary" runat="server" />
                 <asp:Button ID="btnActivacion" runat="server" Text="Eliminar" CssClass="btn btn-danger" OnClick="btnActivacion_Click" />
             </div>
         </div>
         <hr />
-        <div id="botoncitos">
-            <asp:Button ID="btnVolver" runat="server" Text="← Volver" CssClass="btn btn-primary btn-lg" OnClick="btnVolver_Click" />
+        <div class="container" id="botoncitos">
+            <asp:Button ID="btnVolver" href="Default.aspx" runat="server" Text="← Volver" CssClass="btn btn-secondary btn-lg" OnClick="btnVolver_Click" />
         </div>
     </div>
 </asp:Content>

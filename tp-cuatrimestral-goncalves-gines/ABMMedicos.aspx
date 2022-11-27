@@ -167,8 +167,8 @@
             </div>
         </div>
         <hr />
-        <div id="botoncitos">
-            <asp:Button ID="btnVolver" href="Default.aspx" runat="server" Text="← Volver" class="btn btn-primary btn-lg" Style="background-color: #63bbdc; color: black; border-style: none" OnClick="btnVolver_Click" />
+        <div class="container" id="botoncitos">
+            <asp:Button ID="btnVolver" href="Default.aspx" runat="server" Text="← Volver" CssClass="btn btn-secondary btn-lg" OnClick="btnVolver_Click" />
         </div>
     </div>
 </asp:Content>
