@@ -25,6 +25,7 @@ namespace tp_cuatrimestral_goncalves_gines
                     ddlCriterio.Items.Add("Contiene");
                     ddlCriterio.Items.Add("Comienza con");
                     ddlCriterio.Items.Add("Termina con");
+
                 }
             }
             catch (Exception ex)
@@ -84,7 +85,6 @@ namespace tp_cuatrimestral_goncalves_gines
                     ddlCriterio.Items.Add("Mayor a");
                     ddlCriterio.Items.Add("Menor a");
                     txtFiltroAvanzado.TextMode = TextBoxMode.Number;
-                    txtFiltroAvanzado.CssClass.Replace("d-none", "d-block");
                     btnBuscarAvanzado.Enabled = false;
                     break;
                 case "Fecha de Nacimiento":
@@ -92,7 +92,6 @@ namespace tp_cuatrimestral_goncalves_gines
                     ddlCriterio.Items.Add("Mayor a");
                     ddlCriterio.Items.Add("Menor a");
                     txtFiltroAvanzado.TextMode = TextBoxMode.Date;
-                    txtFiltroAvanzado.CssClass.Replace("d-none", "d-block");
                     btnBuscarAvanzado.Enabled = false;
                     break;
                 default:
@@ -100,9 +99,21 @@ namespace tp_cuatrimestral_goncalves_gines
                     ddlCriterio.Items.Add("Comienza con");
                     ddlCriterio.Items.Add("Termina con");
                     txtFiltroAvanzado.TextMode = TextBoxMode.SingleLine;
-                    txtFiltroAvanzado.CssClass.Replace("d-block", "d-none");
                     btnBuscarAvanzado.Enabled = true;
                     break;
+            }
+        }
+
+        protected void txtFiltroAvanzado_TextChanged(object sender, EventArgs e)
+        {
+            string campo = ddlCampo.SelectedItem.ToString();
+            if ((campo == "DNI" || campo == "Fecha de Nacimiento") && (txtFiltroAvanzado.Text == ""))
+            {
+                btnBuscarAvanzado.Enabled = false;
+            }
+            else
+            {
+                btnBuscarAvanzado.Enabled = true;
             }
         }
 
@@ -206,16 +217,5 @@ namespace tp_cuatrimestral_goncalves_gines
 
         }
 
-        protected void txtFiltroAvanzado_TextChanged(object sender, EventArgs e)
-        {
-            string campo = ddlCampo.SelectedItem.ToString();
-            if((campo == "DNI" || campo == "Fecha de Nacimiento") && (txtFiltroAvanzado.Text == ""))
-            {
-                btnBuscarAvanzado.Enabled = false;
-            } else
-            {
-                btnBuscarAvanzado.Enabled = true;
-            }
-        }
     }
 }

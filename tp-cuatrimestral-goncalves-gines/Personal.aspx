@@ -71,12 +71,12 @@
                     </div>
                     <div class="col-3">
                         <div class="mb-3 mt-4">
-                            <asp:Button ID="btnBuscarAvanzado" runat="server" Text="Buscar" CssClass="btn btn-primary " OnClick="btnBuscarAvanzado_Click" />
+                            <asp:Button ID="btnBuscarAvanzado" runat="server" Text="Buscar" CssClass="btn btn-primary" OnClick="btnBuscarAvanzado_Click" />
                         </div>
                     </div>
                 </div>
                 <% }%>
-                <asp:GridView ID="dgvPersonal" runat="server" CssClass="table align-middle table-hover table-sm" AutoGenerateColumns="false" DataKeyNames="Id" OnSelectedIndexChanged="dgvPersonal_SelectedIndexChanged">
+                <asp:GridView ID="dgvPersonal" runat="server" CssClass="table align-middle table-hover table-sm" EmptyDataText="No hay resultados!" AutoGenerateColumns="false" DataKeyNames="Id" OnSelectedIndexChanged="dgvPersonal_SelectedIndexChanged">
                     <Columns>
                         <asp:BoundField HeaderText="Id" DataField="Id" />
                         <asp:BoundField HeaderText="Apellido" DataField="Apellido" />

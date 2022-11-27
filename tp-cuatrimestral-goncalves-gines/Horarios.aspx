@@ -32,7 +32,7 @@
                         <asp:Button ID="btnCrear" runat="server" Text="+ Nuevo" CssClass="btn btn-success btn-block" OnClick="btnCrear_Click" />
                     </div>
                 </div>
-                <asp:GridView ID="dgvHorarios" runat="server" CssClass="table align-middle table-hover table-sm" AutoGenerateColumns="false" DataKeyNames="Id" OnSelectedIndexChanged="dgvHorarios_SelectedIndexChanged">
+                <asp:GridView ID="dgvHorarios" runat="server" CssClass="table align-middle table-hover table-sm" EmptyDataText="No hay resultados!" AutoGenerateColumns="false" DataKeyNames="Id" OnSelectedIndexChanged="dgvHorarios_SelectedIndexChanged">
                     <Columns>
                         <asp:BoundField HeaderText="Id" DataField="Id" />
                         <asp:BoundField HeaderText="Día" DataField="Dia.Nombre" />

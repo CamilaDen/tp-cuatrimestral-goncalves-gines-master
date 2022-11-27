@@ -117,7 +117,7 @@
                 </div>
             </div>
             <div class="col-5">
-                <label class="form-label">Matricula</label>
+                <label class="form-label">Matrícula</label>
                 <asp:TextBox ID="txtMatricula" class="form-control" ClientIDMode="Static" runat="server" placeholder=""></asp:TextBox>
                 <div class="invalid-feedback d-none" id="validation-message6">
                     Campo requerido.

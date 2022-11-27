@@ -94,14 +94,14 @@
                 </div>
             </div>
             <div class="col-md-4">
-                <label class="form-label">Telefono</label>
+                <label class="form-label">Teléfono</label>
                 <asp:TextBox ID="txtTelefono" class="form-control" ClientIDMode="Static" runat="server" placeholder="" TextMode="Phone"></asp:TextBox>
                 <div class="invalid-feedback d-none" id="validation-message4">
                     Campo requerido.
                 </div>
             </div>
             <div class="col-md-6">
-                <label class="form-label">Direccion</label>
+                <label class="form-label">Dirección</label>
                 <asp:TextBox ID="txtDireccion" class="form-control" ClientIDMode="Static" runat="server" placeholder=""></asp:TextBox>
                 <div class="invalid-feedback d-none" id="validation-message5">
                     Campo requerido.
@@ -120,7 +120,7 @@
             </div>
         </div>
         <hr />
-        <div class="container" id="botoncitos">
+        <div class="container">
             <asp:Button ID="btnVolver" href="Default.aspx" runat="server" Text="← Volver" CssClass="btn btn-secondary btn-lg" OnClick="btnVolver_Click" />
         </div>
     </div>
