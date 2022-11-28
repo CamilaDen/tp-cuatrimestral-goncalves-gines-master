@@ -1,4 +1,5 @@
-﻿using negocio;
+﻿using dominio;
+using negocio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,8 +14,21 @@ namespace tp_cuatrimestral_goncalves_gines
         public List<Turnos> ListaTurnos { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
-            TurnoNegocio turno = new TurnoNegocio();
-            //ListaTurnos = turno.listarConSP();
+            try
+            {
+                if (!IsPostBack) { 
+                    TurnoNegocio turno = new TurnoNegocio();
+                    Session.Add("listaTurno", turno.listarConSP());
+                    dgvPacientesTurnos.DataSource = Session["listaTurno"];
+                    dgvPacientesTurnos.DataBind();
+                    
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         protected void btnVolver_Click(object sender, EventArgs e)
@@ -24,8 +38,8 @@ namespace tp_cuatrimestral_goncalves_gines
 
         protected void dgvPacientesTurnos_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //string id = dgvPacientesTurnos.SelectedDataKey.ToString();
-            //Response.Redirect("CrearTurno.aspx?id"+id);
+            string id = dgvPacientesTurnos.SelectedDataKey.ToString();
+            Response.Redirect("CrearTurno.aspx?id"+id);
             
         }
 
@@ -37,6 +51,13 @@ namespace tp_cuatrimestral_goncalves_gines
         protected void btnCrear_Click(object sender, EventArgs e)
         {
             Response.Redirect("CrearTurno.aspx");
+        }
+
+        protected void btnBuscarRapido_Click(object sender, EventArgs e)
+        {
+            //List<Turno> listaFiltrada = ((List<Turno>)Session["listaTurno"]);
+            //listaFiltrada = listaFiltrada.FindAll(x => x.Nombre.ToUpper().Contains(txtFiltro.Text.ToUpper()));
+      
         }
     }
 }

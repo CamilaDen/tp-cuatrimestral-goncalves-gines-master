@@ -8,6 +8,7 @@ namespace dominio
 {
     public class Paciente : Persona
     {
+       
         public ObraSocial ObraSocial { get; set; }
         public decimal Peso{ get; set; }
         public decimal Altura { get; set; }

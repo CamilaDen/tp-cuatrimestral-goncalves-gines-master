@@ -1,6 +1,8 @@
 ﻿using dominio;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlTypes;
+using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,7 +19,7 @@ namespace negocio
             {
                 if (id == "")
                 {
-                    datos.setearProcedimiento("SP_BuscarTurno");
+                    datos.setearProcedimiento("SP_ListarTurno");
                 }
                 else
                 {
@@ -29,26 +31,19 @@ namespace negocio
                 {
                     Turno aux = new Turno();
                     aux.Id = (int)datos.Lector["Id"];
-                    aux.Numero = (int)datos.Lector["Nro"];
+                    aux.IdPaciente = new Paciente();
+                    aux.IdPaciente.Nombre = (string)datos.Lector["NOMBRE"];
+                    aux.IdPaciente.Apellido = (string)datos.Lector["APELLIDO"];
+                    aux.Especialidad = new Especialidad();
+                    aux.Especialidad.Nombre = (string)datos.Lector["NOMBRE"];
+                    aux.FechaSolicitado = Convert.ToDateTime(datos.Lector["FECHA_SOLICITADO"]);
+                    aux.Fecha = Convert.ToDateTime(datos.Lector["FECHA"]);
+                    byte auxi = (byte)datos.Lector["HORA"];
+                    aux.Hora = (int)auxi;
+                    aux.IdMedico = new Medico();
+                    aux.IdMedico.Apellido = (string)datos.Lector["APELLIDO"];
                     aux.Observaciones = (string)datos.Lector["OBSERVACIONES"];
-                    aux.Fecha = (DateTime)datos.Lector["Fecha"];
-                    aux.Hora = (int)datos.Lector["Hora"];
-                    aux.FechaSolicitado = (DateTime)datos.Lector["Fecha_Solicitado"];
-                    //aux.medico = new Medico();
-                    //aux.Medico = (int)datos.Lector["IDMedico"];
-                    //aux.IDPaciente = (int)datos.Lector["IDPaciente"];
-                    //aux.Estado = (string)datos.Lector["Estado"];
-                    //aux.Apellido = (string)datos.Lector["Apellido"];
-                    //aux.Nombre = (string)datos.Lector["Nombre"];
-                    //aux.FechaDeNacimiento = Convert.ToDateTime(datos.Lector["Fecha_Nacimiento"]);
-                    //aux.Dni = (string)datos.Lector["Dni"];
-                    //aux.Mail = (string)datos.Lector["Mail"];
-                    //aux.Activo = (bool)datos.Lector["Activo"];
-                    //aux.Usuario = new Usuario();
-                    //aux.Usuario.Password = (string)datos.Lector["Pass"];
-                    //aux.Usuario.Perfil = new Perfil();
-                    //aux.Usuario.Perfil.Nombre = (string)datos.Lector["Nombre_Perfil"];
-                    //aux.Usuario.Perfil.Id = (int)datos.Lector["IdPerfil"];
+                    aux.Estado = (string)datos.Lector["NOMBRE"];
                     lista.Add(aux);
                 }
                 return lista;
@@ -58,20 +53,22 @@ namespace negocio
                 throw ex;
             }
         }
-        public void agregar(Persona nuevo)
+        public void agregar(Turno nuevo)
         {
             AccesoDatos datos = new AccesoDatos();
 
             try
             {
-                //datos.setearProcedimiento("SP_AltaPersonal");
-                //datos.setearParametro("@APELLIDO", nuevo.Apellido);
-                //datos.setearParametro("@NOMBRE", nuevo.Nombre);
-                //datos.setearParametro("@FECHA_NACIMIENTO", nuevo.FechaDeNacimiento);
-                //datos.setearParametro("@DNI", nuevo.Dni);
-                //datos.setearParametro("@MAIL", nuevo.Mail);
-                //datos.setearParametro("@PASS", nuevo.Usuario.Password);
-                //datos.setearParametro("@IDPERFIL", nuevo.Usuario.Perfil.Id);
+                datos.setearProcedimiento("SP_AltaTurno");
+                datos.setearParametro("@ID", nuevo.Id);
+                datos.setearParametro("@IDPACIENTE", nuevo.IdPaciente.Id);
+                datos.setearParametro("@IDESPECIALIDAD", nuevo.Especialidad);
+                datos.setearParametro("@FECHA_SOLICITADO", nuevo.FechaSolicitado);
+                datos.setearParametro("@FECHA", nuevo.Fecha);
+                datos.setearParametro("@HORA", nuevo.Hora);
+                datos.setearParametro("@IDMEDICO", nuevo.IdMedico.Id);
+                datos.setearParametro("@OBERVACIONES", nuevo.Observaciones);
+                datos.setearParametro("@ESTADO", nuevo.Estado);
                 datos.ejecutarAccion();
             }
             catch (Exception ex)
@@ -84,21 +81,22 @@ namespace negocio
             }
         }
 
-        public void modificar(Persona modificacion)
+        public void modificar(Turno modificacion)
         {
             AccesoDatos datos = new AccesoDatos();
 
             try
             {
-                //datos.setearProcedimiento("SP_ModificarPersonal");
-                //datos.setearParametro("@ID", modificacion.Id);
-                //datos.setearParametro("@APELLIDO", modificacion.Apellido);
-                //datos.setearParametro("@NOMBRE", modificacion.Nombre);
-                //datos.setearParametro("@FECHA_NACIMIENTO", modificacion.FechaDeNacimiento);
-                //datos.setearParametro("@DNI", modificacion.Dni);
-                //datos.setearParametro("@MAIL", modificacion.Mail);
-                //datos.setearParametro("@PASS", modificacion.Usuario.Password);
-                //datos.setearParametro("@IDPERFIL", modificacion.Usuario.Perfil.Id);
+                datos.setearProcedimiento("SP_ModificarTurno");
+                datos.setearParametro("@ID", modificacion.Id);
+                datos.setearParametro("@IDPACIENTE", modificacion.IdPaciente.Id);
+                datos.setearParametro("@IDESPECIALIDAD", modificacion.Especialidad);
+                datos.setearParametro("@FECHA_SOLICITADO", modificacion.FechaSolicitado);
+                datos.setearParametro("@FECHA", modificacion.Fecha);
+                datos.setearParametro("@HORA", modificacion.Hora);
+                datos.setearParametro("@IDMEDICO", modificacion.IdMedico.Id);
+                datos.setearParametro("@OBERVACIONES", modificacion.Observaciones);
+                datos.setearParametro("@ESTADO", modificacion.Estado);
                 datos.ejecutarAccion();
             }
             catch (Exception ex)
@@ -118,9 +116,9 @@ namespace negocio
             try
             {
                 if (activo)
-                    datos.setearProcedimiento("SP_ReactivarLogicoPersonal");
+                    datos.setearProcedimiento("SP_ReactivarLogicoTurno");
                 else
-                    datos.setearProcedimiento("SP_EliminarLogicoPersonal");
+                    datos.setearProcedimiento("SP_EliminarLogicoTurno");
                 datos.setearParametro("@ID", id);
                 datos.ejecutarAccion();
             }

@@ -25,8 +25,8 @@
                 <label class="form-label">Medico</label>
                 <asp:DropDownList ID="txtMedico" class="form-control"  runat="server" placeholder=""></asp:DropDownList>
             </div>
-            <div id="botoncitos">
-                <asp:Button ID="btnVolver" href="Default.aspx" runat="server" Text="← Volver" class="btn btn-primary btn-lg" Style="background-color: #63bbdc; color: black; border-style: none" OnClick="btnVolver_Click" />
+            <div id="container">
+                <asp:Button ID="btnVolver" href="Default.aspx" runat="server" Text="← Volver" class="btn btn-primary btn-lg" OnClick="btnVolver_Click" />
             </div>
         </div>
     </div>
