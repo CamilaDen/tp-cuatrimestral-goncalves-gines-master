@@ -30,20 +30,20 @@ namespace negocio
                 while (datos.Lector.Read())
                 {
                     Turno aux = new Turno();
-                    aux.Id = (int)datos.Lector["Id"];
+                    aux.Id = (int)datos.Lector["ID"];
                     aux.IdPaciente = new Paciente();
-                    aux.IdPaciente.Nombre = (string)datos.Lector["NOMBRE"];
-                    aux.IdPaciente.Apellido = (string)datos.Lector["APELLIDO"];
+                    aux.IdPaciente.Nombre = (string)datos.Lector["APELLIDOPACIENTE"];
+                    aux.IdPaciente.Apellido = (string)datos.Lector["NOMBREPACIENTE"];
                     aux.Especialidad = new Especialidad();
-                    aux.Especialidad.Nombre = (string)datos.Lector["NOMBRE"];
+                    aux.Especialidad.Nombre = (string)datos.Lector["ESPECIALIDAD"];
                     aux.FechaSolicitado = Convert.ToDateTime(datos.Lector["FECHA_SOLICITADO"]);
                     aux.Fecha = Convert.ToDateTime(datos.Lector["FECHA"]);
                     byte auxi = (byte)datos.Lector["HORA"];
                     aux.Hora = (int)auxi;
                     aux.IdMedico = new Medico();
-                    aux.IdMedico.Apellido = (string)datos.Lector["APELLIDO"];
+                    aux.IdMedico.Apellido = (string)datos.Lector["NOMBREMEDICO"];
                     aux.Observaciones = (string)datos.Lector["OBSERVACIONES"];
-                    aux.Estado = (string)datos.Lector["NOMBRE"];
+                    aux.Estado = (string)datos.Lector["ESTADO"];
                     lista.Add(aux);
                 }
                 return lista;

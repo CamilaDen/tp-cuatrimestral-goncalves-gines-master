@@ -31,14 +31,14 @@
                         <asp:Button ID="Button1" runat="server" Text="+ Nuevo" CssClass="btn btn-success btn-block" OnClick="btnCrear_Click" />
                     </div>
                 </div>
-                 <asp:GridView ID="dgvPacientesTurnos" runat="server" CssClass="table" AutoGenerateColumns="false" AutoPostBack="true" DataKeyNames="Id" OnSelectedIndexChanged="dgvPacientesTurnos_SelectedIndexChanged">
+                 <asp:GridView ID="dgvPacientesTurnos" runat="server" EmptyDataText="No hay resultados!" CssClass="table" AutoGenerateColumns="false" AutoPostBack="true" DataKeyNames="Id" OnSelectedIndexChanged="dgvPacientesTurnos_SelectedIndexChanged">
                     <Columns>
-                        <asp:BoundField HeaderText="Numero" DataField="Id" />
-                        <asp:BoundField HeaderText="Nombre" DataField="IdPaciente.Nombre" />
-                        <asp:BoundField HeaderText="Apellido" DataField="IdPaciente.Apellido" /> 
+                        <asp:BoundField HeaderText="Numero" DataField="ID" />
+                        <asp:BoundField HeaderText="Apellido" DataField="IdPaciente.Nombre" /> 
+                        <asp:BoundField HeaderText="Nombre" DataField="IdPaciente.Apellido" />
                         <asp:BoundField HeaderText="Especialidad" DataField="Especialidad.Nombre" />
-                        <asp:BoundField HeaderText="Fecha Solicitud" DataField="FechaSolicitado" />
-                        <asp:BoundField HeaderText="Fecha" DataField="Fecha" />
+                        <asp:BoundField HeaderText="Fecha Solicitud" DataFormatString="{0:d}" DataField="FechaSolicitado" />
+                        <asp:BoundField HeaderText="Fecha" DataFormatString="{0:d}" DataField="Fecha" />
                         <asp:BoundField HeaderText="Hora" DataField="Hora" />
                         <asp:BoundField HeaderText="Medico" DataField="IdMedico.Apellido" />
                         <asp:BoundField HeaderText="Observaciones" DataField="Observaciones" />
