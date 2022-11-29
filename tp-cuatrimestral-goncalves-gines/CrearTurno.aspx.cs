@@ -85,7 +85,13 @@ namespace tp_cuatrimestral_goncalves_gines
             try
             {
                 Turno nuevo = new Turno();
-
+                nuevo.IdPaciente.Id = int.Parse( dgvSeleccionarEspecialidad.SelectedDataKey.Value.ToString());
+                nuevo.Especialidad.Id = int.Parse(dgvSeleccionarEspecialidad.SelectedIndex.ToString());
+                nuevo.Fecha = DateTime.Parse(txtFecha.Text);
+                nuevo.Hora = int.Parse(txtHorario.Text);
+                nuevo.IdMedico.Id = int.Parse(txtMedico.Text);
+                nuevo.Observaciones = "";
+                nuevo.Estado = "Nuevo" ;
 
             }
             catch (Exception ex)

@@ -13,12 +13,12 @@
         <ContentTemplate>
             <label class="TituloABM">Nuevo Turno</label>
                 <% if (!permiso()) { %>
-            <div class="row g-3" style="justify-content:center">
+            <div class="row g-3" style="justify-content:left">
                 <%if (dgvSeleccionarPaciente.SelectedIndex == -1)
                     { %>
                 <div class="col-md-2">
-                    <label class="form-label">Buscar Paciente</label>
-                    <asp:TextBox ID="txtPaciente" AutoPostBack="true" class="form-control"  runat="server" OnTextChanged="txtPaciente_TextChanged"></asp:TextBox>
+                    <label class="form-label" style="font-weight:bold">Buscar Paciente</label>
+                    <asp:TextBox ID="txtPaciente" AutoPostBack="true" class="form-control" Style="width:500px"  runat="server" OnTextChanged="txtPaciente_TextChanged"></asp:TextBox>
                 </div>
                 <asp:GridView ID="dgvSeleccionarPaciente" runat="server" CssClass="table align-middle table-hover table-sm" AutoGenerateColumns="false" DataKeyNames="Id" EmptyDataText="No hay resultados!" OnSelectedIndexChanged="dgvSeleccionarPaciente_SelectedIndexChanged">
                     <Columns>
@@ -31,8 +31,8 @@
                     else
                     {  %>
                  <div class="col-md-2">
-                    <label class="form-label">Buscar Especialidad</label>
-                    <asp:TextBox ID="txtEspecialidad" AutoPostBack="true" class="form-control"  runat="server" placeholder="" OnTextChanged="txtEspecialidad_TextChanged"></asp:TextBox>
+                    <label class="form-label" style="font-weight:bold">Buscar Especialidad</label>
+                    <asp:TextBox ID="txtEspecialidad" AutoPostBack="true" class="form-control" Style="width:500px" runat="server" placeholder="" OnTextChanged="txtEspecialidad_TextChanged"></asp:TextBox>
                 </div>
                  <asp:GridView ID="dgvSeleccionarEspecialidad" runat="server" CssClass="table align-middle table-hover table-sm" AutoGenerateColumns="false" DataKeyNames="Id" EmptyDataText="No hay resultados!" OnSelectedIndexChanged="dgvSeleccionarEspecialidad_SelectedIndexChanged">
                     <Columns>
@@ -42,11 +42,11 @@
                     </Columns>
                 </asp:GridView>
             </div>
-                <% } %>>
+                    <% } %>
 
                  <% } %>
                 <% else{ %>
-            <div class="row g-3" style="justify-content:center">
+            <div class="row g-3" style="justify-content:left">
                  <div class="col-md-2">
                     <label class="form-label">Fechas disponibles</label>
                     <asp:TextBox ID="txtFecha" TextMode="Date" class="form-control" ClientIDMode="Static"  runat="server" placeholder=""></asp:TextBox>
@@ -59,12 +59,12 @@
                     <label class="form-label">Medico</label>
                     <asp:DropDownList ID="txtMedico" class="form-control"  runat="server" placeholder=""></asp:DropDownList>
                 </div>
-                 <div class="col-4 mt-4">
+                 <div id="container">
                         <asp:Button ID="Aceptar" runat="server" Text="Aceptar" CssClass="btn btn-primary " OnClick="Aceptar_Click" />
                 </div>
 
                 <div id="container">
-                    <asp:Button ID="btnVolver" href="Default.aspx" runat="server" Text="← Volver" class="btn btn-primary btn-lg" OnClick="btnVolver_Click" />
+                    <asp:Button ID="btnVolver" href="Default.aspx" runat="server" Text="← Volver a Turno" class="btn btn-primary btn-lg" OnClick="btnVolver_Click" />
                 </div>
 
             </div>
