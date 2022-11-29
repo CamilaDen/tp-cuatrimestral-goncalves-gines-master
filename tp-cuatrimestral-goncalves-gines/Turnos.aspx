@@ -11,7 +11,7 @@
                     <div class="col-4">
                         <div class="mb-3">
                             <asp:Label Text="Filtrar" runat="server" />
-                            <asp:TextBox runat="server" ID="txtFiltro" CssClass="form-control" />
+                            <asp:TextBox runat="server" AutoCompleteType="LastName" ID="txtFiltro" CssClass="form-control" />
                         </div>
                     </div>
                     <div class="col-2">
@@ -33,7 +33,7 @@
                 </div>
                  <asp:GridView ID="dgvPacientesTurnos" runat="server" EmptyDataText="No hay resultados!" CssClass="table" AutoGenerateColumns="false" AutoPostBack="true" DataKeyNames="Id" OnSelectedIndexChanged="dgvPacientesTurnos_SelectedIndexChanged">
                     <Columns>
-                        <asp:BoundField HeaderText="Numero" DataField="ID" />
+                        <asp:BoundField HeaderText="Nro Turno" DataField="ID" />
                         <asp:BoundField HeaderText="Apellido" DataField="IdPaciente.Nombre" /> 
                         <asp:BoundField HeaderText="Nombre" DataField="IdPaciente.Apellido" />
                         <asp:BoundField HeaderText="Especialidad" DataField="Especialidad.Nombre" />

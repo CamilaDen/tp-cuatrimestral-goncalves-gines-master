@@ -12,6 +12,7 @@ body {
     padding-bottom: 7em;
     min-height: 100vh;
     font-family: 'Roboto',sans-serif;
+
 }
 #botoncitos{
     display:flex;
@@ -56,15 +57,16 @@ body {
 }
 
 .FooterClinica {
-    position:absolute;
-    bottom:0;
-    width:100%;
-    display:flex;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     padding-top: 10px;
-    background-color: #63bbdc;
+    background-image: linear-gradient(to bottom right,cornflowerblue,dodgerblue);
+    /*background-color: #63bbdc;*/
 }
 
 .FooterClinica p {

@@ -17,7 +17,7 @@
     <form id="form1" runat="server">
         <div class="container-fluid" style="padding: 0">
             <nav class="navbar bg-light" style="padding: 0">
-                <div class="container-fluid" style="background-color: #63bbdc; height: 70px">
+                <div class="container-fluid" style="background-image: linear-gradient(to bottom right,cornflowerblue,dodgerblue); height: 70px">
                     <a class="navbar-brand" style="font-family: Verdana, Geneva, Tahoma, sans-serif; font-weight: bold" href="Default.aspx">
                         <img src="img/salud.png" alt="Logo" width="45" height="40" class="d-inline-block align-text-top">
                         Clinica Siempre Enfermo
