@@ -13,6 +13,11 @@ namespace tp_cuatrimestral_goncalves_gines
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!Seguridad.esAdmin(Session["usuario"]))
+            {
+                Session.Add("error", "Se requiere permisos de admin para acceder a esta página");
+                Response.Redirect("Error.aspx", false);
+            }
             txtId.Enabled = false;
             btnActivacion.Visible = false;
             try
@@ -40,14 +45,14 @@ namespace tp_cuatrimestral_goncalves_gines
             }
             catch (Exception ex)
             {
-                Session.Add("error", ex);
-                throw;
+                Session.Add("error", ex.ToString());
+                Response.Redirect("Error.aspx", false);
             }
         }
 
         protected void btnVolver_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Perfiles.aspx");
+            Response.Redirect("Perfiles.aspx", false);
         }
 
         protected void btnActivacion_Click(object sender, EventArgs e)
@@ -58,12 +63,13 @@ namespace tp_cuatrimestral_goncalves_gines
                 Perfil seleccionada = (Perfil)Session["PerfilSeleccionado"];
 
                 negocio.eliminarLogico(seleccionada.Id, !seleccionada.Activo);
-                Response.Redirect("Perfiles.aspx");
+                Response.Redirect("Perfiles.aspx", false);
 
             }
             catch (Exception ex)
             {
-                Session.Add("error", ex);
+                Session.Add("error", ex.ToString());
+                Response.Redirect("Error.aspx", false);
             }
         }
 
@@ -82,12 +88,12 @@ namespace tp_cuatrimestral_goncalves_gines
                     negocio.modificar(perfil);
                 }
                 else negocio.agregar(perfil);
-                Response.Redirect("Perfiles.aspx");
+                Response.Redirect("Perfiles.aspx", false);
             }
             catch (Exception ex)
             {
-                Session.Add("error", ex);
-                throw;
+                Session.Add("error", ex.ToString());
+                Response.Redirect("Error.aspx", false);
             }
         }
     }

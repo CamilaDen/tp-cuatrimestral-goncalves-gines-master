@@ -66,7 +66,7 @@
                     <div class="col-3">
                         <div class="mb-3">
                             <asp:Label Text="Filtro" runat="server" />
-                            <asp:TextBox runat="server" ID="txtFiltroAvanzado" CssClass="form-control" OnTextChanged="txtFiltroAvanzado_TextChanged" AutoPostBack="true" />
+                            <asp:TextBox runat="server" ID="txtFiltroAvanzado" CssClass="form-control"/>
                         </div>
                     </div>
                     <div class="col-3">

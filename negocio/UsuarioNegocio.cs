@@ -23,9 +23,7 @@ namespace negocio
                 {
                     usuario.Id = (int)datos.Lector["ID"];
                     usuario.Perfil = new Perfil();
-                    usuario.Perfil.Id = (int)datos.Lector["IDPERFIL"];
-                    
-                    
+                    usuario.Perfil.Id = (int)datos.Lector["IDPERFIL"];                   
                     /*1 es admin, 2 medico,3 recepcionista*/
                     return true;
                 }
@@ -33,8 +31,7 @@ namespace negocio
             }
             catch (Exception ex)
             {
-
-                throw ex;
+                 throw ex;
             }
             finally { datos.cerrarConexion(); }
         }

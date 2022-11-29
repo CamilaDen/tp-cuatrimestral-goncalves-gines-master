@@ -15,33 +15,29 @@ namespace tp_cuatrimestral_goncalves_gines
         {
             if (!IsPostBack)
             {
-                
                 DataBind();
             }
         }
 
         protected void btnAceptar_Click(object sender, EventArgs e)
         {
-            Usuario usuario;
-            UsuarioNegocio negocio = new UsuarioNegocio();
-
             try
             {
-               
-                usuario = new Usuario(txtLogin.Text, txtPassword.Text);
+                UsuarioNegocio negocio = new UsuarioNegocio();
+                Usuario usuario = new Usuario(txtLogin.Text, txtPassword.Text);
                 if(negocio.Loguear(usuario)) {
                     Session.Add("usuario", usuario);
-                    Response.Redirect("Default.aspx");
+                    Response.Redirect("Default.aspx", false);
                 }
                 else {
                     Session.Add("error", "Usuario o contraseña incorrecto.");
-                    Response.Redirect("Error.aspx");
+                    Response.Redirect("Error.aspx", false);
                 }
             }
             catch (Exception ex)
             {
-
-                throw ex;
+                Session.Add("error", ex.ToString());
+                Response.Redirect("Error.aspx", false);
             }
         }
     }

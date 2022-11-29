@@ -9,7 +9,6 @@
             var nombre = document.getElementById("txtNombre").value;
             var valido = true;
             // luego evalulamos
-            console.log("el nombre es: " + nombre);
             if (nombre === "") {
                 $("#txtNombre").removeClass("is-valid").addClass("is-invalid");
                 $("#validation-message").removeClass("d-none").addClass("d-block");

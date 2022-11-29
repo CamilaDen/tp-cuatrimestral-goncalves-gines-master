@@ -17,6 +17,11 @@ namespace tp_cuatrimestral_goncalves_gines
             
             try
             {
+                if (!(Seguridad.esAdmin(Session["usuario"]) || Seguridad.esRecepcionista(Session["usuario"])))
+                {
+                    Session.Add("error", "Se requiere permisos de admin o recepcionista para acceder a esta página");
+                    Response.Redirect("Error.aspx", false);
+                }
                 if (!IsPostBack)
                 {
                     PacienteNegocio negocio = new PacienteNegocio();
@@ -30,25 +35,26 @@ namespace tp_cuatrimestral_goncalves_gines
             }
             catch (Exception ex)
             {
-                throw ex;
+                Session.Add("error", ex.ToString());
+                Response.Redirect("Error.aspx", false);
             }
         }
 
         protected void btnVolver_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Default.aspx");
+            Response.Redirect("Default.aspx", false);
         }
 
 
         protected void btnCrear_Click(object sender, EventArgs e)
         {
-            Response.Redirect("ABMPacientes.aspx");
+            Response.Redirect("ABMPacientes.aspx", false);
         }
 
         protected void dgvPacientes_SelectedIndexChanged(object sender, EventArgs e)
         {
             string id = dgvPacientes.SelectedDataKey.Value.ToString();
-            Response.Redirect("ABMPacientes.aspx?id=" + id);
+            Response.Redirect("ABMPacientes.aspx?id=" + id, false);
         }
         protected void chkFiltroAvanzado_CheckedChanged(object sender, EventArgs e)
         {
@@ -74,21 +80,21 @@ namespace tp_cuatrimestral_goncalves_gines
                     ddlCriterio.Items.Add("Mayor a");
                     ddlCriterio.Items.Add("Menor a");
                     txtFiltroAvanzado.TextMode = TextBoxMode.Number;
-                    btnBuscarAvanzado.Enabled = false;
+                    txtFiltroAvanzado.Attributes["required"] = "true";
                     break;
                 case "Fecha de Nacimiento":
                     ddlCriterio.Items.Add("Igual a");
                     ddlCriterio.Items.Add("Mayor a");
                     ddlCriterio.Items.Add("Menor a");
                     txtFiltroAvanzado.TextMode = TextBoxMode.Date;
-                    btnBuscarAvanzado.Enabled = false;
+                    txtFiltroAvanzado.Attributes["required"] = "true";
                     break;
                 default:
                     ddlCriterio.Items.Add("Contiene");
                     ddlCriterio.Items.Add("Comienza con");
                     ddlCriterio.Items.Add("Termina con");
                     txtFiltroAvanzado.TextMode = TextBoxMode.SingleLine;
-                    btnBuscarAvanzado.Enabled = true;
+                    txtFiltroAvanzado.Attributes.Clear();
                     break;
             }
 
@@ -108,19 +114,6 @@ namespace tp_cuatrimestral_goncalves_gines
             }
             dgvPacientes.DataSource = listaFiltrada;
             dgvPacientes.DataBind();
-        }
-
-        protected void txtFiltroAvanzado_TextChanged(object sender, EventArgs e)
-        {
-            string campo = ddlCampo.SelectedItem.ToString();
-            if ((campo == "DNI" || campo == "Fecha de Nacimiento" || campo == "Peso" || campo == "Altura") && (txtFiltroAvanzado.Text == ""))
-            {
-                btnBuscarAvanzado.Enabled = false;
-            }
-            else
-            {
-                btnBuscarAvanzado.Enabled = true;
-            }
         }
 
         protected void btnBuscarAvanzado_Click(object sender, EventArgs e)

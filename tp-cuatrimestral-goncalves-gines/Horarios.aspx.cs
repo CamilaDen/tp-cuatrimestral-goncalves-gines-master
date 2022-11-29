@@ -15,6 +15,11 @@ namespace tp_cuatrimestral_goncalves_gines
         {
             try
             {
+                if (!Seguridad.esAdmin(Session["usuario"]))
+                {
+                    Session.Add("error", "Se requiere permisos de admin para acceder a esta página");
+                    Response.Redirect("Error.aspx", false);
+                }
                 if (!IsPostBack)
                 {
                     HorarioNegocio negocio = new HorarioNegocio();
@@ -25,24 +30,25 @@ namespace tp_cuatrimestral_goncalves_gines
             }
             catch (Exception ex)
             {
-                throw ex;
+                Session.Add("error", ex.ToString());
+                Response.Redirect("Error.aspx", false);
             }
         }
 
         protected void dgvHorarios_SelectedIndexChanged(object sender, EventArgs e)
         {
             string id = dgvHorarios.SelectedDataKey.Value.ToString();
-            Response.Redirect("ABMHorarios.aspx?id=" + id);
+            Response.Redirect("ABMHorarios.aspx?id=" + id, false);
         }
 
         protected void btnVolver_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Default.aspx");
+            Response.Redirect("Default.aspx", false);
         }
 
         protected void btnCrear_Click(object sender, EventArgs e)
         {
-            Response.Redirect("ABMHorarios.aspx");
+            Response.Redirect("ABMHorarios.aspx", false);
         }
 
         protected void btnBuscarRapido_Click(object sender, EventArgs e)

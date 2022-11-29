@@ -13,6 +13,12 @@ namespace tp_cuatrimestral_goncalves_gines
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!Seguridad.esAdmin(Session["usuario"]))
+            {
+                Session.Add("error", "Se requiere permisos de admin para acceder a esta página");
+                Response.Redirect("Error.aspx", false);
+            }
+
             txtId.Enabled = false;
             btnActivacion.Visible = false;
 
@@ -58,23 +64,20 @@ namespace tp_cuatrimestral_goncalves_gines
             }
             catch (Exception ex)
             {
-                Session.Add("error", ex);
-                throw;
+                Session.Add("error", ex.ToString());
+                Response.Redirect("Error.aspx", false);
             }
         }
 
         protected void btnVolver_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Horarios.aspx");
+            Response.Redirect("Horarios.aspx", false);
         }
 
         protected void btnAceptar_Click(object sender, EventArgs e)
         {
             try
             {
-                //Page.Validate();
-                //if (!Page.IsValid)
-                //    return;
                 Horario horario = new Horario();
                 HorarioNegocio negocio = new HorarioNegocio();
 
@@ -89,12 +92,12 @@ namespace tp_cuatrimestral_goncalves_gines
                     negocio.modificar(horario);
                 }
                 else negocio.agregar(horario);
-                Response.Redirect("Horarios.aspx");
+                Response.Redirect("Horarios.aspx", false);
             }
             catch (Exception ex)
             {
-                Session.Add("error", ex);
-                throw;
+                Session.Add("error", ex.ToString());
+                Response.Redirect("Error.aspx", false);
             }
         }
 
@@ -106,12 +109,13 @@ namespace tp_cuatrimestral_goncalves_gines
                 Horario HorarioSeleccionado = (Horario)Session["HorarioSeleccionado"];
 
                 negocio.eliminarLogico(HorarioSeleccionado.Id, !HorarioSeleccionado.Activo);
-                Response.Redirect("Horarios.aspx");
+                Response.Redirect("Horarios.aspx", false);
 
             }
             catch (Exception ex)
             {
-                Session.Add("error", ex);
+                Session.Add("error", ex.ToString());
+                Response.Redirect("Error.aspx", false);
             }
         }
     }

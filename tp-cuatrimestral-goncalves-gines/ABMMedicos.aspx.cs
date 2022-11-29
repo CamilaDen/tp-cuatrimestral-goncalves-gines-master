@@ -13,6 +13,12 @@ namespace tp_cuatrimestral_goncalves_gines
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!(Seguridad.esAdmin(Session["usuario"]) || Seguridad.esRecepcionista(Session["usuario"])))
+            {
+                Session.Add("error", "Se requiere permisos de admin o recepcionista para acceder a esta página");
+                Response.Redirect("Error.aspx", false);
+            }
+
             txtId.Enabled = false;
             btnActivacion.Visible = false;
 
@@ -88,14 +94,14 @@ namespace tp_cuatrimestral_goncalves_gines
             }
             catch (Exception ex)
             {
-                Session.Add("error", ex);
-                throw;
+                Session.Add("error", ex.ToString());
+                Response.Redirect("Error.aspx", false);
             }
         }
 
         protected void btnVolver_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Medicos.aspx");
+            Response.Redirect("Medicos.aspx", false);
         }
 
         protected void btnAceptar_Click(object sender, EventArgs e)
@@ -141,12 +147,12 @@ namespace tp_cuatrimestral_goncalves_gines
                     negocio.modificar(medico);
                 }
                 else negocio.agregar(medico);
-                Response.Redirect("Medicos.aspx");
+                Response.Redirect("Medicos.aspx", false);
             }
             catch (Exception ex)
             {
-                Session.Add("error", ex);
-                throw;
+                Session.Add("error", ex.ToString());
+                Response.Redirect("Error.aspx", false);
             }
         }
 
@@ -157,12 +163,13 @@ namespace tp_cuatrimestral_goncalves_gines
                 MedicoNegocio negocio = new MedicoNegocio();
                 Medico MedicoSeleccionado = (Medico)Session["MedicoSeleccionado"];
                 negocio.eliminarLogico(MedicoSeleccionado.Id, !MedicoSeleccionado.Activo);
-                Response.Redirect("Medicos.aspx");
+                Response.Redirect("Medicos.aspx", false);
 
             }
             catch (Exception ex)
             {
-                Session.Add("error", ex);
+                Session.Add("error", ex.ToString());
+                Response.Redirect("Error.aspx", false);
             }
         }
     }

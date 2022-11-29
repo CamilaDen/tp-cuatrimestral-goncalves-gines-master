@@ -12,20 +12,9 @@ namespace tp_cuatrimestral_goncalves_gines
         protected void Page_Load(object sender, EventArgs e)
         {
             if ( Session["usuario"] == null) {
-                //Session.Add("error", "Debes loguearte para ingresar.");
                 Response.Redirect("Login.aspx", false);
             }   
         }
-
-        public bool validarPerfil() { 
-            if ( Session["usuario"] != null && ((dominio.Usuario)Session["usuario"]).Perfil.Id == (int)dominio.TipoPerfil.ADMINISTRADOR)
-            {
-
-                return true;
-            }
-            return false;
-        }
-
 
     }
 }

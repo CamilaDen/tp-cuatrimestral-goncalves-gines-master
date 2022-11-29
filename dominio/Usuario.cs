@@ -18,7 +18,8 @@ namespace dominio
         {
             Nombre = user;
             Password = pass;
-            //switch ((int)tipoAcceso) {
+            //switch (tipoAcceso)
+            //{
             //    case (int)TipoPerfil.ADMINISTRADOR:
             //        Perfil.Id = (int)TipoPerfil.ADMINISTRADOR;
             //        break;
@@ -29,7 +30,6 @@ namespace dominio
             //        Perfil.Id = (int)TipoPerfil.RECEPCIONISTA;
             //        break;
             //}
-            
         }
 
         public Usuario()

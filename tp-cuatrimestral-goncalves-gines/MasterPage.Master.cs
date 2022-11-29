@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using negocio;
 
 namespace tp_cuatrimestral_goncalves_gines
 {
@@ -11,12 +12,14 @@ namespace tp_cuatrimestral_goncalves_gines
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!Seguridad.sesionActiva(Session["usuario"]))
+                Response.Redirect("Login.aspx", false);
 
         }
 
         protected void btnDeslogear_Click(object sender, EventArgs e)
         {
-            Session.Remove("usuario");
+            Session.Clear();
             Response.Redirect("Login.aspx");
         }
     }

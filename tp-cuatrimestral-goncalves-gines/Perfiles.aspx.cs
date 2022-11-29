@@ -16,6 +16,11 @@ namespace tp_cuatrimestral_goncalves_gines
         {
             try
             {
+                if (!Seguridad.esAdmin(Session["usuario"]))
+                {
+                    Session.Add("error", "Se requiere permisos de admin para acceder a esta página");
+                    Response.Redirect("Error.aspx", false);
+                }
                 if (!IsPostBack)
                 {
                     PerfilNegocio negocio = new PerfilNegocio();
@@ -26,24 +31,25 @@ namespace tp_cuatrimestral_goncalves_gines
             }
             catch (Exception ex)
             {
-                throw ex;
+                Session.Add("error", ex.ToString());
+                Response.Redirect("Error.aspx", false);
             }
         }
 
         protected void btnVolver_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Default.aspx");
+            Response.Redirect("Default.aspx", false);
         }
 
         protected void btnCrear_Click(object sender, EventArgs e)
         {
-            Response.Redirect("ABMPerfiles.aspx");
+            Response.Redirect("ABMPerfiles.aspx", false);
         }
 
         protected void dgvPerfiles_SelectedIndexChanged(object sender, EventArgs e)
         {
             string id = dgvPerfiles.SelectedDataKey.Value.ToString();
-            Response.Redirect("ABMPerfiles.aspx?id=" + id);
+            Response.Redirect("ABMPerfiles.aspx?id=" + id, false);
         }
         protected void btnBuscarRapido_Click(object sender, EventArgs e)
         {

@@ -16,5 +16,10 @@ namespace tp_cuatrimestral_goncalves_gines
                 lblMensaje.Text = Session["error"].ToString();
             }
         }
+
+        protected void btnVolver_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Default.aspx", false);
+        }
     }
 }
