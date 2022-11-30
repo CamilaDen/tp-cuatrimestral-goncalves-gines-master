@@ -61,6 +61,8 @@ EXEC SP_AltaMedico  'Cormillot', 'Alberto ', '31/08/1938','10198762','alberto.co
 EXEC SP_AltaPaciente 'Argento','Pepe', '15/08/1960', 16234111, 'pepe@gmail.com', '23213123', 1, 80, '190'
 EXEC SP_AltaPaciente 'Argento','Moni', '07/01/1970', 16234111, 'moni@gmail.com', '23213123', 1, 80, '180'
 EXEC SP_AltaPaciente 'Constantes','Dolores', '20/10/1992', 16234111, 'dolores@gmail.com', '23213123', 1, 80, '170'
+EXEC SP_AltaPaciente 'Tomando', 'Remedios','05/04/1986', 16234111, 'remedios@gmail.com', '23113123', 1, 80, '160'
+EXEC SP_AltaPaciente 'Goncalves', 'Denise', '23/10/1996', 16234111, 'camiladenise.96@gmail.com','23113123',1,80,'150'
 
 
 

@@ -43,7 +43,7 @@
                         <asp:BoundField HeaderText="Medico" DataField="IdMedico.Apellido" />
                         <asp:BoundField HeaderText="Observaciones" DataField="Observaciones" />
                         <asp:BoundField HeaderText="Estado" DataField="Estado" />
-                        <asp:CommandField HeaderText="Consultar Turno" SelectText="🔍" ShowSelectButton="true" ControlStyle-CssClass="btn btn-primary" /> 
+                        <asp:CommandField HeaderText="Editar" SelectText="✏️​" ShowSelectButton="true" ControlStyle-CssClass="btn btn-primary"/> 
                     </Columns>
                  </asp:GridView>
              </ContentTemplate>

@@ -2,11 +2,11 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <script>
+<%--    <script>
         function seleccionarUno() {
             $("input:radio").attr("name", "new_name");
         }
-    </script>
+    </script>--%>
 <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
     <div class="container">
     <asp:UpdatePanel runat="server">
@@ -24,7 +24,7 @@
                     <Columns>
                         <asp:BoundField DataField="id"  Visible="false" />
                         <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
-                        <asp:CommandField ButtonType="Button" SelectText="Elegir" ShowSelectButton="true" HeaderText="Accion" ControlStyle-CssClass="btn btn-primary" />
+                        <asp:CommandField ButtonType="Button" SelectText="Elegir" ShowSelectButton="true" HeaderText="Accion" ControlStyle-CssClass="btn btn-success btn-block" />
                     </Columns>
                 </asp:GridView>
                 <% }
@@ -34,11 +34,11 @@
                     <label class="form-label" style="font-weight:bold">Buscar Especialidad</label>
                     <asp:TextBox ID="txtEspecialidad" AutoPostBack="true" class="form-control" Style="width:500px" runat="server" placeholder="" OnTextChanged="txtEspecialidad_TextChanged"></asp:TextBox>
                 </div>
-                 <asp:GridView ID="dgvSeleccionarEspecialidad" runat="server" CssClass="table align-middle table-hover table-sm" AutoGenerateColumns="false" DataKeyNames="Id" EmptyDataText="No hay resultados!" OnSelectedIndexChanged="dgvSeleccionarEspecialidad_SelectedIndexChanged">
+                 <asp:GridView ID="dgvSeleccionarEspecialidad" runat="server" CssClass="table align-middle table-hover table-sm" Style="justify-content:center" AutoGenerateColumns="false" DataKeyNames="Id" EmptyDataText="No hay resultados!" OnSelectedIndexChanged="dgvSeleccionarEspecialidad_SelectedIndexChanged">
                     <Columns>
                          <asp:BoundField DataField="id"  Visible="false" />
                         <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
-                        <asp:CommandField ButtonType="Button" SelectText="Elegir" ShowSelectButton="true" HeaderText="Accion" ControlStyle-CssClass="btn btn-primary" />
+                        <asp:CommandField ButtonType="Button" SelectText="Elegir" ShowSelectButton="true" HeaderText="Accion" ControlStyle-CssClass="btn btn-success btn-block" />
                     </Columns>
                 </asp:GridView>
             </div>
@@ -59,16 +59,14 @@
                     <label class="form-label">Medico</label>
                     <asp:DropDownList ID="txtMedico" class="form-control"  runat="server" placeholder=""></asp:DropDownList>
                 </div>
-                 <div id="container">
-                        <asp:Button ID="Aceptar" runat="server" Text="Aceptar" CssClass="btn btn-primary " OnClick="Aceptar_Click" />
+                 <div id="container" style="padding-bottom:25px">
+                        <asp:Button ID="Aceptar" runat="server" Text="Aceptar" CssClass="btn btn-success btn-block " OnClick="Aceptar_Click" />
                 </div>
-
+            </div>
+                <% }  %>
                 <div id="container">
                     <asp:Button ID="btnVolver" href="Default.aspx" runat="server" Text="← Volver a Turno" class="btn btn-primary btn-lg" OnClick="btnVolver_Click" />
                 </div>
-
-            </div>
-                <% }  %>
          </ContentTemplate>
     </asp:UpdatePanel>
     </div>
