@@ -28,7 +28,7 @@ namespace negocio
                     usuario.Perfil = new Perfil();
                     usuario.Perfil.Id = (int)datos.Lector["IDPERFIL"];                   
                     /*1 es admin, 2 medico,3 recepcionista*/
-                    return true;
+                    return true; 
                 }
                 return false;
             }
