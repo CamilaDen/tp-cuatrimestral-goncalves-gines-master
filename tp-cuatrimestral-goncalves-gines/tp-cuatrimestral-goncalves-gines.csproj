@@ -71,6 +71,7 @@
     <Content Include="ABMPacientes.aspx" />
     <Content Include="ABMPerfiles.aspx" />
     <Content Include="ABMPersonal.aspx" />
+    <Content Include="CambiarPass.aspx" />
     <Content Include="Coberturas.aspx" />
     <Content Include="CrearTurno.aspx" />
     <Content Include="Default.aspx" />
@@ -137,6 +138,13 @@
     </Compile>
     <Compile Include="ABMPersonal.aspx.designer.cs">
       <DependentUpon>ABMPersonal.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CambiarPass.aspx.cs">
+      <DependentUpon>CambiarPass.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CambiarPass.aspx.designer.cs">
+      <DependentUpon>CambiarPass.aspx</DependentUpon>
     </Compile>
     <Compile Include="Coberturas.aspx.cs">
       <DependentUpon>Coberturas.aspx</DependentUpon>

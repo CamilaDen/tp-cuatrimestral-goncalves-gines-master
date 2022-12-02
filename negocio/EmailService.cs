@@ -17,7 +17,7 @@ namespace negocio
         public EmailService()
         {
             server = new SmtpClient();
-            server.Credentials = new NetworkCredential("email", "contraseña");
+            server.Credentials = new NetworkCredential("noresponderclinicasiempre@gmail.com", "hcdgaaxinlzlbuof");
             server.EnableSsl = true;
             server.Port = 587;
             server.Host = "smtp.gmail.com";
@@ -26,12 +26,11 @@ namespace negocio
         public void armarCorreo(string emailDestino, string asunto, string cuerpo) {
 
             email = new MailMessage();
-            email.From = new MailAddress("noresponder@clinica.com");
+            email.From = new MailAddress("noresponder@clinicasiempre.com");
             email.To.Add(emailDestino);
             email.Subject = asunto;
             email.IsBodyHtml = true;
             email.Body = cuerpo;
-            //email.Body =" <h3>Clinica</h3>"
         }
 
         public void enviarMail() {

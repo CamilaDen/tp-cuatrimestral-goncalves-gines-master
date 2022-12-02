@@ -13,15 +13,18 @@ namespace negocio
         {
             AccesoDatos datos = new AccesoDatos();
             try
-            {   /*hacer sp*/
-                datos.setearConsulta("select ID, IDPERFIL from USUARIO WHERE NOMBREUSUARIO=@usuario AND PASS=@pass");
-                datos.setearParametro("@usuario", usuario.Nombre);
-                datos.setearParametro("pass", usuario.Password);
+            {  
+                datos.setearProcedimiento("SP_Loguear");
+                datos.setearParametro("@MAIL", usuario.Mail);
+                datos.setearParametro("@PASS", usuario.Password);
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
                 {
                     usuario.Id = (int)datos.Lector["ID"];
+                    usuario.Nombre = (string)datos.Lector["NOMBRE"];
+                    usuario.Apellido = (string)datos.Lector["APELLIDO"];
+                    usuario.Dni = (int)datos.Lector["DNI"];
                     usuario.Perfil = new Perfil();
                     usuario.Perfil.Id = (int)datos.Lector["IDPERFIL"];                   
                     /*1 es admin, 2 medico,3 recepcionista*/
@@ -35,5 +38,55 @@ namespace negocio
             }
             finally { datos.cerrarConexion(); }
         }
+
+        public void cambiarPass(int Id, string nuevaPass)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearProcedimiento("SP_CambiarPass");
+                datos.setearParametro("@ID", Id);
+                datos.setearParametro("@NUEVAPASS", nuevaPass);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+        public Usuario buscarPorMail(string mail)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearProcedimiento("SP_BuscarUsuarioXMail");
+                datos.setearParametro("@MAIL", mail);
+                datos.ejecutarLectura();
+                Usuario usuario = new Usuario();
+
+                while (datos.Lector.Read())
+                {
+                    usuario.Id = (int)datos.Lector["ID"];
+                    usuario.Nombre = (string)datos.Lector["NOMBRE"];
+                    usuario.Apellido = (string)datos.Lector["APELLIDO"];
+                    usuario.Dni = (int)datos.Lector["DNI"];
+                    usuario.Mail = (string)datos.Lector["MAIL"];
+                    usuario.Perfil = new Perfil();
+                    usuario.Perfil.Id = (int)datos.Lector["IDPERFIL"];
+                }
+                return usuario;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally { datos.cerrarConexion(); }
+        }
+        
     }
 }

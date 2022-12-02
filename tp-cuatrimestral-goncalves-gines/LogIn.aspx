@@ -21,14 +21,11 @@
           <img src="img/user.png" id="icon" alt="User Icon" />
         </div>
         <form runat="server">           
-            <asp:TextBox ID="txtLogin" class="fadeIn second"  runat="server" placeholder="Usuario" required="true"></asp:TextBox>
-            <asp:TextBox ID="txtPassword" TextMode="password" class="fadeIn third" runat="server"  placeholder="contraseña" required="true"></asp:TextBox>
+            <asp:TextBox ID="txtMailLogin" TextMode="email" class="fadeIn second"  runat="server"  placeholder="usuariodeclinica@email.com" required="true"></asp:TextBox>
+            <asp:TextBox ID="txtPassword" TextMode="password" class="fadeIn third" runat="server"  placeholder="contraseña" ></asp:TextBox>
             <asp:Button type="submit" class="fadeIn fourth" runat="server" text="Entrar"  OnClick="btnAceptar_Click" />
+            <asp:Button type="submit" class="fadeIn fifth" runat="server" text="Olvidé mi contraseña" ID="bntOlvidar" OnClick="bntOlvidar_Click" />
         </form>
-        <div id="formFooter"> 
-          <a class="underlineHover" href="#">Olvide mi contraseña</a>
-        </div>
-             
       </div>
     </div>
 </body>

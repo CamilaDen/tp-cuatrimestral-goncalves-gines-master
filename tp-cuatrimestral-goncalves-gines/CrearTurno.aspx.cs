@@ -21,7 +21,7 @@ namespace tp_cuatrimestral_goncalves_gines
 
             if (!IsPostBack) {
                 TurnoNegocio negocio = new TurnoNegocio();
-                List<Turno> nuevoTurno;
+                //List<Turno> nuevoTurno;
 
                 PacienteNegocio negocioPaciente = new PacienteNegocio();
                 Session.Add("listaPacientes", negocioPaciente.listarConSP());

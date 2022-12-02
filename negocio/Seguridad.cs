@@ -33,5 +33,21 @@ namespace negocio
             Usuario usuario = user != null ? (Usuario)user : null;
             return (usuario != null && (usuario.Perfil.Id == (int)dominio.TipoPerfil.MEDICO));
         }
+
+        public static string reiniciarPass()
+        {
+            Random rdn = new Random();
+            string caracteres = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890%$#@";
+            int longitud = caracteres.Length;
+            char letra;
+            int longitudContrasenia = 10;
+            string contraseniaAleatoria = string.Empty;
+            for (int i = 0; i < longitudContrasenia; i++)
+            {
+                letra = caracteres[rdn.Next(longitud)];
+                contraseniaAleatoria += letra.ToString();
+            }
+            return contraseniaAleatoria;
+        }
     }
 }

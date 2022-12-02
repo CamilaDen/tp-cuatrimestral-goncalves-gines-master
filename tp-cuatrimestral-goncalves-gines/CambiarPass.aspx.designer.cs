@@ -11,34 +11,34 @@ namespace tp_cuatrimestral_goncalves_gines
 {
 
 
-    public partial class LogIn
+    public partial class CambiarPass
     {
 
         /// <summary>
-        /// Control txtMailLogin.
+        /// Control txtPasswordOld.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtMailLogin;
+        protected global::System.Web.UI.WebControls.TextBox txtPasswordOld;
 
         /// <summary>
-        /// Control txtPassword.
+        /// Control txtPasswordNew1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPassword;
+        protected global::System.Web.UI.WebControls.TextBox txtPasswordNew1;
 
         /// <summary>
-        /// Control bntOlvidar.
+        /// Control txtPasswordNew2.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button bntOlvidar;
+        protected global::System.Web.UI.WebControls.TextBox txtPasswordNew2;
     }
 }

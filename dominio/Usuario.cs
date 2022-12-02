@@ -6,30 +6,14 @@ using System.Threading.Tasks;
 
 namespace dominio
 {   public enum TipoPerfil{ ADMINISTRADOR = 1, MEDICO = 2, RECEPCIONISTA = 3 }
-    public class Usuario
+    public class Usuario : Persona
     {
-        public int Id { get; set; }
-        public string Nombre { get; set; }
         public string Password { get; set; }
         public Perfil Perfil { get; set; }
-        public bool Activo { get; set; }
-
-        public Usuario(string user, string pass/*, int tipoAcceso*/)
+        public Usuario(string email, string pass)
         {
-            Nombre = user;
-            Password = pass;
-            //switch (tipoAcceso)
-            //{
-            //    case (int)TipoPerfil.ADMINISTRADOR:
-            //        Perfil.Id = (int)TipoPerfil.ADMINISTRADOR;
-            //        break;
-            //    case (int)TipoPerfil.MEDICO:
-            //        Perfil.Id = (int)TipoPerfil.MEDICO;
-            //        break;
-            //    case (int)TipoPerfil.RECEPCIONISTA:
-            //        Perfil.Id = (int)TipoPerfil.RECEPCIONISTA;
-            //        break;
-            //}
+            this.Mail = email;
+            this.Password = pass;
         }
 
         public Usuario()

@@ -42,6 +42,15 @@ namespace tp_cuatrimestral_goncalves_gines
         protected global::System.Web.UI.WebControls.Button btnDeslogear;
 
         /// <summary>
+        /// Control CambiarPass.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button CambiarPass;
+
+        /// <summary>
         /// Control ContentPlaceHolder1.
         /// </summary>
         /// <remarks>

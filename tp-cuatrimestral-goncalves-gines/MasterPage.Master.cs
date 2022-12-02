@@ -20,7 +20,12 @@ namespace tp_cuatrimestral_goncalves_gines
         protected void btnDeslogear_Click(object sender, EventArgs e)
         {
             Session.Clear();
-            Response.Redirect("Login.aspx");
+            Response.Redirect("Login.aspx", false);
+        }
+
+        protected void CambiarPass_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("CambiarPass.aspx", false);
         }
     }
 }
