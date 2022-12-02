@@ -10,7 +10,7 @@
                 <div class="row">
                     <div class="col-4">
                         <div class="mb-3">
-                            <asp:Label Text="Filtrar" runat="server" />
+                            <asp:Label Text="Filtrar por paciente" runat="server" />
                             <asp:TextBox runat="server" AutoCompleteType="LastName" ID="txtFiltro" CssClass="form-control" />
                         </div>
                     </div>

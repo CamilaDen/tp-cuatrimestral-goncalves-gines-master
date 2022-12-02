@@ -14,26 +14,31 @@
             <label class="TituloABM">Nuevo Turno</label>
                 <% if (!permiso()) { %>
             <div class="row g-3" style="justify-content:left">
-                <%if (dgvSeleccionarPaciente.SelectedIndex == -1)
-                    { %>
-                <div class="col-md-2">
-                    <label class="form-label" style="font-weight:bold">Buscar Paciente</label>
-                    <asp:TextBox ID="txtPaciente" AutoPostBack="true" class="form-control" Style="width:500px"  runat="server" OnTextChanged="txtPaciente_TextChanged"></asp:TextBox>
+
+                <%if (dgvSeleccionarPaciente.SelectedIndex == -1){ %>
+
+                <div class="row">
+                    <label class="form-label" style="font-weight:bold">Seleccione un paciente</label>
+                    <asp:TextBox ID="txtPaciente" class="form-control" Style="width:500px; margin-left:15px" placeholder="Nombre Paciente" runat="server"></asp:TextBox>
+                    <div class="col-md-2">
+                        <asp:Button ID="btnBuscarRapidoPaciente" runat="server" Text="Buscar" CssClass="btn btn-primary " />
+                    </div>
                 </div>
                 <asp:GridView ID="dgvSeleccionarPaciente" runat="server" CssClass="table align-middle table-hover table-sm" AutoGenerateColumns="false" DataKeyNames="Id" EmptyDataText="No hay resultados!" OnSelectedIndexChanged="dgvSeleccionarPaciente_SelectedIndexChanged">
                     <Columns>
                         <asp:BoundField DataField="id"  Visible="false" />
                         <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
-                        <asp:CommandField ButtonType="Button" SelectText="Elegir" ShowSelectButton="true" HeaderText="Accion" ControlStyle-CssClass="btn btn-success btn-block" />
+                        <asp:CommandField ButtonType="Button" SelectText="Elegir" ShowSelectButton="true" HeaderText="Accion" ControlStyle-CssClass="btn btn-success btn-block"  />
                     </Columns>
                 </asp:GridView>
-                <% }
-                    else
-                    {  %>
-                 <div class="col-md-2">
-                    <label class="form-label" style="font-weight:bold">Buscar Especialidad</label>
-                    <asp:TextBox ID="txtEspecialidad" AutoPostBack="true" class="form-control" Style="width:500px" runat="server" placeholder="" OnTextChanged="txtEspecialidad_TextChanged"></asp:TextBox>
-                </div>
+                <% } else{  %>
+                 <div class="row">
+                    <label class="form-label" style="font-weight:bold">Seleccione una especialidad</label>
+                    <asp:TextBox ID="txtEspecialidad" class="form-control" Style="width:500px; margin-left:15px" runat="server" placeholder="Nombre Especialidad"></asp:TextBox>
+                    <div class="col-md-2">
+                        <asp:Button ID="btnBuscarRapidoEspecialidad" runat="server" Text="Buscar" CssClass="btn btn-primary " onClick="btnBuscarRapidoEspecialidad_Click"/>
+                    </div>
+                 </div>
                  <asp:GridView ID="dgvSeleccionarEspecialidad" runat="server" CssClass="table align-middle table-hover table-sm" Style="justify-content:center" AutoGenerateColumns="false" DataKeyNames="Id" EmptyDataText="No hay resultados!" OnSelectedIndexChanged="dgvSeleccionarEspecialidad_SelectedIndexChanged">
                     <Columns>
                          <asp:BoundField DataField="id"  Visible="false" />

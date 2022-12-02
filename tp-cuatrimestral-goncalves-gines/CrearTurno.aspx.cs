@@ -45,13 +45,6 @@ namespace tp_cuatrimestral_goncalves_gines
             Response.Redirect("Turnos.aspx");
         }
 
-        protected void txtPaciente_TextChanged(object sender, EventArgs e)
-        {
-            List<Paciente> listaPacientesFiltrados = ((List<Paciente>)Session["listaPacientes"]);
-            listaPacientesFiltrados = listaPacientesFiltrados.FindAll(x => x.Nombre.ToUpper().Contains(txtPaciente.Text.ToUpper()) || x.Apellido.ToUpper().Contains(txtPaciente.Text.ToUpper()));
-            dgvSeleccionarPaciente.DataSource = listaPacientesFiltrados;
-            dgvSeleccionarPaciente.DataBind();
-        }
 
         protected bool permiso() {
             if (siguiente) {
@@ -60,13 +53,6 @@ namespace tp_cuatrimestral_goncalves_gines
             return false;
         }
 
-        protected void txtEspecialidad_TextChanged(object sender, EventArgs e)
-        {
-            List<Especialidad> listaEspecialidadesFiltradas = ((List<Especialidad>)Session["listaEspecialidades"]);
-            listaEspecialidadesFiltradas = listaEspecialidadesFiltradas.FindAll(x => x.Nombre.ToUpper().Contains(txtEspecialidad.Text.ToUpper()));
-            dgvSeleccionarEspecialidad.DataSource = listaEspecialidadesFiltradas;
-            dgvSeleccionarEspecialidad.DataBind();
-        }
 
         protected void dgvSeleccionarPaciente_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -84,14 +70,16 @@ namespace tp_cuatrimestral_goncalves_gines
         {
             try
             {
-                Turno nuevo = new Turno();
-                nuevo.IdPaciente.Id = int.Parse( dgvSeleccionarEspecialidad.SelectedDataKey.Value.ToString());
-                nuevo.Especialidad.Id = int.Parse(dgvSeleccionarEspecialidad.SelectedIndex.ToString());
-                nuevo.Fecha = DateTime.Parse(txtFecha.Text);
-                nuevo.Hora = int.Parse(txtHorario.Text);
-                nuevo.IdMedico.Id = int.Parse(txtMedico.Text);
-                nuevo.Observaciones = "";
-                nuevo.Estado = "Nuevo" ;
+                //EmailService emailService = new EmailService();
+                //emailService.armarCorreo("","","");
+                //Turno nuevo = new Turno();
+                //nuevo.IdPaciente.Id = int.Parse( dgvSeleccionarEspecialidad.SelectedDataKey.Value.ToString());
+                //nuevo.Especialidad.Id = int.Parse(dgvSeleccionarEspecialidad.SelectedIndex.ToString());
+                //nuevo.Fecha = DateTime.Parse(txtFecha.Text);
+                //nuevo.Hora = int.Parse(txtHorario.Text);
+                //nuevo.IdMedico.Id = int.Parse(txtMedico.Text);
+                //nuevo.Observaciones = "";
+                //nuevo.Estado = "Nuevo" ;
 
             }
             catch (Exception ex)
@@ -99,6 +87,22 @@ namespace tp_cuatrimestral_goncalves_gines
 
                 throw ex;
             }
+        }
+
+        protected void btnBuscarRapido_Click(object sender, EventArgs e)
+        {
+            List<Paciente> listaPacientesFiltrados = ((List<Paciente>)Session["listaPacientes"]);
+            listaPacientesFiltrados = listaPacientesFiltrados.FindAll(x => x.Nombre.ToUpper().Contains(txtPaciente.Text.ToUpper()) || x.Apellido.ToUpper().Contains(txtPaciente.Text.ToUpper()));
+            dgvSeleccionarPaciente.DataSource = listaPacientesFiltrados;
+            dgvSeleccionarPaciente.DataBind();
+        }
+
+        protected void btnBuscarRapidoEspecialidad_Click(object sender, EventArgs e)
+        {
+            List<Especialidad> listaEspecialidadesFiltradas = ((List<Especialidad>)Session["listaEspecialidades"]);
+            listaEspecialidadesFiltradas = listaEspecialidadesFiltradas.FindAll(x => x.Nombre.ToUpper().Contains(txtEspecialidad.Text.ToUpper()));
+            dgvSeleccionarEspecialidad.DataSource = listaEspecialidadesFiltradas;
+            dgvSeleccionarEspecialidad.DataBind();
         }
     }
 }

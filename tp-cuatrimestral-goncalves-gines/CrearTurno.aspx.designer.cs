@@ -33,6 +33,15 @@ namespace tp_cuatrimestral_goncalves_gines
         protected global::System.Web.UI.WebControls.TextBox txtPaciente;
 
         /// <summary>
+        /// Control btnBuscarRapidoPaciente.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnBuscarRapidoPaciente;
+
+        /// <summary>
         /// Control dgvSeleccionarPaciente.
         /// </summary>
         /// <remarks>
@@ -49,6 +58,15 @@ namespace tp_cuatrimestral_goncalves_gines
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtEspecialidad;
+
+        /// <summary>
+        /// Control btnBuscarRapidoEspecialidad.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnBuscarRapidoEspecialidad;
 
         /// <summary>
         /// Control dgvSeleccionarEspecialidad.

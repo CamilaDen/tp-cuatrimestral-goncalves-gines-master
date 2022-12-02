@@ -55,9 +55,11 @@ namespace tp_cuatrimestral_goncalves_gines
 
         protected void btnBuscarRapido_Click(object sender, EventArgs e)
         {
-            //List<Turno> listaFiltrada = ((List<Turno>)Session["listaTurno"]);
-            //listaFiltrada = listaFiltrada.FindAll(x => x.Nombre.ToUpper().Contains(txtFiltro.Text.ToUpper()));
-      
+            List<Turno> listaFiltrada = ((List<Turno>)Session["listaTurno"]);
+            listaFiltrada = listaFiltrada.FindAll(x => x.IdPaciente.Nombre.ToUpper().Contains(txtFiltro.Text.ToUpper()) || x.IdPaciente.Apellido.ToUpper().Contains(txtFiltro.Text.ToUpper()));
+            dgvPacientesTurnos.DataSource = listaFiltrada;
+            dgvPacientesTurnos.DataBind();
+
         }
     }
 }
