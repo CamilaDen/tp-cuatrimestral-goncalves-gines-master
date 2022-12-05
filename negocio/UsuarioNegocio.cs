@@ -26,7 +26,8 @@ namespace negocio
                     usuario.Apellido = (string)datos.Lector["APELLIDO"];
                     usuario.Dni = (int)datos.Lector["DNI"];
                     usuario.Perfil = new Perfil();
-                    usuario.Perfil.Id = (int)datos.Lector["IDPERFIL"];                   
+                    usuario.Perfil.Id = (int)datos.Lector["IDPERFIL"];
+                    usuario.Perfil.Nombre = (string)datos.Lector["PERFIL"];
                     /*1 es admin, 2 medico,3 recepcionista*/
                     return true; 
                 }

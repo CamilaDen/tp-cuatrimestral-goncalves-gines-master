@@ -56,6 +56,14 @@ body {
     padding-bottom: 10px;
 }
 
+.SubTituloABM {
+    font-size: 1.5em;
+    font-weight: bold;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+
 .FooterClinica {
     position: absolute;
     bottom: 0;
@@ -86,4 +94,10 @@ body {
     border-radius: 20px;
     font-weight: bold;
     border-style: hidden
+}
+
+.GvGrid:hover {
+    background-color: #FFEB9C;
+    /*border-top: solid;*/
+    color: #9C6500;
 }

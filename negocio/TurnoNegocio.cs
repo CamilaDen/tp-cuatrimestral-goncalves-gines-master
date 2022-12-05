@@ -31,19 +31,23 @@ namespace negocio
                 {
                     Turno aux = new Turno();
                     aux.Id = (int)datos.Lector["ID"];
-                    aux.IdPaciente = new Paciente();
-                    aux.IdPaciente.Nombre = (string)datos.Lector["APELLIDOPACIENTE"];
-                    aux.IdPaciente.Apellido = (string)datos.Lector["NOMBREPACIENTE"];
+                    aux.Paciente = new Paciente();
+                    aux.Paciente.Nombre = (string)datos.Lector["APELLIDOPACIENTE"];
+                    aux.Paciente.Apellido = (string)datos.Lector["NOMBREPACIENTE"];
+                    aux.Paciente.Mail = (string)datos.Lector["MAILPACIENTE"];
+                    aux.Paciente.Dni = (int)datos.Lector["DNIPACIENTE"];
                     aux.Especialidad = new Especialidad();
                     aux.Especialidad.Nombre = (string)datos.Lector["ESPECIALIDAD"];
                     aux.FechaSolicitado = Convert.ToDateTime(datos.Lector["FECHA_SOLICITADO"]);
                     aux.Fecha = Convert.ToDateTime(datos.Lector["FECHA"]);
-                    byte auxi = (byte)datos.Lector["HORA"];
-                    aux.Hora = (int)auxi;
-                    aux.IdMedico = new Medico();
-                    aux.IdMedico.Apellido = (string)datos.Lector["NOMBREMEDICO"];
+                    aux.Hora = int.Parse(datos.Lector["HORA"].ToString());
+                    aux.Medico = new Medico();
+                    aux.Medico.Nombre = (string)datos.Lector["NOMBREMEDICO"];
+                    aux.Medico.Apellido = (string)datos.Lector["APELLIDOMEDICO"];
                     aux.Observaciones = (string)datos.Lector["OBSERVACIONES"];
-                    aux.Estado = (string)datos.Lector["ESTADO"];
+                    aux.Estado = new EstadoTurno();
+                    aux.Estado.Id = (int)datos.Lector["IDESTADO"];
+                    aux.Estado.Nombre = (string)datos.Lector["ESTADO"];
                     lista.Add(aux);
                 }
                 return lista;
@@ -60,15 +64,13 @@ namespace negocio
             try
             {
                 datos.setearProcedimiento("SP_AltaTurno");
-                datos.setearParametro("@ID", nuevo.Id);
-                datos.setearParametro("@IDPACIENTE", nuevo.IdPaciente.Id);
-                datos.setearParametro("@IDESPECIALIDAD", nuevo.Especialidad);
+                datos.setearParametro("@IDPACIENTE", nuevo.Paciente.Id);
+                datos.setearParametro("@IDESPECIALIDAD", nuevo.Especialidad.Id);
                 datos.setearParametro("@FECHA_SOLICITADO", nuevo.FechaSolicitado);
                 datos.setearParametro("@FECHA", nuevo.Fecha);
                 datos.setearParametro("@HORA", nuevo.Hora);
-                datos.setearParametro("@IDMEDICO", nuevo.IdMedico.Id);
-                datos.setearParametro("@OBERVACIONES", nuevo.Observaciones);
-                datos.setearParametro("@ESTADO", nuevo.Estado);
+                datos.setearParametro("@IDMEDICO", nuevo.Medico.Id);    
+                datos.setearParametro("@OBSERVACIONES", nuevo.Observaciones);
                 datos.ejecutarAccion();
             }
             catch (Exception ex)
@@ -82,22 +84,16 @@ namespace negocio
         }
 
 
-        public void modificar(Turno modificacion)
+        public void actualizarObsEstado(Turno modificacion)
         {
             AccesoDatos datos = new AccesoDatos();
 
             try
             {
-                datos.setearProcedimiento("SP_ModificarTurno");
+                datos.setearProcedimiento("SP_ModificarTurnoObsEstado");
                 datos.setearParametro("@ID", modificacion.Id);
-                datos.setearParametro("@IDPACIENTE", modificacion.IdPaciente.Id);
-                datos.setearParametro("@IDESPECIALIDAD", modificacion.Especialidad);
-                datos.setearParametro("@FECHA_SOLICITADO", modificacion.FechaSolicitado);
-                datos.setearParametro("@FECHA", modificacion.Fecha);
-                datos.setearParametro("@HORA", modificacion.Hora);
-                datos.setearParametro("@IDMEDICO", modificacion.IdMedico.Id);
-                datos.setearParametro("@OBERVACIONES", modificacion.Observaciones);
-                datos.setearParametro("@ESTADO", modificacion.Estado);
+                datos.setearParametro("@OBSERVACIONES", modificacion.Observaciones);
+                datos.setearParametro("@ESTADO", modificacion.Estado.Id);
                 datos.ejecutarAccion();
             }
             catch (Exception ex)
@@ -110,27 +106,16 @@ namespace negocio
             }
         }
 
-        public void eliminarLogico(int id, bool activo = false)
+        public List<string> horariosDisponibles()
         {
-            AccesoDatos datos = new AccesoDatos();
-
-            try
+            List<string> horarios = new List<string>();
+            for (int x = 0; x <= 23; x++)
             {
-                if (activo)
-                    datos.setearProcedimiento("SP_ReactivarLogicoTurno");
-                else
-                    datos.setearProcedimiento("SP_EliminarLogicoTurno");
-                datos.setearParametro("@ID", id);
-                datos.ejecutarAccion();
+                if (x < 10) horarios.Add(string.Format("0{0}:00", x));
+                else horarios.Add(string.Format("{0}:00", x));
             }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                datos.cerrarConexion();
-            }
+            return horarios;
         }
+
     }
 }

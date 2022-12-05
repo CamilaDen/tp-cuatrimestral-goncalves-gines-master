@@ -23,7 +23,7 @@
                     </a>
                     <%if (Session["usuario"] != null) { %>
                     <div style="padding: 0">
-                      <%--  <p>Usuario logueado: <% ((dominio.Usuario)Session["usuario"]).Apellido.ToString(); %></p>--%>
+                        <label class="form-label me-2"><%: ((dominio.Usuario)Session["usuario"]).Perfil.Nombre.ToString() %>: <%: ((dominio.Usuario)Session["usuario"]).Apellido.ToString() %>,  <%: ((dominio.Usuario)Session["usuario"]).Nombre.ToString() %></label>
                         <asp:Button ID="btnDeslogear" Text="Cerrar Sesion" runat="server" CssClass="btn btn-primary" OnClick="btnDeslogear_Click" />
                         <asp:Button ID="CambiarPass" Text="Cambiar Password" runat="server" CssClass="btn btn-secondary" OnClick="CambiarPass_Click" />
                     </div>

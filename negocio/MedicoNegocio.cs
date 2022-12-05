@@ -50,6 +50,42 @@ namespace negocio
                 throw ex;
             }
         }
+
+        public List<Turno> turnosDisponibles(int idPaciente, int idEspecialidad, DateTime dia)
+        {
+            List<Turno> lista = new List<Turno>();
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearProcedimiento("SP_HorariosDisponibles");
+                datos.setearParametro("@IDPACIENTE", idPaciente);
+                datos.setearParametro("@IDESPECIALIDAD", idEspecialidad);
+                datos.setearParametro("@DIA", dia);
+                datos.ejecutarLectura();
+                while (datos.Lector.Read())
+                {
+                    Turno aux = new Turno();
+                    aux.Id = int.Parse(datos.Lector["ID"].ToString());
+                    aux.Medico = new Medico();
+                    aux.Medico.Id = (int)datos.Lector["IDMEDICO"];
+                    aux.Medico.Apellido = (string)datos.Lector["APELLIDO"];
+                    aux.Medico.Nombre = (string)datos.Lector["NOMBRE"];
+                    aux.Hora = int.Parse(datos.Lector["HORA"].ToString());
+                    aux.Fecha = Convert.ToDateTime(datos.Lector["FECHA"]);
+                    aux.Especialidad = new Especialidad();
+                    aux.Especialidad.Id = (int)datos.Lector["IDESPECIALIDAD"];
+                    aux.Especialidad.Nombre = (string)datos.Lector["ESPECIALIDAD"];
+                    lista.Add(aux);
+                }
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
         public void agregar(Medico nuevo)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -128,6 +164,6 @@ namespace negocio
             {
                 datos.cerrarConexion();
             }
-        }
+        }              
     }
 }

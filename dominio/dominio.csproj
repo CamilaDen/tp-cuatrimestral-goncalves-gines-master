@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Dia.cs" />
     <Compile Include="Especialidad.cs" />
+    <Compile Include="EstadoTurno.cs" />
     <Compile Include="Horario.cs" />
     <Compile Include="Medico.cs" />
     <Compile Include="ObraSocial.cs" />
