@@ -83,7 +83,7 @@
         </div>
     </div>
     <div class="container">
-        <asp:Button ID="btnVolver" href="Turnos.aspx" runat="server" Text="⬅️  Volver a Turno" class="btn btn-secondary btn-lg" OnClick="btnVolver_Click" />
+        <asp:Button ID="btnVolver" href="Turnos.aspx" runat="server" Text="⬅ Volver a Turno" class="btn btn-secondary btn-lg" OnClick="btnVolver_Click" />
         <asp:Button ID="btnEditar" Visible="false" runat="server" Text="Editar" class="btn btn-primary btn-lg" OnClientClick="return validar()" OnClick="btnEditar_Click" />
         <asp:Button ID="btnCancelar" Visible="false" runat="server" Text="Cancelar" class="btn btn-danger btn-lg" OnClientClick="return validar()" OnClick="btnCancelar_Click" />
         <asp:Button ID="btnAceptar" Visible="false" runat="server" Text="Aceptar" class="btn btn-success btn-lg" OnClientClick="return validar()" OnClick="btnAceptar_Click" />

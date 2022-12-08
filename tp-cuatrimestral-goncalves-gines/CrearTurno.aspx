@@ -19,13 +19,14 @@
             }         
             return valido;
         }
+    
     </script>
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
     <div class="container">
         <asp:UpdatePanel runat="server">
             <ContentTemplate>
                 <label class="TituloABM">Nuevo Turno</label>
-                <% if (!permiso() && !turnoSeleccionado())
+                <% if (!turnoSeleccionado())
                     { %>
                 <div class="row g-3" style="justify-content: left">
                     <%if (dgvSeleccionarPaciente.SelectedIndex == -1)
@@ -51,50 +52,84 @@
                         <HeaderStyle HorizontalAlign="Center" />
                     </asp:GridView>
                     <% }
-                        else
-                        {  %>
+                        else if (dgvSeleccionarEspecialidad.SelectedIndex == -1)
+                        {%>
+                        <div class="row">
+                            <label class="form-label" style="font-weight: bold">Seleccione una especialidad</label>
+                            <asp:TextBox ID="txtEspecialidad" class="form-control" Style="width: 500px; margin-left: 15px" runat="server" placeholder="Nombre Especialidad"></asp:TextBox>
+                            <div class="col-md-2">
+                                <asp:Button ID="btnBuscarRapidoEspecialidad" runat="server" Text="Buscar" CssClass="btn btn-primary " OnClick="btnBuscarRapidoEspecialidad_Click" />
+                            </div>
+                        </div>
+                            <asp:GridView ID="dgvSeleccionarEspecialidad" runat="server" CssClass="table align-middle table-sm" Style="justify-content: center" AutoGenerateColumns="false" DataKeyNames="Id" EmptyDataText="No hay resultados!" OnSelectedIndexChanged="dgvSeleccionarEspecialidad_SelectedIndexChanged">
+                                <Columns>
+                                    <asp:BoundField DataField="id" Visible="false" />
+                                    <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
+                                    <asp:CommandField ButtonType="Button" SelectText="✔️ " ShowSelectButton="true" HeaderText="Elegir" ControlStyle-CssClass="btn btn-success btn-light" />
+                                </Columns>
+                                <EditRowStyle Font-Size="Small" />
+                                <FooterStyle BackColor="#666666" Font-Size="Small" HorizontalAlign="Center" />
+                                <HeaderStyle BackColor="#333333" ForeColor="White" />
+                                <RowStyle HorizontalAlign="Center" CssClass="GvGrid" />
+                                <HeaderStyle HorizontalAlign="Center" />
+                            </asp:GridView>
+                        </div>
+                      <%} %>
+
+             <% }
+                 if(dgvSeleccionarEspecialidad.SelectedIndex != -1){ %>
+
                     <div class="row">
-                        <label class="form-label" style="font-weight: bold">Seleccione una especialidad</label>
-                        <asp:TextBox ID="txtEspecialidad" class="form-control" Style="width: 500px; margin-left: 15px" runat="server" placeholder="Nombre Especialidad"></asp:TextBox>
-                        <div class="col-md-2">
-                            <asp:Button ID="btnBuscarRapidoEspecialidad" runat="server" Text="Buscar" CssClass="btn btn-primary " OnClick="btnBuscarRapidoEspecialidad_Click" />
+                        <asp:Label ID="lblSeleccionMedico" runat="server" Text="Seleccione un médico y horario" CssClass="form-label" style="font-weight: bold"></asp:Label>
+                    </div>
+                    <div class="col-3 mt-4" style="display: flex; flex-direction: column; justify-content:center;">
+                        <div class="mb-3">
+                            <asp:CheckBox Text="Busqueda Avanzada" CssClass="" ID="chkFiltroAvanzado" runat="server" AutoPostBack="true" OnCheckedChanged="chkFiltroAvanzado_CheckedChanged" />
                         </div>
                     </div>
-                    <asp:GridView ID="dgvSeleccionarEspecialidad" runat="server" CssClass="table align-middle table-sm" Style="justify-content: center" AutoGenerateColumns="false" DataKeyNames="Id" EmptyDataText="No hay resultados!" OnSelectedIndexChanged="dgvSeleccionarEspecialidad_SelectedIndexChanged">
-                        <Columns>
-                            <asp:BoundField DataField="id" Visible="false" />
-                            <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
-                            <asp:CommandField ButtonType="Button" SelectText="✔️ " ShowSelectButton="true" HeaderText="Elegir" ControlStyle-CssClass="btn btn-success btn-light" />
-                        </Columns>
-                        <EditRowStyle Font-Size="Small" />
-                        <FooterStyle BackColor="#666666" Font-Size="Small" HorizontalAlign="Center" />
-                        <HeaderStyle BackColor="#333333" ForeColor="White" />
-                        <RowStyle HorizontalAlign="Center" CssClass="GvGrid" />
-                        <HeaderStyle HorizontalAlign="Center" />
-                    </asp:GridView>
-                </div>
+                      <%if (chkFiltroAvanzado.Checked)
+                          { %>
+                            <div class="col-2 mt-4">
+                                <div class="mb-3">
+                                    <asp:Label Text="Fecha" runat="server" />
+                                    <asp:DropDownList runat="server" ID="ddlFecha" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlFecha_SelectedIndexChanged"></asp:DropDownList>
+                                </div>
+                            </div>
+                        
+                            <div class="col-2 mt-4">
+                                <div class="mb-3">
+                                    <asp:Label Text="Horario" runat="server" />
+                                     <asp:DropDownList runat="server" ID="ddlHorario" CssClass="form-control"></asp:DropDownList>
+                                </div>
+                            </div>
+                            <div class="col-2 mt-4">
+                                <div class="mb-3">
+                                    <asp:Label Text="Medico" runat="server" />
+                                     <asp:DropDownList runat="server" ID="ddlMedico" CssClass="form-control"></asp:DropDownList>
+                                </div>
+                            </div>
+                            <div class="col-2 mt-4">
+                                <div class="col-2 mt-4">
+                                    <asp:Button ID="btnBuscarAvanzado" runat="server" Text="Buscar" CssClass="btn btn-primary " />
+                                </div>
+                            </div>
+                        </div>
+                        <% } %>
+                        <asp:GridView ID="dgvTurnosPropuestos" runat="server" Visible="true" CssClass="table align-middle table-sm" AutoGenerateColumns="false" DataKeyNames="Id" EmptyDataText="No hay resultados!" OnSelectedIndexChanged="dgvTurnosPropuestos_SelectedIndexChanged">
+                            <Columns>
+                                <asp:BoundField HeaderText="Apellido" DataField="Medico.Apellido" />
+                                <asp:BoundField HeaderText="Nombre" DataField="Medico.Nombre" />
+                                <asp:BoundField HeaderText="Hora" DataFormatString="{0:00}" DataField="Hora" />
+                                <asp:BoundField HeaderText="Dia" DataFormatString="{0:dd/MM/yyyy}" DataField="Fecha" />
+                                <asp:CommandField ButtonType="Button" SelectText="✔️ " ShowSelectButton="true" HeaderText="Elegir" ControlStyle-CssClass="btn btn-success btn-light" />
+                            </Columns>
+                            <EditRowStyle Font-Size="Small"/>
+                            <FooterStyle BackColor="#666666" Font-Size="Small" HorizontalAlign="Center" />
+                            <HeaderStyle BackColor="#333333" ForeColor="White"/>
+                            <RowStyle HorizontalAlign="Center" CssClass="GvGrid"/>
+                            <HeaderStyle HorizontalAlign="Center" />
+                        </asp:GridView>
                 <% } %>
-
-                <% } %>
-                <% else
-                    { %>
-                <div class="row">
-                    <asp:Label ID="lblSeleccionMedico" runat="server" Text="Seleccione un médico y horario" CssClass="form-label" style="font-weight: bold"></asp:Label>
-                </div>
-                <asp:GridView ID="dgvTurnosPropuestos" runat="server" Visible="true" CssClass="table align-middle table-sm" AutoGenerateColumns="false" DataKeyNames="Id" EmptyDataText="No hay resultados!" OnSelectedIndexChanged="dgvTurnosPropuestos_SelectedIndexChanged">
-                    <Columns>
-                        <asp:BoundField HeaderText="Apellido" DataField="Medico.Apellido" />
-                        <asp:BoundField HeaderText="Nombre" DataField="Medico.Nombre" />
-                        <asp:BoundField HeaderText="Hora" DataFormatString="{0:00}" DataField="Hora" />
-                        <asp:BoundField HeaderText="Dia" DataFormatString="{0:dd/MM/yyyy}" DataField="Fecha" />
-                        <asp:CommandField ButtonType="Button" SelectText="✔️ " ShowSelectButton="true" HeaderText="Elegir" ControlStyle-CssClass="btn btn-success btn-light" />
-                    </Columns>
-                    <EditRowStyle Font-Size="Small" />
-                    <FooterStyle BackColor="#666666" Font-Size="Small" HorizontalAlign="Center" />
-                    <HeaderStyle BackColor="#333333" ForeColor="White" />
-                    <RowStyle HorizontalAlign="Center" CssClass="GvGrid" />
-                    <HeaderStyle HorizontalAlign="Center" />
-                </asp:GridView>
                 <% if (turnoSeleccionado())
                     { %>
                 <div id="idDatosSeleccionadosParaTurno" class="container">
@@ -124,7 +159,7 @@
                             <asp:TextBox ID="txtFecha" class="form-control" runat="server" Enabled="false"></asp:TextBox>
                         </div>
                         <div class="col-3">
-                            <label class="form-label">Hora</label>
+                            <label class="form-label">Hora</label>           
                             <asp:TextBox ID="txtHora" class="form-control" runat="server" Enabled="false"></asp:TextBox>
                         </div>
                         <div class="col-3">
@@ -145,7 +180,7 @@
                     </div>
                 </div>
                 <% }
-                }   %>
+                   %>
                 <div class="container">
                     <asp:Button ID="btnVolver" Visible="true" href="Turnos.aspx" runat="server" Text="⬅️  Volver a Turno" class="btn btn-secondary btn-lg" OnClick="btnVolver_Click" />
                     <asp:Button ID="btnVolverTurnos" Visible="false" runat="server" Text="Cancelar" class="btn btn-danger" OnClick="btnVolverTurnos_Click" />

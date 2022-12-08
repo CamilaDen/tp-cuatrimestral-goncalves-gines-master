@@ -15,12 +15,12 @@ namespace tp_cuatrimestral_goncalves_gines
 {
     public partial class CrearTurno : System.Web.UI.Page
     {
-        bool siguiente = false;
-     
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            if (!IsPostBack) {
+            if (!IsPostBack)
+            {
                 TurnoNegocio negocio = new TurnoNegocio();
 
                 PacienteNegocio negocioPaciente = new PacienteNegocio();
@@ -45,10 +45,6 @@ namespace tp_cuatrimestral_goncalves_gines
         }
 
 
-        protected bool permiso() {
-            return siguiente;
-        }
-
         protected bool turnoSeleccionado()
         {
             return Session["turnoSeleccionado"] != null;
@@ -71,7 +67,6 @@ namespace tp_cuatrimestral_goncalves_gines
                 int idPaciente = int.Parse(dgvSeleccionarPaciente.SelectedDataKey.Value.ToString());
                 Especialidad especialidad = ((List<Especialidad>)Session["listaEspecialidades"]).Find(x => x.Id == idEspecialidad);
                 Session.Add("especialidadSeleccionada", especialidad);
-                siguiente = true;
                 List<Turno> turnosDisponibles = new List<Turno>();
                 int dia = 0;
                 do
@@ -85,6 +80,7 @@ namespace tp_cuatrimestral_goncalves_gines
             }
             catch (Exception ex)
             {
+                
                 throw ex;
             }
 
@@ -159,6 +155,21 @@ namespace tp_cuatrimestral_goncalves_gines
         {
             Session.Remove("turnoSeleccionado"); // lo borro para las validaciones de lo que se presenta en pantalla.
             Response.Redirect("Turnos.aspx", false);
+        }
+
+        protected void chkFiltroAvanzado_CheckedChanged(object sender, EventArgs e)
+        {
+            HorarioNegocio negocioHorario = new HorarioNegocio();
+            Especialidad esp = (Especialidad)Session["especialidadSeleccionada"];
+            string id = esp.Id.ToString();
+            ddlFecha.DataSource = negocioHorario.cargarddlFecha(id);
+            ddlFecha.DataBind();
+
+        }
+
+        protected void ddlFecha_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
         }
     }
 }

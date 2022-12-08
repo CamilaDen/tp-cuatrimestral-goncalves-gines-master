@@ -18,7 +18,7 @@
                     <div class="col-2">
                         <div class="mb-3">
                             <asp:Label Text="Estado" runat="server" />
-                            <asp:DropDownList runat="server" ID="ddlEstado" CssClass="form-control">
+                            <asp:DropDownList runat="server" ID="ddlEstado" CssClass="form-control" TabIndex="1">
                                 <asp:ListItem Text="Todos" />
                                 <asp:ListItem Text="Activo" />
                                 <asp:ListItem Text="Inactivo" />
@@ -26,10 +26,10 @@
                         </div>
                     </div>
                     <div class="col-4 mt-4">
-                        <asp:Button ID="btnBuscarRapido" runat="server" Text="Buscar" CssClass="btn btn-primary" OnClick="btnBuscarRapido_Click" />
+                        <asp:Button ID="btnBuscarRapido" runat="server" Text="Buscar" CssClass="btn btn-primary" OnClick="btnBuscarRapido_Click" TabIndex="2" />
                     </div>
                     <div class="col-2 mt-4">
-                        <asp:Button ID="bntCrear" runat="server" Text="📅   Nuevo" CssClass="btn btn-success btn-block" OnClick="btnCrear_Click" />
+                        <asp:Button ID="bntCrear" runat="server" Text="📅   Nuevo" CssClass="btn btn-success btn-block" OnClick="btnCrear_Click" TabIndex="3" />
                     </div>
                 </div>
                 <asp:GridView ID="dgvPacientesTurnos" runat="server" EmptyDataText="No hay resultados!" CssClass="table align-middle table-sm" AutoGenerateColumns="false" AutoPostBack="true" DataKeyNames="Id" OnSelectedIndexChanged="dgvPacientesTurnos_SelectedIndexChanged">
@@ -55,7 +55,7 @@
             </ContentTemplate>
         </asp:UpdatePanel>
         <div id="container">
-            <asp:Button ID="btnVolver" href="Default.aspx" runat="server" Text="⬅️  Volver" class="btn btn-secondary btn-lg" OnClick="btnVolver_Click" />
+            <asp:Button ID="btnVolver" href="Default.aspx" runat="server" Text="⬅️   Volver" class="btn btn-secondary btn-lg" OnClick="btnVolver_Click" TabIndex="4" />
             <%--<asp:Button ID="btnConsulta" runat="server" Text="Consulta" class="btn btn-primary btn-lg" Style="background-color: #5dbf4a; color: black; border-style: none" OnClick="btnConsulta_Click" />--%>
             <%--<asp:Button ID="btnCrear" runat="server" Text="Crear" class="btn btn-primary btn-lg" Style="background-color: #5dbf4a; color:black; border-style:none" OnClick="btnCrear_Click"/>--%>
         </div>

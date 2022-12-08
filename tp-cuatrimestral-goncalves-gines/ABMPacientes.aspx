@@ -159,7 +159,7 @@
 
         <hr />
         <div class="container" id="botoncitos">
-            <asp:Button ID="btnVolver" href="Default.aspx" runat="server" Text="← Volver" CssClass="btn btn-secondary btn-lg" OnClick="btnVolver_Click" />
+            <asp:Button ID="btnVolver" href="Default.aspx" runat="server" Text="⬅️  Volver" CssClass="btn btn-secondary btn-lg" OnClick="btnVolver_Click" />
         </div>
     </div>
 </asp:Content>

@@ -13,6 +13,14 @@
     <link rel="stylesheet" href="Styles.css" />
 </head>
 <body>
+    <script> 
+        //Desactiva la funcion del boton enter para obligar al usuario a presionar los botones
+        window.addEventListener("keypress", function (event) {
+            if (event.keyCode == 13) {
+                event.preventDefault();
+            }
+        }, false);
+    </script>
     <form id="form1" runat="server">
         <div class="container-fluid" style="padding: 0">
             <nav class="navbar bg-light" style="padding: 0">
