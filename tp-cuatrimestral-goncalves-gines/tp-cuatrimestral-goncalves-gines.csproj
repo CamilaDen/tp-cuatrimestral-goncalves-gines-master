@@ -76,6 +76,7 @@
     <Content Include="CambiarPass.aspx" />
     <Content Include="Coberturas.aspx" />
     <Content Include="CrearTurno.aspx" />
+    <Content Include="CrearTurnoManual.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="Error.aspx" />
     <Content Include="Especialidades.aspx" />
@@ -168,6 +169,13 @@
     </Compile>
     <Compile Include="CrearTurno.aspx.designer.cs">
       <DependentUpon>CrearTurno.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CrearTurnoManual.aspx.cs">
+      <DependentUpon>CrearTurnoManual.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CrearTurnoManual.aspx.designer.cs">
+      <DependentUpon>CrearTurnoManual.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>

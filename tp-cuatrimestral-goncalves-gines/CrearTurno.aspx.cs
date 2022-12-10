@@ -77,6 +77,8 @@ namespace tp_cuatrimestral_goncalves_gines
                 Session.Add("listaTurnosDisponibles", turnosDisponibles);
                 dgvTurnosPropuestos.DataSource = Session["listaTurnosDisponibles"];
                 dgvTurnosPropuestos.DataBind();
+                btnCargaManual.Visible = true;
+
             }
             catch (Exception ex)
             {
@@ -157,19 +159,9 @@ namespace tp_cuatrimestral_goncalves_gines
             Response.Redirect("Turnos.aspx", false);
         }
 
-        protected void chkFiltroAvanzado_CheckedChanged(object sender, EventArgs e)
+        protected void btnCargaManual_Click(object sender, EventArgs e)
         {
-            HorarioNegocio negocioHorario = new HorarioNegocio();
-            Especialidad esp = (Especialidad)Session["especialidadSeleccionada"];
-            string id = esp.Id.ToString();
-            ddlFecha.DataSource = negocioHorario.cargarddlFecha(id);
-            ddlFecha.DataBind();
-
-        }
-
-        protected void ddlFecha_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            
+            Response.Redirect("CrearTurnoManual.aspx", false);
         }
     }
 }

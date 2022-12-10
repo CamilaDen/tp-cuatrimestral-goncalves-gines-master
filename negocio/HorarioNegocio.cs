@@ -138,57 +138,33 @@ namespace negocio
             }
         }
 
-        public List<Horario> cargarddlFecha(string id)
+        public List<string> cargarddlFecha(int idEspecialidad, int idMedico, int idPaciente, DateTime fecha)
         {
 
-            List<Horario> lista = new List<Horario>();
+            List<string> lista = new List<string>();
             AccesoDatos datos = new AccesoDatos();
             try
             {
                 datos.setearProcedimiento("SP_CargaDDLFecha");
-                datos.setearParametro("@IDESPECIALIDAD", int.Parse(id));
+                datos.setearParametro("@IDESPECIALIDAD", idEspecialidad);
+                datos.setearParametro("@IDMEDICO", idMedico);
+                datos.setearParametro("@IDPACIENTE", idPaciente);
+                datos.setearParametro("@DIA", fecha);
                 datos.ejecutarLectura();
                 while (datos.Lector.Read())
                 {
-                    Horario aux = new Horario();
-                    aux.Dia = new Dia();
-                    string nombreDia;
-                    switch (aux.Dia.Id)
-                    {
-                        case 1:
-                            nombreDia = "Lunes";
-                            break;
-                        case 2:
-                            nombreDia = "Martes";
-                            break;
-                        case 3:
-                            nombreDia = "Miércoles";
-                            break;
-                        case 4:
-                            nombreDia = "Jueves";
-                            break;
-                        case 5:
-                            nombreDia = "Viernes";
-                            break;
-                        case 6:
-                            nombreDia = "Sábado";
-                            break;
-                        default:
-                            nombreDia = "Domingo";
-                            break;
-                    }
-                    aux.Dia.Nombre = nombreDia;
-                    aux.Id = (int)datos.Lector["Dia"];
-
-                    lista.Add(aux);
+                    lista.Add(datos.Lector["Hora"].ToString() + ":00 hrs.");
                 }
                 return lista;
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
             }
         }
     }

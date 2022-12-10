@@ -50,6 +50,40 @@ namespace negocio
                 throw ex;
             }
         }
+        public List<Medico> listarConEspecialidadSP(int id)
+        {
+            List<Medico> lista = new List<Medico>();
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearProcedimiento("SP_ListarMedicosxEspecialidad");
+                datos.setearParametro("@ID", id);
+
+                datos.ejecutarLectura();
+                while (datos.Lector.Read())
+                {
+                    Medico aux = new Medico();
+                    aux.Id = (int)datos.Lector["Id"];
+                    aux.Matricula = (string)datos.Lector["Matricula"];
+                    aux.Activo = (bool)datos.Lector["Activo"];
+                    aux.Nombre = (string)datos.Lector["Nombre"];
+                    aux.Apellido = (string)datos.Lector["Apellido"];
+                    aux.FechaDeNacimiento = Convert.ToDateTime(datos.Lector["Fecha_Nacimiento"]);
+                    aux.Dni = (int)datos.Lector["Dni"];
+                    aux.Mail = (string)datos.Lector["Mail"];
+                    aux.Horarios = (string)datos.Lector["Horarios"];
+                    aux.Especialidades = (string)datos.Lector["Especialidades"];
+                    aux.Usuario = new Usuario();
+                    aux.Usuario.Password = (string)datos.Lector["Pass"];
+                    lista.Add(aux);
+                }
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
         public List<Turno> turnosDisponibles(int idPaciente, int idEspecialidad, DateTime dia)
         {
