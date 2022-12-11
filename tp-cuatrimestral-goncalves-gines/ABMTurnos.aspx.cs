@@ -41,7 +41,7 @@ namespace tp_cuatrimestral_goncalves_gines
                         txtNombre.Text = turnoSeleccionado.Paciente.Nombre;
                         txtDNI.Text = turnoSeleccionado.Paciente.Dni.ToString();
                         txtMail.Text = turnoSeleccionado.Paciente.Mail;
-                        ddlEstado.SelectedValue = turnoSeleccionado.Estado.Nombre;
+                        ddlEstado.SelectedValue = turnoSeleccionado.Estado.Id.ToString();
                         txtFecha.Text = turnoSeleccionado.Fecha.ToString("dd/MM/yyyy");
                         txtHora.Text = turnoSeleccionado.Hora.ToString() + ":00";
                         txtMedico.Text = turnoSeleccionado.Medico.Nombre + " " + turnoSeleccionado.Medico.Apellido;

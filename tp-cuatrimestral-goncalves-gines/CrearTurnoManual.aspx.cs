@@ -32,7 +32,16 @@ namespace tp_cuatrimestral_goncalves_gines
                         Session.Add("listaMedicos", medicoNegocio.listarConEspecialidadSP(especialidad.Id));
                         dgvSeleccionarMedico.DataSource = Session["listaMedicos"];
                         dgvSeleccionarMedico.DataBind();
-                    }                    
+                    }
+
+                    if (Request.QueryString["id"] != null){
+                        TurnoNegocio negocioT = new TurnoNegocio();
+                        List<Turno> lista = negocioT.listarConSP(Request.QueryString["id"].ToString());
+                        Turno seleccionado = (negocioT.listarConSP("id"))[0];
+                        Session.Add("pacienteSeleccionado", seleccionado.Paciente.ToString());
+                        Session.Add("especialidadSeleccionada", seleccionado.Especialidad.ToString());
+                    }
+
                 }
             } catch(Exception ex)
             {

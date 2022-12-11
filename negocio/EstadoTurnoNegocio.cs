@@ -39,5 +39,25 @@ namespace negocio
                 throw ex;
             }
         }
+
+        public void CancelarTurno(string id)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearProcedimiento("SP_CancelarTurnoxId");
+                datos.setearParametro("@ID",id);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
     }
 }

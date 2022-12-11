@@ -44,14 +44,41 @@
                         <asp:BoundField HeaderText="Medico" DataField="Medico.Apellido" />
                         <asp:BoundField HeaderText="Observaciones" DataField="Observaciones" />
                         <asp:BoundField HeaderText="Estado" DataField="Estado.Nombre" />
-                        <asp:CommandField HeaderText="Ver Detalle" SelectText="🔍 ​" ShowSelectButton="true" ControlStyle-CssClass="btn btn-success btn-light" />
+                        <asp:CommandField HeaderText="Seleccionar" SelectText="✔️" ShowSelectButton="true" ControlStyle-CssClass="btn bnt-success btn-light" />
                     </Columns>
                     <EditRowStyle Font-Size="Small" />
                     <FooterStyle BackColor="#666666" Font-Size="Small" HorizontalAlign="Center" />
                     <HeaderStyle BackColor="#333333" ForeColor="White" />
                     <RowStyle HorizontalAlign="Center" CssClass="GvGrid"/>
                     <HeaderStyle HorizontalAlign="Center" />
+                    <SelectedRowStyle BackColor="YellowGreen" font-bold="true" />
                 </asp:GridView>
+                <div Class="row" style="display:flex;">
+                     <div class="col-5" style="display:inline-flex">
+                         <div class="mb-3">
+                            <label style="font-weight:bold">Acciones:</label>
+                         </div>
+                         <div class="mb-4">
+                           <label style="color:grey;">(seleccione un turno de la grilla para habilitar)</label>
+                        </div>
+                    </div>
+                     <div class="col-2" style="display:flex; float:right">
+                        <div class="mb-2">
+                            <asp:Button ID="btnVer" runat="server" Text="🔍 Ver Detalle" CssClass="btn btn-primary" OnClick="btnVer_Click" />
+                        </div>
+                    </div>
+                     <div class="col-2" style="display:flex;float:right">
+                        <div class="mb-2">
+                            <asp:Button ID="btnReagendar" runat="server" Text="📋 Reagendar" CssClass="btn btn-primary" OnClick="btnReagendar_Click" />
+                        </div>
+                    </div>
+                     <div class="col-2" style="display:flex; float:right;">
+                        <div class="mb-2">
+                            <asp:Button ID="btnCancelar" runat="server" Text="❌ Cancelar" AutoPostback="true" CssClass="btn btn-primary" OnClick="btnCancelar_Click" />
+                        </div>
+                    </div>
+                </div>
+                <hr />
             </ContentTemplate>
         </asp:UpdatePanel>
         <div id="container">

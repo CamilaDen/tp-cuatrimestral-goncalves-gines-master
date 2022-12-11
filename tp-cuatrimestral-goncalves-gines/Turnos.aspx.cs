@@ -11,16 +11,24 @@ namespace tp_cuatrimestral_goncalves_gines
 {
     public partial class Turnos : System.Web.UI.Page
     {
+
         public List<Turnos> ListaTurnos { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
+            
             try
             {
-                if (!IsPostBack) { 
+                if (!IsPostBack) {
                     TurnoNegocio turno = new TurnoNegocio();
                     Session.Add("listaTurno", turno.listarConSP());
                     dgvPacientesTurnos.DataSource = Session["listaTurno"];
-                    dgvPacientesTurnos.DataBind();                    
+                    dgvPacientesTurnos.DataBind();
+
+                    if (dgvPacientesTurnos.SelectedIndex == -1) {
+                        btnReagendar.Enabled = false;
+                        btnVer.Enabled = false;
+                        btnCancelar.Enabled = false;
+                    }
                 }
             }
             catch (Exception ex)
@@ -37,15 +45,14 @@ namespace tp_cuatrimestral_goncalves_gines
 
         protected void dgvPacientesTurnos_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string id = dgvPacientesTurnos.SelectedDataKey.Value.ToString();
-            Response.Redirect("ABMTurnos.aspx?id=" + id, false);
+            btnVer.Enabled = true;
+            btnCancelar.Enabled = true;
 
+            if (Seguridad.esRecepcionista(Session["usuario"])) { 
+                btnReagendar.Enabled = true;
+            }
         }
 
-        protected void btnConsulta_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("");
-        }
 
         protected void btnCrear_Click(object sender, EventArgs e)
         {
@@ -59,6 +66,26 @@ namespace tp_cuatrimestral_goncalves_gines
             dgvPacientesTurnos.DataSource = listaFiltrada;
             dgvPacientesTurnos.DataBind();
 
+        }
+
+        protected void btnVer_Click(object sender, EventArgs e)
+        {
+            string id = dgvPacientesTurnos.SelectedDataKey.Value.ToString();
+            Response.Redirect("ABMTurnos.aspx?id=" + id, false);
+        }
+
+        protected void btnCancelar_Click(object sender, EventArgs e)
+        {
+            string id = dgvPacientesTurnos.SelectedDataKey.Value.ToString();
+            EstadoTurnoNegocio turno = new EstadoTurnoNegocio();
+            turno.CancelarTurno(id);
+            Response.Redirect("Turnos.aspx");
+        }
+
+        protected void btnReagendar_Click(object sender, EventArgs e)
+        {
+            string id = dgvPacientesTurnos.SelectedDataKey.Value.ToString();     
+            Response.Redirect("CrearTurnoManual.aspx?id=" + id, false);
         }
     }
 }
