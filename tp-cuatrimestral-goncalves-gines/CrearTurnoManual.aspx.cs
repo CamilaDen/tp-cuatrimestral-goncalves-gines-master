@@ -27,7 +27,8 @@ namespace tp_cuatrimestral_goncalves_gines
                     Especialidad especialidad = (Especialidad)(Session["especialidadSeleccionada"]);
                     if (especialidad != null)
                     {
-                        lblSubTituloMedico.Text += especialidad.Nombre.ToString();
+                        lblTituloABMTurno.Text = "Nuevo Turno";
+                        lblSubTituloMedico.Text = "Seleccione un médico de la especialidad " + especialidad.Nombre.ToString();
                         MedicoNegocio medicoNegocio = new MedicoNegocio();
                         Session.Add("listaMedicos", medicoNegocio.listarConEspecialidadSP(especialidad.Id));
                         dgvSeleccionarMedico.DataSource = Session["listaMedicos"];
@@ -36,40 +37,60 @@ namespace tp_cuatrimestral_goncalves_gines
 
                     if (Request.QueryString["id"] != null){
                         TurnoNegocio negocioT = new TurnoNegocio();
-                        List<Turno> lista = negocioT.listarConSP(Request.QueryString["id"].ToString());
-                        Turno seleccionado = (negocioT.listarConSP("id"))[0];
-                        Session.Add("pacienteSeleccionado", seleccionado.Paciente.ToString());
-                        Session.Add("especialidadSeleccionada", seleccionado.Especialidad.ToString());
+                        Turno turnoSeleccionado = (negocioT.listarConSP(Request.QueryString["id"].ToString()))[0];
+                        Session.Add("turnoSeleccionado", turnoSeleccionado);
+                        Session.Add("pacienteSeleccionado", turnoSeleccionado.Paciente);
+                        Session.Add("especialidadSeleccionada", turnoSeleccionado.Especialidad);
+                        lblTituloABMTurno.Text = "Reagendar Turno";
+                        lblSubTituloMedico.Text = "Seleccione un médico de la especialidad " + turnoSeleccionado.Especialidad.Nombre;
+                        txtObservacion.Text = turnoSeleccionado.Observaciones.ToString(); 
+                        MedicoNegocio medicoNegocio = new MedicoNegocio();
+                        Session.Add("listaMedicos", medicoNegocio.listarConEspecialidadSP(turnoSeleccionado.Especialidad.Id));
+                        dgvSeleccionarMedico.DataSource = Session["listaMedicos"];
+                        dgvSeleccionarMedico.DataBind();
                     }
-
                 }
             } catch(Exception ex)
             {
                 Session.Add("error", ex.ToString());
                 Response.Redirect("Error.aspx", false);
-            }
-            
+            }            
         }
 
         protected void btnAceptar_Click(object sender, EventArgs e)
         {
             try
             {
-                Turno nuevoTurno = new Turno();
+                string idTurnoReagendado = Request.QueryString["id"];
+                Turno turno = new Turno();
                 string horarioSeleccionado = ddlHorariosDisponibles.SelectedValue.ToString();
                 int posicion = horarioSeleccionado.IndexOf(":");
-                nuevoTurno.Hora = int.Parse(horarioSeleccionado.Substring(0, posicion));
-                nuevoTurno.Fecha = cldDiaTurno.SelectedDate;
-                nuevoTurno.Paciente = (Paciente)Session["pacienteSeleccionado"];
-                nuevoTurno.Especialidad = (Especialidad)Session["especialidadSeleccionada"];
-                nuevoTurno.Medico = (Medico)Session["medicoSeleccionado"];
-                nuevoTurno.FechaSolicitado = DateTime.Now;
-                nuevoTurno.Observaciones = txtObservacion.Text;
+                turno.Hora = int.Parse(horarioSeleccionado.Substring(0, posicion));
+                turno.Fecha = cldDiaTurno.SelectedDate;
+                turno.Paciente = (Paciente)Session["pacienteSeleccionado"];
+                turno.Especialidad = (Especialidad)Session["especialidadSeleccionada"];
+                turno.Medico = (Medico)Session["medicoSeleccionado"];
+                turno.Observaciones = txtObservacion.Text;
+                turno.FechaSolicitado = DateTime.Now;
                 TurnoNegocio turnoNegocio = new TurnoNegocio();
-                turnoNegocio.agregar(nuevoTurno);
                 EmailService emailService = new EmailService();
-                emailService.armarCorreo(nuevoTurno.Paciente.Mail, "Nuevo turno Agendado", "Hola " + nuevoTurno.Paciente.Nombre + " " + nuevoTurno.Paciente.Apellido + ", su turno está agendado para el día " + nuevoTurno.Fecha.ToShortDateString()
-                    + " a las " + nuevoTurno.Hora.ToString() + ":00hrs. con el médico " + nuevoTurno.Medico.Nombre + " " + nuevoTurno.Medico.Apellido + ".");
+                if (idTurnoReagendado == null)
+                {                    
+                    turnoNegocio.agregar(turno);
+                    emailService.armarCorreo(turno.Paciente.Mail, "Nuevo turno Agendado", "Hola " + turno.Paciente.Nombre + " " + turno.Paciente.Apellido + ", su turno está agendado para el día " + turno.Fecha.ToShortDateString()
+                        + " a las " + turno.Hora.ToString() + ":00hrs. con el médico " + turno.Medico.Nombre + " " + turno.Medico.Apellido + ".");
+                }
+                else
+                {
+                    Turno turnoAnterior = (Turno)Session["turnoSeleccionado"];
+                    turno.Id = int.Parse(idTurnoReagendado);
+                    turnoNegocio.reagendar(turno);
+                    emailService.armarCorreo(turno.Paciente.Mail, "Turno reagendado", "Hola " + turno.Paciente.Nombre + " " + turno.Paciente.Apellido + ", su turno del día " 
+                        + turnoAnterior.Fecha.ToShortDateString() + " a las " + turnoAnterior.Hora +":00hrs. con el médico "
+                        + turnoAnterior.Medico.Nombre + " " + turno.Medico.Apellido + ", "
+                        + " ha sido reagendado para el día " + turno.Fecha.ToShortDateString()
+                        + " a las " + turno.Hora.ToString() + ":00hrs. con el médico " + turno.Medico.Nombre + " " + turno.Medico.Apellido + ".");
+                }
                 emailService.enviarMail();
                 Response.Redirect("Turnos.aspx", false);
             }

@@ -32,7 +32,11 @@
                         <asp:Button ID="bntCrear" runat="server" Text="📅   Nuevo" CssClass="btn btn-success btn-block" OnClick="btnCrear_Click" TabIndex="3" />
                     </div>
                 </div>
-                <asp:GridView ID="dgvPacientesTurnos" runat="server" EmptyDataText="No hay resultados!" CssClass="table align-middle table-sm" AutoGenerateColumns="false" AutoPostBack="true" DataKeyNames="Id" OnSelectedIndexChanged="dgvPacientesTurnos_SelectedIndexChanged">
+                <asp:GridView ID="dgvPacientesTurnos" runat="server" EmptyDataText="No hay resultados!" CssClass="table align-middle table-sm" 
+                    AutoGenerateColumns="false" AutoPostBack="true" DataKeyNames="Id" 
+                    OnPageIndexChanging="dgvPacientesTurnos_PageIndexChanging"
+                    AllowPaging="true" PageSize="8"
+                    OnSelectedIndexChanged="dgvPacientesTurnos_SelectedIndexChanged">
                     <Columns>
                         <asp:BoundField HeaderText="Nro Turno" DataField="ID" />
                         <asp:BoundField HeaderText="Apellido" DataField="Paciente.Nombre" />
@@ -52,6 +56,7 @@
                     <RowStyle HorizontalAlign="Center" CssClass="GvGrid"/>
                     <HeaderStyle HorizontalAlign="Center" />
                     <SelectedRowStyle BackColor="YellowGreen" font-bold="true" />
+                    <PagerStyle BackColor="#666666" ForeColor="White" HorizontalAlign="Center" />
                 </asp:GridView>
                 <div Class="row" style="display:flex;">
                      <div class="col-5" style="display:inline-flex">
@@ -83,9 +88,6 @@
         </asp:UpdatePanel>
         <div id="container">
             <asp:Button ID="btnVolver" href="Default.aspx" runat="server" Text="⬅️   Volver" class="btn btn-secondary btn-lg" OnClick="btnVolver_Click" TabIndex="4" />
-            <%--<asp:Button ID="btnConsulta" runat="server" Text="Consulta" class="btn btn-primary btn-lg" Style="background-color: #5dbf4a; color: black; border-style: none" OnClick="btnConsulta_Click" />--%>
-            <%--<asp:Button ID="btnCrear" runat="server" Text="Crear" class="btn btn-primary btn-lg" Style="background-color: #5dbf4a; color:black; border-style:none" OnClick="btnCrear_Click"/>--%>
         </div>
-
     </div>
 </asp:Content>

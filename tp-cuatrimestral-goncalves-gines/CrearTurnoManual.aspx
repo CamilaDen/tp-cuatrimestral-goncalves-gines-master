@@ -24,8 +24,8 @@
     <div class="container">
         <asp:UpdatePanel runat="server">
             <ContentTemplate>
-                <label class="TituloABM">Nuevo Turno</label>
-                <div class="row g-3" style="justify-content: left">
+                <asp:Label ID="lblTituloABMTurno" runat="server" CssClass="TituloABM" Text="Nuevo Turno"></asp:Label>
+                <div class="row g-3" style="justify-content: left; margin-top: 10px;">
                     <div class="row">
                         <asp:Label ID="lblSubTituloMedico" runat="server" Text="Seleccione un médico de la especialidad " CssClass="form-label" Style="font-weight: bold"></asp:Label>
                         <asp:TextBox ID="txtMedico" class="form-control" Style="width: 500px; margin-left: 15px" placeholder="Nombre, Apellido o DNI del Médico" runat="server"></asp:TextBox>
@@ -45,6 +45,7 @@
                         <HeaderStyle BackColor="#333333" ForeColor="White" />
                         <RowStyle HorizontalAlign="Center" CssClass="GvGrid" />
                         <HeaderStyle HorizontalAlign="Center" />
+                        <SelectedRowStyle BackColor="YellowGreen" Font-Bold="true" />
                     </asp:GridView>
                 </div>
                 <div class="row justify-content-around ">
@@ -59,7 +60,7 @@
                             <asp:Label ID="lblHorariosDisponibles" Visible="false" runat="server" CssClass="form-label" Style="font-weight: bold">Horarios Disponibles</asp:Label>
                             <asp:DropDownList ID="ddlHorariosDisponibles" Visible="false" CssClass="form-select" ClientIDMode="Static" runat="server">
                             </asp:DropDownList>
-                        </div>                        
+                        </div>
                         <div class="container">
                             <asp:Label ID="lblSinHorarios" runat="server" Visible="false" Text="Sin turnos disponibles" CssClass="form-label" Style="font-weight: bold; color: red;"></asp:Label>
                         </div>

@@ -46,10 +46,14 @@ namespace tp_cuatrimestral_goncalves_gines
         protected void dgvPacientesTurnos_SelectedIndexChanged(object sender, EventArgs e)
         {
             btnVer.Enabled = true;
-            btnCancelar.Enabled = true;
-
-            if (Seguridad.esRecepcionista(Session["usuario"])) { 
+            Turno turnoSeleccionado = ((List<Turno>)Session["listaTurno"]).Find(x => x.Id == int.Parse(dgvPacientesTurnos.SelectedDataKey.Value.ToString()));
+            if ((Seguridad.esRecepcionista(Session["usuario"]) || Seguridad.esAdmin(Session["usuario"])) && (turnoSeleccionado.Estado.Id == 1 || turnoSeleccionado.Estado.Id == 4)) { 
                 btnReagendar.Enabled = true;
+                btnCancelar.Enabled = true;
+            }else
+            {
+                btnReagendar.Enabled = false;
+                btnCancelar.Enabled = false;
             }
         }
 
@@ -86,6 +90,13 @@ namespace tp_cuatrimestral_goncalves_gines
         {
             string id = dgvPacientesTurnos.SelectedDataKey.Value.ToString();     
             Response.Redirect("CrearTurnoManual.aspx?id=" + id, false);
+        }
+
+        protected void dgvPacientesTurnos_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            dgvPacientesTurnos.PageIndex = e.NewPageIndex;
+            dgvPacientesTurnos.DataSource = Session["listaTurno"];
+            dgvPacientesTurnos.DataBind();
         }
     }
 }

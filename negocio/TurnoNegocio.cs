@@ -32,11 +32,13 @@ namespace negocio
                     Turno aux = new Turno();
                     aux.Id = (int)datos.Lector["ID"];
                     aux.Paciente = new Paciente();
+                    aux.Paciente.Id = (int)datos.Lector["IDPACIENTE"];    
                     aux.Paciente.Nombre = (string)datos.Lector["APELLIDOPACIENTE"];
                     aux.Paciente.Apellido = (string)datos.Lector["NOMBREPACIENTE"];
                     aux.Paciente.Mail = (string)datos.Lector["MAILPACIENTE"];
                     aux.Paciente.Dni = (int)datos.Lector["DNIPACIENTE"];
                     aux.Especialidad = new Especialidad();
+                    aux.Especialidad.Id = (int)datos.Lector["IDESPECIALIDAD"];
                     aux.Especialidad.Nombre = (string)datos.Lector["ESPECIALIDAD"];
                     aux.FechaSolicitado = Convert.ToDateTime(datos.Lector["FECHA_SOLICITADO"]);
                     aux.Fecha = Convert.ToDateTime(datos.Lector["FECHA"]);
@@ -71,6 +73,31 @@ namespace negocio
                 datos.setearParametro("@HORA", nuevo.Hora);
                 datos.setearParametro("@IDMEDICO", nuevo.Medico.Id);    
                 datos.setearParametro("@OBSERVACIONES", nuevo.Observaciones);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+        public void reagendar(Turno modificacion)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearProcedimiento("SP_ReagendarTurno");
+                datos.setearParametro("@ID", modificacion.Id);
+                datos.setearParametro("@IDPACIENTE", modificacion.Paciente.Id);
+                datos.setearParametro("@IDESPECIALIDAD", modificacion.Especialidad.Id);
+                datos.setearParametro("@FECHA", modificacion.Fecha);
+                datos.setearParametro("@HORA", modificacion.Hora);
+                datos.setearParametro("@IDMEDICO", modificacion.Medico.Id);
+                datos.setearParametro("@OBSERVACIONES", modificacion.Observaciones);
                 datos.ejecutarAccion();
             }
             catch (Exception ex)
