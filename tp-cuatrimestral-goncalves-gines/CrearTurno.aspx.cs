@@ -73,7 +73,7 @@ namespace tp_cuatrimestral_goncalves_gines
                 {
                     dia++;
                     turnosDisponibles.AddRange(medicoNegocio.turnosDisponibles(idPaciente, idEspecialidad, DateTime.Parse(DateTime.Now.AddDays(dia).ToShortDateString())));
-                } while (turnosDisponibles.Count < 3);
+                } while ((turnosDisponibles.Count < 3) && (dia < 30));
                 Session.Add("listaTurnosDisponibles", turnosDisponibles);
                 dgvTurnosPropuestos.DataSource = Session["listaTurnosDisponibles"];
                 dgvTurnosPropuestos.DataBind();

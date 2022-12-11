@@ -1,5 +1,6 @@
 ﻿using dominio;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data.SqlTypes;
 using System.Diagnostics.Contracts;
@@ -23,6 +24,7 @@ namespace negocio
                 }
                 else
                 {
+                    
                     datos.setearProcedimiento("SP_ListarTurnoxId");
                     datos.setearParametro("@ID", int.Parse(id));
                 }
@@ -142,6 +144,81 @@ namespace negocio
                 else horarios.Add(string.Format("{0}:00", x));
             }
             return horarios;
+        }
+
+        public List<Turno> ListarTurnosMedico(string id = "")
+        {
+            List<Turno> lista = new List<Turno>();
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                if (id == "")
+                {
+                    datos.setearProcedimiento("SP_ListarTurno");
+                }
+                else
+                {
+
+                    datos.setearProcedimiento("SP_ListarTurnoMedicoxId");
+                    datos.setearParametro("@IDMEDICO", int.Parse(id));
+                }
+                datos.ejecutarLectura();
+                while (datos.Lector.Read())
+                {
+                    Turno aux = new Turno();
+                    aux.Id = (int)datos.Lector["ID"];
+                    aux.Paciente = new Paciente();
+                    aux.Paciente.Id = (int)datos.Lector["IDPACIENTE"];
+                    aux.Paciente.Nombre = (string)datos.Lector["APELLIDOPACIENTE"];
+                    aux.Paciente.Apellido = (string)datos.Lector["NOMBREPACIENTE"];
+                    aux.Paciente.Mail = (string)datos.Lector["MAILPACIENTE"];
+                    aux.Paciente.Dni = (int)datos.Lector["DNIPACIENTE"];
+                    aux.Especialidad = new Especialidad();
+                    aux.Especialidad.Id = (int)datos.Lector["IDESPECIALIDAD"];
+                    aux.Especialidad.Nombre = (string)datos.Lector["ESPECIALIDAD"];
+                    aux.FechaSolicitado = Convert.ToDateTime(datos.Lector["FECHA_SOLICITADO"]);
+                    aux.Fecha = Convert.ToDateTime(datos.Lector["FECHA"]);
+                    aux.Hora = int.Parse(datos.Lector["HORA"].ToString());
+                    aux.Medico = new Medico();
+                    aux.Medico.Nombre = (string)datos.Lector["NOMBREMEDICO"];
+                    aux.Medico.Apellido = (string)datos.Lector["APELLIDOMEDICO"];
+                    aux.Observaciones = (string)datos.Lector["OBSERVACIONES"];
+                    aux.Estado = new EstadoTurno();
+                    aux.Estado.Id = (int)datos.Lector["IDESTADO"];
+                    aux.Estado.Nombre = (string)datos.Lector["ESTADO"];
+                    lista.Add(aux);
+                }
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public List<Turno> buscarIdMedico(string id)
+        {
+            List<Turno> lista= new List<Turno>();
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearProcedimiento("SP_UsuarioMedicoxId");
+                datos.setearParametro("@IDUSUARIO", id);
+                datos.ejecutarLectura();
+                while (datos.Lector.Read())
+                {
+                    Turno aux = new Turno();
+                    aux.Medico = new Medico();
+                    aux.Medico.Id = (int)datos.Lector["IDMEDICO"];
+                    lista.Add(aux);
+                }
+                return lista;
+            }
+            catch(Exception ex){
+
+                throw ex;
+            }
+
+
         }
 
     }

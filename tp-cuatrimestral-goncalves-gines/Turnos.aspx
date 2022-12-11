@@ -41,6 +41,7 @@
                         <asp:BoundField HeaderText="Nro Turno" DataField="ID" />
                         <asp:BoundField HeaderText="Apellido" DataField="Paciente.Nombre" />
                         <asp:BoundField HeaderText="Nombre" DataField="Paciente.Apellido" />
+                        <asp:BoundField HeaderText="DNI" DataField="Paciente.Dni" />
                         <asp:BoundField HeaderText="Especialidad" DataField="Especialidad.Nombre" />
                         <asp:BoundField HeaderText="Fecha Solicitud" DataFormatString="{0:dd/MM/yyyy}" DataField="FechaSolicitado" />
                         <asp:BoundField HeaderText="Fecha" DataFormatString="{0:dd/MM/yyyy}" DataField="Fecha" />

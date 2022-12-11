@@ -19,10 +19,25 @@ namespace tp_cuatrimestral_goncalves_gines
             try
             {
                 if (!IsPostBack) {
-                    TurnoNegocio turno = new TurnoNegocio();
-                    Session.Add("listaTurno", turno.listarConSP());
-                    dgvPacientesTurnos.DataSource = Session["listaTurno"];
-                    dgvPacientesTurnos.DataBind();
+
+                    if (Seguridad.esMedico(Session["usuario"]))
+                    {
+                        Usuario user = new Usuario();
+                        user = (Usuario) Session["usuario"]; //cargo el usuario de sesion en un objeto
+                        TurnoNegocio turnoN = new TurnoNegocio();
+                        Turno turno = new Turno();
+                        turno = turnoN.buscarIdMedico(user.Id.ToString())[0];
+                        Session.Add("listaTurnoMedico", turnoN.ListarTurnosMedico(turno.Medico.Id.ToString()));
+                        dgvPacientesTurnos.DataSource = Session["listaTurnoMedico"];
+
+                    }
+                    else { 
+                        
+                        TurnoNegocio turno = new TurnoNegocio();
+                        Session.Add("listaTurno", turno.listarConSP());
+                        dgvPacientesTurnos.DataSource = Session["listaTurno"];
+                        dgvPacientesTurnos.DataBind();
+                    }
 
                     if (dgvPacientesTurnos.SelectedIndex == -1) {
                         btnReagendar.Enabled = false;

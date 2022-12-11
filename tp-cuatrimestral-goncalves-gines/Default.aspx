@@ -5,8 +5,8 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div id="Hero">
         <div class="d-grid gap-2 col-6 mx-auto" style="padding: 50px; align-items: center">
-            <% if (negocio.Seguridad.esAdmin(Session["usuario"]) || negocio.Seguridad.esRecepcionista(Session["usuario"])){ %>
             <a id="btnaTurnos" href="Turnos.aspx" runat="server" class="btn btn-primary" type="button" style="display: flex; align-items: center; justify-content: center; height: 50px; background-image: linear-gradient(to bottom right,cornflowerblue,dodgerblue);color: black; border-radius: 20px; font-weight: bold; border-style: hidden">Turnos </a>
+            <% if (negocio.Seguridad.esAdmin(Session["usuario"]) || negocio.Seguridad.esRecepcionista(Session["usuario"])){ %>
             <a id="btnaPacientes" href="Pacientes.aspx" runat="server" class="btn btn-primary" type="button" style="display: flex; align-items: center; justify-content: center; height: 50px; background-image: linear-gradient(to bottom right,cornflowerblue,dodgerblue); color: black; border-radius: 20px; font-weight: bold; border-style: hidden">Pacientes </a>
             <a id="btnaPersonalClinica" class="btn btn-primary" data-bs-toggle="collapse" href="#collapseClinica" role="button" aria-expanded="false" aria-controls="collapseExample" style="display: flex; align-items: center; justify-content: center; height: 50px; background-image: linear-gradient(to bottom right,cornflowerblue,dodgerblue); color: black; border-radius: 20px; font-weight: bold; border-style: hidden">Personal Clinica</a>
             <div class="collapse" id="collapseClinica">
