@@ -13,7 +13,7 @@ namespace tp_cuatrimestral_goncalves_gines
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!(Seguridad.esAdmin(Session["usuario"]) || Seguridad.esRecepcionista(Session["usuario"])))
+            if (!(Seguridad.esAdmin(Session["usuario"]) || Seguridad.esRecepcionista(Session["usuario"]) || Seguridad.esMedico(Session["usuario"])))
             {
                 Session.Add("error", "Se requiere permisos de admin o recepcionista para acceder a esta página");
                 Response.Redirect("Error.aspx", false);
@@ -22,10 +22,6 @@ namespace tp_cuatrimestral_goncalves_gines
             {               
                 if (!IsPostBack)
                 {
-                    if (Seguridad.esAdmin(Session["usuario"]) || Seguridad.esRecepcionista(Session["usuario"]) || Seguridad.esMedico(Session["usuario"]))
-                    {
-                          btnEditar.Visible = true;
-                    }
                     EstadoTurnoNegocio estadoTurnoNegocio = new EstadoTurnoNegocio();
                     ddlEstado.DataSource = estadoTurnoNegocio.listarConSP();
                     ddlEstado.DataTextField = "Nombre";
@@ -47,6 +43,10 @@ namespace tp_cuatrimestral_goncalves_gines
                         txtMedico.Text = turnoSeleccionado.Medico.Nombre + " " + turnoSeleccionado.Medico.Apellido;
                         txtEspecialidades.Text = turnoSeleccionado.Especialidad.Nombre;
                         txtObservacion.Text = turnoSeleccionado.Observaciones;
+                        if ((Seguridad.esAdmin(Session["usuario"]) || Seguridad.esRecepcionista(Session["usuario"]) || Seguridad.esMedico(Session["usuario"])) && (ddlEstado.SelectedValue == "1" || ddlEstado.SelectedValue == "4"))
+                        {
+                            btnEditar.Visible = true;
+                        }
                     }
                 }
             }catch(Exception ex)
@@ -83,7 +83,7 @@ namespace tp_cuatrimestral_goncalves_gines
 
         protected void btnEditar_Click(object sender, EventArgs e)
         {
-            if (Seguridad.esAdmin(Session["usuario"]) || Seguridad.esMedico(Session["usuario"]))
+            if (Seguridad.esAdmin(Session["usuario"]) || Seguridad.esRecepcionista(Session["usuario"]) || Seguridad.esMedico(Session["usuario"]))
             {
                 txtObservacion.Enabled = true;
                 ddlEstado.Enabled = true;

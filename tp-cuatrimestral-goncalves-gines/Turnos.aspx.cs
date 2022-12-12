@@ -19,26 +19,20 @@ namespace tp_cuatrimestral_goncalves_gines
             try
             {
                 if (!IsPostBack) {
-
+                    TurnoNegocio turnoNegocio = new TurnoNegocio();
                     if (Seguridad.esMedico(Session["usuario"]))
                     {
-                        Usuario user = new Usuario();
-                        user = (Usuario) Session["usuario"]; //cargo el usuario de sesion en un objeto
-                        TurnoNegocio turnoN = new TurnoNegocio();
-                        Turno turno = new Turno();
-                        turno = turnoN.buscarIdMedico(user.Id.ToString())[0];
-                        Session.Add("listaTurnoMedico", turnoN.ListarTurnosMedico(turno.Medico.Id.ToString()));
-                        dgvPacientesTurnos.DataSource = Session["listaTurnoMedico"];
-
+                        Usuario user = (Usuario) Session["usuario"]; //cargo el usuario de sesion en un objeto
+                        MedicoNegocio medicoNegocio = new MedicoNegocio();
+                        int idMedico = medicoNegocio.buscarPorID(user.Id.ToString());
+                        Session.Add("listaTurno", turnoNegocio.ListarTurnosMedico(idMedico.ToString()));
                     }
-                    else { 
-                        
-                        TurnoNegocio turno = new TurnoNegocio();
-                        Session.Add("listaTurno", turno.listarConSP());
-                        dgvPacientesTurnos.DataSource = Session["listaTurno"];
-                        dgvPacientesTurnos.DataBind();
+                    else 
+                    {                         
+                        Session.Add("listaTurno", turnoNegocio.listarConSP());                                               
                     }
-
+                    dgvPacientesTurnos.DataSource = Session["listaTurno"];
+                    dgvPacientesTurnos.DataBind();
                     if (dgvPacientesTurnos.SelectedIndex == -1) {
                         btnReagendar.Enabled = false;
                         btnVer.Enabled = false;
@@ -48,7 +42,6 @@ namespace tp_cuatrimestral_goncalves_gines
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
         }

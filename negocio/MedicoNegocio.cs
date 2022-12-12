@@ -50,6 +50,23 @@ namespace negocio
                 throw ex;
             }
         }
+
+        public int buscarPorID(string id)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearProcedimiento("SP_BuscarMedicoPorId");
+                datos.setearParametro("@ID", int.Parse(id));                
+                datos.ejecutarLectura();
+                datos.Lector.Read();
+                return (int)datos.Lector["IDMEDICO"];
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         public List<Medico> listarConEspecialidadSP(int id)
         {
             List<Medico> lista = new List<Medico>();
@@ -58,7 +75,6 @@ namespace negocio
             {
                 datos.setearProcedimiento("SP_ListarMedicosxEspecialidad");
                 datos.setearParametro("@ID", id);
-
                 datos.ejecutarLectura();
                 while (datos.Lector.Read())
                 {

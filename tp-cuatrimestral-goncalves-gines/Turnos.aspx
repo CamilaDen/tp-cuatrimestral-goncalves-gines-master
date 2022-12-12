@@ -28,9 +28,11 @@
                     <div class="col-4 mt-4">
                         <asp:Button ID="btnBuscarRapido" runat="server" Text="Buscar" CssClass="btn btn-primary" OnClick="btnBuscarRapido_Click" TabIndex="2" />
                     </div>
+                    <% if ( !negocio.Seguridad.esMedico(Session["usuario"]) ) { %>
                     <div class="col-2 mt-4">
                         <asp:Button ID="bntCrear" runat="server" Text="📅   Nuevo" CssClass="btn btn-success btn-block" OnClick="btnCrear_Click" TabIndex="3" />
                     </div>
+                    <% } %>
                 </div>
                 <asp:GridView ID="dgvPacientesTurnos" runat="server" EmptyDataText="No hay resultados!" CssClass="table align-middle table-sm" 
                     AutoGenerateColumns="false" AutoPostBack="true" DataKeyNames="Id" 

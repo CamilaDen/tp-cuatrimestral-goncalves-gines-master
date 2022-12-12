@@ -195,31 +195,5 @@ namespace negocio
                 throw ex;
             }
         }
-        public List<Turno> buscarIdMedico(string id)
-        {
-            List<Turno> lista= new List<Turno>();
-            AccesoDatos datos = new AccesoDatos();
-            try
-            {
-                datos.setearProcedimiento("SP_UsuarioMedicoxId");
-                datos.setearParametro("@IDUSUARIO", id);
-                datos.ejecutarLectura();
-                while (datos.Lector.Read())
-                {
-                    Turno aux = new Turno();
-                    aux.Medico = new Medico();
-                    aux.Medico.Id = (int)datos.Lector["IDMEDICO"];
-                    lista.Add(aux);
-                }
-                return lista;
-            }
-            catch(Exception ex){
-
-                throw ex;
-            }
-
-
-        }
-
     }
 }
