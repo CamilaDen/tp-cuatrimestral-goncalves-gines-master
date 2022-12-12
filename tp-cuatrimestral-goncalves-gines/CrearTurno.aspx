@@ -33,7 +33,7 @@
                         { %>
                     <div class="row">
                         <label class="form-label" style="font-weight: bold">Seleccione un paciente</label>
-                        <asp:TextBox ID="txtPaciente" class="form-control" Style="width: 500px; margin-left: 15px" placeholder="Nombre Paciente" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtPaciente" class="form-control" Style="width: 500px; margin-left: 15px" placeholder="Nombre, Apellido o DNI Paciente" runat="server"></asp:TextBox>
                         <div class="col-md-2">
                             <asp:Button ID="btnBuscarRapidoPaciente" runat="server" Text="Buscar" CssClass="btn btn-primary" OnClick="btnBuscarRapido_Click" />
                         </div>

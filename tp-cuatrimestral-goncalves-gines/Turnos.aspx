@@ -12,7 +12,7 @@
                     <div class="col-4">
                         <div class="mb-3">
                             <asp:Label Text="Filtrar por paciente" runat="server" />
-                            <asp:TextBox runat="server" AutoCompleteType="LastName" ID="txtFiltro" CssClass="form-control" />
+                            <asp:TextBox runat="server" ID="txtFiltro" placeholder="Nombre, Apellido o DNI Paciente" CssClass="form-control" />
                         </div>
                     </div>
                     <div class="col-2">
